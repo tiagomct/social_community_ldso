@@ -77,14 +77,3 @@ This has a potencial of being replicated arroud the world if it really works and
 If you have additional information to refer, please add the URL's and links here.
  
 
-###Contacts
-
-First Name
-Pedro 
-Last Name
-Serra
-Email
-serrabisco@gmail.com
-Phone
-966060499
-
