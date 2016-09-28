@@ -64,13 +64,12 @@ To have a webpage prototype and working that we could present to the government 
 
 ###Expected Results
 
-This is a new thing that depends also on local governments to be done, but it could change a lot on the power of the people in theis cities and the way the could have voice and participate. Also a very important thing would be the possibility to communicate in the community. Not in a global social network as people do now, but in a very specific municipality network and only certified people from there.
+This is a new thing that depends also on local governments to be done, but it could change a lot on the power of the people in their cities and the way the could have voice and participate. Also a very important thing would be the possibility to communicate in the community. Not in a global social network as people do now, but in a very specific municipality network and only certified people from there.
 
-This could change all the peoples approach to politics and theis participation in the decisions that would also change the way they'd feel on the community, their awareness and knowledge and empower the community 
-It would be a local experience but replicated nationally and I thing globally if the future is democracy.
-This innovation is a ressource optimization and also a new solution because there is nothing like this. 
-This has a potencial of being replicated arroud the world if it really works and I believe so.
-
+This could change all the peoples approach to politics and their participation in the decisions that would also change the way they'd feel on the community, their awareness and knowledge and empower the community 
+It would be a local experience but replicated nationally and I think globally if the future is democracy.
+This innovation is a resource optimization and also a new solution because there is nothing like this. 
+This has a potential of being replicated around the world if it really works and I believe so.
 
 
 ###Relevant Links
