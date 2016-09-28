@@ -1,0 +1,14 @@
+- Perguntas cliente:
+
+	- O que priorizar? Web ou mobile app?
+
+	- Qual o input esperado pelo utilizador para o login com o cartão?
+		- Apenas número do cartão? Data de nascimento? 
+		- Alternativas ao login com cartão?
+		- Caso um user utilizasse o número do cartão de outra pessoa?
+
+	- Administração da aplicação? Privilégios de um mod\admin?
+
+	- Delegados das juntas teriam funcionalidades extra?
+
+	- O que seria conteúdo desapropriado? 
