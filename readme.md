@@ -1,27 +1,78 @@
-# Laravel PHP Framework
+#Social comunity political participation 
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+##Technology
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+###Vision Statement
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Its a website to allow people to be politically active.
+The most used social networks are for personal reasons and we use a lot of our daily time on them. But what about that we use some of that time to participate in our community? Democracy is about participations and now we have technology to make it easier to participate, lets do it!
+This project intends to create a social network for every municipality or municipality local (freguesia) so people have the opportunity to participate.
+At the moment this doesn't exist so it would be a very unique thing that could cut the distance that exist between people and their government.
 
-## Official Documentation
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Contributing
+###Short Description
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+This platform would allow citizens to communicate with the local government but also with the rest of the community. The functionalities proposed are:
 
-## Security Vulnerabilities
+- Report for public malfunctions and maintnance (create a request to municipaly equipments)
+- Ideas Bank (where everyone could propose changes, improvements, new things..possibility to do voting for ideas)
+- Municipality publications (like municipality meeting report, warnings, information, events...)
+- News (possibility of presenting news by the municipality and the citizens)
+- Pols and referendums (Place to ask for peoples opinion and to allow people to create referendums that could be or not deliberative) 
+- Forum and discussion (place for discussion promoted by the citizens or the municipality) 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
+###Rules of the platform:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- Users must be citizens from that municipality
+- Authentication by ID card
+- Independent editorial group elected by users/citizens
+- Forbiden public or private publicity content
+- Improper content should be omitted but with possible consultation separately.
+
+
+###Backoffice:
+
+- Theme simple change with possibility to change collors, backgroud image and city logo
+- Possibility to define rule for referendums 
+
+
+###Other functionalities:
+
+- Simple and intuitive design
+- cellphone warnings and alerts
+- Automatic aggressive content filtering
+- Possibility of weekly or monthly resume
+
+
+###Other specifications:
+
+- This should be a webapp installed in a local server for each local community. So the installation process should be simple and documented.
+
+
+
+###Expected Results
+
+To have a webpage prototype and working that we could present to the government or municipalities that they could use as a start point to start or even to dot in an experimental time in a city.
+
+
+
+
+
+##Social Impact
+
+###Expected Results
+
+This is a new thing that depends also on local governments to be done, but it could change a lot on the power of the people in their cities and the way the could have voice and participate. Also a very important thing would be the possibility to communicate in the community. Not in a global social network as people do now, but in a very specific municipality network and only certified people from there.
+
+This could change all the peoples approach to politics and their participation in the decisions that would also change the way they'd feel on the community, their awareness and knowledge and empower the community 
+It would be a local experience but replicated nationally and I think globally if the future is democracy.
+This innovation is a resource optimization and also a new solution because there is nothing like this. 
+This has a potential of being replicated around the world if it really works and I believe so.
+
+
+###Relevant Links
+If you have additional information to refer, please add the URL's and links here.
+ 
+
