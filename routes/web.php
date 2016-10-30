@@ -1,8 +1,18 @@
 <?php
-Route::get('/', function () {
-    return view('welcome');
+
+auth()->loginUsingId(1);
+
+Route::get('/', function() {
+    if(auth()->check())
+        return redirect('home');
+
+    return redirect('login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', function () {
+        return view('pages.home');
+    });
+}) ;

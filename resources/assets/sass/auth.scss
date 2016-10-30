@@ -1,0 +1,48 @@
+@import "variables";
+
+html, body, #app  {
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: url(http://ihg.scene7.com/is/image/ihg/intercontinental-porto-4164645857-2x1?wid=1440&fit=fit,1);
+  background-size: cover;
+
+  .content {
+    border: none;
+
+    .auth-container {
+      .panel {
+        background: rgba(255, 255, 255, 0.8);
+
+        .panel-heading {
+          background: transparent;
+
+          .c-head {
+            color: $darker-grey;
+          }
+        }
+
+        .panel-body {
+          form {
+            .form-control {
+              background: rgba(255, 255, 255, 0.5);
+
+              &:focus {
+                border-color: $contrast-green;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(26, 199, 195);
+              }
+            }
+
+            .btn-link {
+              color: darken($contrast-green, 15%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
