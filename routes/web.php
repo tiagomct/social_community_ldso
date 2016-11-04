@@ -1,7 +1,5 @@
 <?php
 
-auth()->loginUsingId(1);
-
 Route::get('/', function() {
     if(auth()->check())
         return redirect('home');
