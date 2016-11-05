@@ -13,4 +13,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', function () {
         return view('pages.home');
     });
+
+    Route::get('profiles', 'ProfileController@list');
+
 }) ;
