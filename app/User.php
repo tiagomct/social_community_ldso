@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'description', 'politics', 'img_name', 'interests'
     ];
 
     /**
@@ -26,4 +26,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+     * Basic validation function - for now
+     */
+
+    public function rules_on_update($user)
+    {
+
+        return [
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'description' => 'string|max:1500',
+            'politics' => 'string|max:300',
+            'img' =>  'dimensions:width=200,height=200',
+            'interests' => 'string|max:255',
+        ];
+
+    }
+
 }

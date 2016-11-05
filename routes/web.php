@@ -13,4 +13,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', function () {
         return view('pages.home');
     });
+
+    Route::get('profile/{user}', 'ProfileController@show');
+    Route::any('user/edit', 'ProfileController@update');
+
 }) ;
