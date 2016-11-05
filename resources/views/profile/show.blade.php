@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3 col-md-offset-0 col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0">
             <!--    Profile pic     -->
-            <img class="img-rounded img-responsive" src="/uploads/users/{{ $user->img_name}}">
+            <img class="img-rounded img-responsive" src="/storage/uploads/users/{{ $user->img_name}}">
         </div>
 
         <div class="col-md-9 col-xs-12 col-sm-8">

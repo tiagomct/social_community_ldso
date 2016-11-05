@@ -37,11 +37,13 @@ class ProfileController extends Controller
 
             if ($request->file('img')) {
 
-
                 $file = $request->file('img');
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-                Image::make($file)->save(public_path('/uploads/users/' . $filename));
-                File::delete(public_path('/uploads/users/' . $user->img_name));
+                Image::make($file)->save(public_path('/storage/uploads/users/' . $filename));
+
+                if ($user->img_name != 'default.jpg') {
+                    File::delete(public_path('/storage/uploads/users/' . $user->img_name));
+                }
                 $user->img_name = $filename;
             }
 
