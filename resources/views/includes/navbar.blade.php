@@ -5,8 +5,8 @@
 		</div>
 		<div class="pages">
 			<ul>
+				<li><a href="{{ url('/municipality')}}">Municipality</a></li>
 				<li><a href="index.html">Articles</a></li>
-				<li><a href="3dprinting.html">3D Printers</a></li>
 				<li><a class="active" href="404.html">Tutorials</a></li>
 			</ul>
 		</div>

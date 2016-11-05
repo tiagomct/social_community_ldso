@@ -6,7 +6,7 @@
 @section('content')
 	<div class = "col-md-7 content-left">
 		<div class = "article">
-			<h5 class = "head">in recent news</h5>
+			<h5 class = "head">Welcome to {{ $municipality->name }}</h5>
 			<h6>Software </h6>
 			<a class = "title" href = "single.html">DeltaMaker – The new kid on the block An Elegant 3D Printer and a new wicked ass thing</a>
 			<a href = "single.html"><img src = "images/a1.jpg" alt = ""/></a>
