@@ -26,7 +26,7 @@
                                     <h4>Political opinion: </h4>
                                     <p>{{ $user->politics}}</p>
 
-                                    <a href={{'ProfileController@show', $user->id}} class="btn btn-default">
+                                    <a href={{action('ProfileController@show', $user->id)}} class="btn btn-default">
                                     View
                                     profile </a>
                                 </div>
