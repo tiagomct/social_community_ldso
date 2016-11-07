@@ -36,6 +36,34 @@
             </div>
         </div>
 
+        <div class="form-group{{ $errors->has('id_card') ? ' has-error' : '' }}">
+            <label for="id_card" class="col-md-4 control-label">Id card number:</label>
+
+            <div class="col-md-6">
+                <input id="id_card" type="text" class="form-control" name="id_card" value="{{ old('id_card') }}" required>
+
+                @if ($errors->has('id_card'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('id_card') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="form-group{{ $errors->has('birth_date') ? ' has-error' : '' }}">
+            <label for="id_card" class="col-md-4 control-label">Birth Date (YYYYMMDD):</label>
+
+            <div class="col-md-6">
+                <input id="birth_date" type="text" class="form-control" name="birth_date" value="{{ old('birth_date') }}" required>
+
+                @if ($errors->has('birth_date'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('birth_date') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="col-md-4 control-label">Password</label>
 
