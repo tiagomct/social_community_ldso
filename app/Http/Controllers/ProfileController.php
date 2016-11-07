@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function list(User $user)
+    {
+        $users = User::where('id', '!=', $user->id)->select('id', 'name', 'politics', 'img_name', 'interests')->orderBy('name')->paginate(10);
+
+        return view('profile.browse', compact('users'));
+    }
 
     public function show(User $user)
     {
@@ -41,23 +47,15 @@ class ProfileController extends Controller
 
         if ($request->description) {
             $user->description = $request->description;
-        } else {
-            $user->description = '';
         }
         if ($request->politics) {
             $user->politics = $request->politics;
-        } else {
-            $user->politics = '';
         }
         if ($request->interests) {
             $user->interests = $request->interests;
-        } else {
-            $user->interests = '';
         }
         if ($request->email) {
             $user->email = $request->email;
-        } else {
-            $user->email = '';
         }
 
         $user->save();
