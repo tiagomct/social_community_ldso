@@ -21,6 +21,6 @@ Route::group(['middleware' => 'auth'], function () {
         return $user;
     });
 
-    Route::get('profiles', 'ProfileController@list');
+    Route::get('users', 'ProfileController@list');
 
 }) ;
