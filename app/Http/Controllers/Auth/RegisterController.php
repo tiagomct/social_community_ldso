@@ -75,6 +75,9 @@ class RegisterController extends Controller
                 'id_card'    => $data['id_card'],
                 'birth_date' => Carbon::createFromFormat('Ymd', $data['birth_date']),
                 'password'   => bcrypt($data['password']),
+                'description' => '',
+                'politics' => '',
+                'interests' => '',
             ]);
             $votingLocation = VotingLocation::fromUser($user);
 
@@ -85,5 +88,6 @@ class RegisterController extends Controller
         });
 
         return $user;
+
     }
 }

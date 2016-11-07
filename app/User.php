@@ -20,11 +20,15 @@ class User extends Authenticatable
         'email',
         'password',
         'id_card',
-        'birth_date'
+        'birth_date',
+        'description',
+        'politics',
+        'img_name',
+        'interests',
     ];
 
     protected $dates = [
-        'birth_date'
+        'birth_date',
     ];
 
     /**
