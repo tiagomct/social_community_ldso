@@ -88,5 +88,6 @@ class RegisterController extends Controller
         });
 
         return $user;
+
     }
 }
