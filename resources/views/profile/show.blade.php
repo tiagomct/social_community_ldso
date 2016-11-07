@@ -52,7 +52,7 @@
 
                 <!--    Edit button -->
                 @if($user->id==Auth::user()->id)
-                    <a href={{url('/user/edit')}} class="btn btn-default pull-right"> Change profile </a>
+                    <a href={{action('ProfileController@edit', $user->id)}} class="btn btn-default pull-right"> Change profile </a>
                 @endif
 
             </div>

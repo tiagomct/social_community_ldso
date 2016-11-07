@@ -15,9 +15,10 @@ Route::group(['middleware' => 'auth'], function () {
         return view('pages.home');
     });
 
-    Route::get('profile/{user}', 'ProfileController@show');
-    Route::any('user/edit', 'ProfileController@update');
+    Route::get('users/{user}', 'ProfileController@show');
 
+    Route::get('users/{user}/edit', 'ProfileController@edit');
+    Route::post('users/{user}/edit', 'ProfileController@update');
 
     Route::get('test-profile-data', function() {
         $user = auth()->user()->load('votingLocation');
