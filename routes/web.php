@@ -20,6 +20,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/{user}/edit', 'ProfileController@edit');
     Route::post('users/{user}/edit', 'ProfileController@update');
 
+    Route::get('referendums/{referendum}', 'ReferendumController@show');
+    Route::get('referendums/{referendum}/up', 'ReferendumController@voteUp');
+    Route::get('referendums/{referendum}/down', 'ReferendumController@voteDown');
+
+
     Route::get('test-profile-data', function() {
         $user = auth()->user()->load('votingLocation');
 

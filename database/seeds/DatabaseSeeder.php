@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'county' => 'Porto',
             'parish' => 'Paranhos'
         ]);
-        factory(App\User::class, 1)->create();
+        factory(App\User::class, 20)->create();
+        factory(App\Referendum::class, 10)->create();
     }
 }
