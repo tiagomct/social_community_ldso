@@ -3,20 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Auth;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Referendum extends Model
 {
-    protected $fillable=
+    protected $fillable =
         [
             'title',
             'description',
         ];
 
     /**
-     * Coutn number of votes of $decision - 'up' or 'down'
+     * Counts number of votes with $decision - 'up' or 'down'
      * @param string $type
      * @return integer
      */
@@ -31,10 +29,7 @@ class Referendum extends Model
             return null;
         }
 
-        return DB::table('votes')->where([
-            ['referendum_id', '=', $this->id],
-            ['decision', '=', $decisionValue],
-        ])->count();
+        return $this->vote()->where('decision', $decisionValue)->count();
     }
 
     /**
@@ -44,11 +39,9 @@ class Referendum extends Model
      */
     public function checkIfVoted(User $user)
     {
-        $findVote =
-            DB::table('votes')->where([
-                ['user_id', '=', $user->id],
-                ['referendum_id', '=', $this->id]
-            ])->count();
+        $findVote = vote()->where('user_id', $user->id)
+            ->where('referendum_id', $this->id)
+            ->count();
 
         if ($findVote == 0) {
             return False;
@@ -63,22 +56,29 @@ class Referendum extends Model
      * @param User $user
      * @param string $decision
      */
-    public  function vote(User $user, string $decision)
+    public function userVote(string $decision)
     {
-        if($decision=='up')
-        {
-            $value=1;
-        }elseif ($decision=='down')
-        {
-            $value=0;
+        if ($decision == 'up') {
+            $value = 1;
+        } elseif ($decision == 'down') {
+            $value = 0;
         }
-        DB::table('votes')->insert(
-            ['referendum_id' => $this->id,
-                'user_id' => $user->id,
-                'created_at' => Carbon::now(),
-                'decision' => $value,
-            ]
-        );
+
+        $vote = $this->vote()->create(array(
+            'referendum_id' => $this->id,
+            'user_id' => Auth::user()->id,
+            'decision' => $value
+        ));
+
+        $vote->save();
     }
 
+    /**
+     * Relationship with votes table
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vote()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }

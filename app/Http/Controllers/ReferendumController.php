@@ -20,14 +20,14 @@ class ReferendumController extends Controller
 
     public function voteUp(Referendum $referendum)
     {
-        $referendum->vote(Auth::user(), 'up');
+        $referendum->userVote('up');
         return redirect()->action('ReferendumController@show', $referendum);
 
     }
 
     public function voteDown(Referendum $referendum)
     {
-        $referendum->vote(Auth::user(), 'down');
+        $referendum->userVote('down');
         return redirect()->action('ReferendumController@show', $referendum);
     }
 

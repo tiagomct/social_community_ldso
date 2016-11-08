@@ -45,4 +45,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(VotingLocation::class);
     }
+
+    /**
+     * Relationship with votes table
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vote()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
 }
