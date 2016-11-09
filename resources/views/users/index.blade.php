@@ -11,7 +11,7 @@
         @foreach($users as $user)
             <div class="col-xs-12 border-bottom user-list-item">
                 <div class="col-md-2 col-sm-3 col-xs-12">
-                    <img class="thumbnail img-responsive img-thumbnail" src="{{ asset('storage/users/'.$user->img_name)}}">
+                    <img class="thumbnail img-responsive img-thumbnail" src="{{ asset('storage/uploads/users/'.$user->img_name)}}">
                 </div>
         
                 <div class="col-md-10 col-sm-9 col-xs-12">

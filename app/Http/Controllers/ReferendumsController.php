@@ -8,7 +8,7 @@ use Request;
 use App\Vote;
 use Auth;
 
-class ReferendumController extends Controller
+class ReferendumsController extends Controller
 {
 
     public function show(Referendum $referendum)
@@ -26,7 +26,7 @@ class ReferendumController extends Controller
             }
         }
 
-        return view('referendum.show', compact('referendum', 'number_of_answers' ,'answers', 'voteCount', 'voted'));
+        return view('referendums.show', compact('referendum', 'number_of_answers' ,'answers', 'voteCount', 'voted'));
     }
 
     public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
@@ -36,7 +36,7 @@ class ReferendumController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect()->action('ReferendumController@show', $referendum);
+        return redirect()->action('ReferendumsController@show', $referendum);
 
     }
 
