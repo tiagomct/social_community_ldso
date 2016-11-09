@@ -28,6 +28,9 @@ class ReferendumsController extends Controller
             'referendum_answer_id' => $referendumAnswer->id
         ]);
 
+        $referendumAnswer->number_of_votes++;
+        $referendumAnswer->save();
+
         return redirect()->action('ReferendumsController@show', $referendum);
 
     }

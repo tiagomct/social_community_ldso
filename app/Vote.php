@@ -12,8 +12,6 @@ class Vote extends Model
     ];
 
 
-
-
     public function scopeReferendumAnswersAre($query, $referendum_answers)
     {
         return $query->whereIn('referendum_answer_id', $referendum_answers->pluck('id')->toArray());

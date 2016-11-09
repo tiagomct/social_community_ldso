@@ -17,6 +17,7 @@ class AddReferendumAnswer extends Migration
             $table->increments('id');
             $table->integer('referendum_id')->unsigned();
             $table->text('description');
+            $table->unsignedInteger('number_of_votes')->default(0);
             $table->timestamps();
 
             $table->foreign('referendum_id')->references('id')->on('referendums');

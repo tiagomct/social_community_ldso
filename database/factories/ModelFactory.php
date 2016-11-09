@@ -45,12 +45,7 @@ $factory->define(App\ReferendumAnswer::class, function (Faker\Generator $faker) 
     return [
         'referendum_id' => $faker->randomElement(App\Referendum::all()->pluck('id')->toArray()),
         'description' => implode($faker->sentences),
-    ];
-});
-$factory->define(App\Vote::class, function (Faker\Generator $faker) {
-    return [
-        'referendum_answer_id' => $faker->randomElement(App\ReferendumAnswer::all()->pluck('id')->toArray()),
-        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+
     ];
 });
 

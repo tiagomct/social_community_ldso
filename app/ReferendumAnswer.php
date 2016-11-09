@@ -14,24 +14,6 @@ class ReferendumAnswer extends Model
         'description',
     ];
 
-
-    public function CountVotes()
-    {
-        return Vote::referendumAnswerIs($this)->count();
-    }
-
-    /**
-     *
-     * Select answers based on referendum id($id)
-     * @param $query
-     * @param $id
-     * @return mixed
-     */
-    public function scopeReferendumIs($query, $referendum)
-    {
-        return $query->where('referendum_id', $referendum->id);
-    }
-
     /**
      * Relationship to votes table
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
