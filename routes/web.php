@@ -21,8 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('users/{user}/edit', 'ProfileController@update');
 
     Route::get('referendums/{referendum}', 'ReferendumController@show');
-    Route::get('referendums/{referendum}/up', 'ReferendumController@voteUp');
-    Route::get('referendums/{referendum}/down', 'ReferendumController@voteDown');
+    Route::get('referendums/{referendum}/submit/{referendumAnswer}', 'ReferendumController@submitVote');
 
 
     Route::get('test-profile-data', function() {

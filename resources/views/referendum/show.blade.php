@@ -14,7 +14,7 @@
 
                     <!--    Created at  -->
                     <li class="list-group-item">
-                        <h4>Date joined:</h4>
+                        <h4>Date created:</h4>
                         <p>{{ $referendum->created_at }}</p>
                     </li>
 
@@ -25,39 +25,45 @@
                     </li>
                 </ul>
 
-                <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-6 col-md-offset-2 col-sm-offset-2 col-xs-offset-3 text-center">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <h4>Support</h4>
-                            </div>
-                            <div class="panel-body">
-                                <h2>{{ $upVotes }}</h2>
-                                @if($voted==False)
-                                    <a href={{action('ReferendumController@voteUp', $referendum->id)}} class="btn
-                                       btn-success">
-                                    Support </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <table class="table">
+                    <thead>
+                    <th>
+                        <h4>Option</h4>
+                    </th>
+                    <th>
+                        <h4>Votes</h4>
+                    </th>
+                    @if($voted==False)
+                        <th>
+                            <h4>Choose option</h4>
+                        </th>
+                    @endif
+                    </thead>
+                    <tbody>
+                    @for($i=0; $i<$number_of_answers; $i++)
+                        <tr>
+                            <td>
+                                <p>{{ $answers[$i]->description }}</p>
+                            </td>
+                            <td>
+                                <h3>{{$voteCount[$i]}}</h3>
+                            </td>
+                            @if($voted==False)
+                                <td>
+                                    <a href={{action('ReferendumController@submitVote', array($referendum->id, $answers[$i]->id)) }} class="btn
+                                       btn-success"> Vote </a>
+                                </td>
+                            @endif
+                        </tr>
+                    @endfor
 
-                    <div class="col-md-3 col-sm-3 col-xs-6 col-md-offset-2 col-sm-offset-2 col-xs-offset-3 text-center">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h4>Disapprove</h4>
-                            </div>
-                            <div class="panel-body">
-                                <h2>{{ $downVotes }}</h2>
-                                @if($voted==False)
-                                    <a href={{action('ReferendumController@voteDown', $referendum->id)}} class="btn
-                                       btn-danger">
-                                    Disapprove </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>

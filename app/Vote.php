@@ -7,11 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Vote extends Model
 {
     protected $fillable = [
-        'referendum_id',
+        'referendum_answer_id',
         'user_id',
-        'decision',
     ];
 
+
+
+
+    public function scopeReferendumAnswerIdIs($query, $id)
+    {
+        return $query->where('referendum_answer_id', $id);
+    }
+
+    public function scopeUserIdIs($query, $id)
+    {
+        return $query->where('user_id', $id);
+    }
 
     /**
      * Relationship with users table
@@ -23,12 +34,12 @@ class Vote extends Model
     }
 
     /**
-     * Relationship with referendums table
+     * Relationship with referendum_answers table
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function referendum()
+    public function referendum_answer()
     {
-        return $this->belongsTo(Referendum::class);
+        return $this->belongsTo(ReferendumAnswer::class);
     }
 
 }

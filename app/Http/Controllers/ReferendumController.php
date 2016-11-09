@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Referendum;
+use App\ReferendumAnswer;
+use Request;
+use App\Vote;
 use Auth;
 
 class ReferendumController extends Controller
@@ -10,25 +13,31 @@ class ReferendumController extends Controller
 
     public function show(Referendum $referendum)
     {
-        $upVotes = $referendum->countVotes('up');
-        $downVotes = $referendum->countVotes('down');
+        $answers = $referendum->referendum_answer;
+        $number_of_answers = count($answers);
 
-        $voted = $referendum->checkIfVoted(Auth::user());
+        $voted = False;
+        for($i = 0; $i < $number_of_answers; $i++)
+        {
+            $voteCount[$i] = $answers[$i]->CountVotes();
 
-        return view('referendum.show', compact('referendum', 'upVotes', 'downVotes', 'voted'));
+            if(Vote::referendumAnswerIdIs($answers[$i]->id)->userIdIs(Auth::user()->id)->count()){
+                $voted = True;
+            }
+        }
+
+        return view('referendum.show', compact('referendum', 'number_of_answers' ,'answers', 'voteCount', 'voted'));
     }
 
-    public function voteUp(Referendum $referendum)
+    public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
     {
-        $referendum->userVote('up');
+        Vote::create([
+            'referendum_answer_id' => $referendumAnswer->id,
+            'user_id' => Auth::user()->id,
+        ]);
+
         return redirect()->action('ReferendumController@show', $referendum);
 
-    }
-
-    public function voteDown(Referendum $referendum)
-    {
-        $referendum->userVote('down');
-        return redirect()->action('ReferendumController@show', $referendum);
     }
 
 }
