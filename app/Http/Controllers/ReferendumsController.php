@@ -13,27 +13,19 @@ class ReferendumsController extends Controller
 
     public function show(Referendum $referendum)
     {
-        $answers = $referendum->referendum_answer;
-        $number_of_answers = count($answers);
+        $answers = $referendum->referendum_answer()->get();
 
-        $voted = False;
-        for($i = 0; $i < $number_of_answers; $i++)
-        {
-            $voteCount[$i] = $answers[$i]->CountVotes();
+        $userAnswerId = Vote::referendumAnswersAre($answers)
+                        ->userIs(Auth::user())
+                        ->value('referendum_answer_id');
 
-            if(Vote::referendumAnswerIdIs($answers[$i]->id)->userIdIs(Auth::user()->id)->count()){
-                $voted = True;
-            }
-        }
-
-        return view('referendums.show', compact('referendum', 'number_of_answers' ,'answers', 'voteCount', 'voted'));
+        return view('referendums.show', compact('referendum' ,'answers', 'userAnswerId'));
     }
 
     public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
     {
-        Vote::create([
-            'referendum_answer_id' => $referendumAnswer->id,
-            'user_id' => Auth::user()->id,
+        Auth::user()->vote()->create([
+            'referendum_answer_id' => $referendumAnswer->id
         ]);
 
         return redirect()->action('ReferendumsController@show', $referendum);

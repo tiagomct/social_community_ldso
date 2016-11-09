@@ -37,29 +37,29 @@
                     <th>
                         <h4>Votes</h4>
                     </th>
-                    @if($voted==False)
+                    @if(!($userAnswerId))
                         <th>
                             <h4>Choose option</h4>
                         </th>
                     @endif
                     </thead>
                     <tbody>
-                    @for($i=0; $i<$number_of_answers; $i++)
-                        <tr>
+                    @foreach($answers as $answer)
+                        <tr class={{ ($answer->id)==($userAnswerId) ? 'success' : ''  }}>
                             <td>
-                                <p>{{ $answers[$i]->description }}</p>
+                                <p>{{ $answer->description }}</p>
                             </td>
                             <td>
-                                <h3>{{$voteCount[$i]}}</h3>
+                                <h3>{{ $answer->CountVotes() }}</h3>
                             </td>
-                            @if($voted==False)
+                            @if(!($userAnswerId))
                                 <td>
-                                    <a href={{action('ReferendumsController@submitVote', array($referendum->id, $answers[$i]->id)) }} class="btn
-                                       btn-success"> Vote </a>
+                                    <a href={{action('ReferendumsController@submitVote', array($referendum->id, $answer->id)) }} class="btn
+                                       btn-success"><i class="fa fa-thumbs-up"></i> Vote </a>
                                 </td>
                             @endif
                         </tr>
-                    @endfor
+                    @endforeach
 
                     </tbody>
                 </table>

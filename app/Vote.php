@@ -14,14 +14,19 @@ class Vote extends Model
 
 
 
-    public function scopeReferendumAnswerIdIs($query, $id)
+    public function scopeReferendumAnswersAre($query, $referendum_answers)
     {
-        return $query->where('referendum_answer_id', $id);
+        return $query->whereIn('referendum_answer_id', $referendum_answers->pluck('id')->toArray());
     }
 
-    public function scopeUserIdIs($query, $id)
+    public function scopeReferendumAnswerIs($query, $referendum_answer)
     {
-        return $query->where('user_id', $id);
+        return $query->where('referendum_answer_id', $referendum_answer->id);
+    }
+
+    public function scopeUserIs($query, $user)
+    {
+        return $query->where('user_id', $user->id);
     }
 
     /**

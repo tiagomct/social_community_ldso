@@ -17,7 +17,7 @@ class ReferendumAnswer extends Model
 
     public function CountVotes()
     {
-        return Vote::referendumAnswerIdIs($this->id)->count();
+        return Vote::referendumAnswerIs($this)->count();
     }
 
     /**
@@ -27,9 +27,9 @@ class ReferendumAnswer extends Model
      * @param $id
      * @return mixed
      */
-    public function scopeReferendumIdIs($query, $id)
+    public function scopeReferendumIs($query, $referendum)
     {
-        return $query->where('referendum_id', $id);
+        return $query->where('referendum_id', $referendum->id);
     }
 
     /**
