@@ -2,7 +2,7 @@
 
 Route::get('/', function() {
     if(auth()->check())
-        return redirect('home');
+        return redirect()->action('UsersController@index');
 
     return redirect('login');
 });
@@ -11,14 +11,10 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', function () {
-        return view('pages.home');
-    });
-
-    Route::get('users/{user}', 'ProfileController@show');
-
-    Route::get('users/{user}/edit', 'ProfileController@edit');
-    Route::post('users/{user}/edit', 'ProfileController@update');
+    Route::get('users', 'UsersController@index');
+    Route::get('users/{user}', 'UsersController@show');
+    Route::get('users/{user}/edit', 'UsersController@edit');
+    Route::post('users/{user}/edit', 'UsersController@update');
 
     Route::get('test-profile-data', function() {
         $user = auth()->user()->load('votingLocation');
@@ -26,6 +22,5 @@ Route::group(['middleware' => 'auth'], function () {
         return $user;
     });
 
-    Route::get('users', 'ProfileController@list');
 
 }) ;

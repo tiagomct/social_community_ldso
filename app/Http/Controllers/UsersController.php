@@ -11,23 +11,29 @@ use Image;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class UsersController extends Controller
 {
-    public function list(User $user)
+    public function index()
     {
-        $users = User::where('id', '!=', $user->id)->select('id', 'name', 'politics', 'img_name', 'interests')->orderBy('name')->paginate(10);
+        $users = User::where('id', '!=', auth()->user()->id)->select('id', 'name', 'politics', 'img_name', 'interests')->orderBy('name')->paginate(10);
 
-        return view('profile.browse', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     public function show(User $user)
     {
-        return view('profile.show', compact('user'));
+        //TODO get last activity from user
+        $news = User::where('id', 3000)->get();
+        $referendums = User::where('id', 3000)->get();
+        $forumThreads = User::where('id', 3000)->get();
+        $malfunctions = User::where('id', 3000)->get();
+
+        return view('users.show', compact('user', 'news', 'forumThreads', 'malfunctions', 'referendums'));
     }
 
     public function edit(User $user)
     {
-        return view('profile.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, User $user)
@@ -59,7 +65,7 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return redirect()->action('ProfileController@show', $user);
+        return redirect()->action('UsersController@show', $user);
     }
 
 

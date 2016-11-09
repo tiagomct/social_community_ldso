@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserUpdateRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,12 +25,12 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return[
-            'email' => 'required|email|unique:users,email,'.Auth::user()->id,
-            'description' => 'string|max:1500',
-            'politics' => 'string|max:300',
-            'img' =>  'dimensions:width=200,height=200',
-            'interests' => 'string|max:255',
+        return [
+            'email'       => 'required|email|unique:users,email,' . auth()->user()->id,
+            'description' => 'string|nullable|max:1500',
+            'politics'    => 'string|nullable|max:1500',
+            'img'         => 'dimensions:width=200,height=200',
+            'interests'   => 'string|nullable|max:1500',
             //
         ];
     }

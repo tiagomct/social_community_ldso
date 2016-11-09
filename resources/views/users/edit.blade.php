@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            {{ Form::open([action('ProfileController@update',$user->id), 'files'=> true ,'method' => 'post']) }}
+            {{ Form::open([action('UsersController@update',$user->id), 'files'=> true ,'method' => 'post']) }}
             <div class="col-md-3 col-md-offset-0 col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0">
                 <!--    Profile pic     -->
                 <img class="img-rounded img-responsive" width="100%" height="100%"

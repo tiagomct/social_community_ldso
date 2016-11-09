@@ -15,9 +15,9 @@ class AddUserDescrPicPolInterFields extends Migration
     {
         Schema::table('users', function ($table) {
             $table->string('img_name')->default('default.jpg');
-            $table->text('description');
-            $table->text('politics');
-            $table->string('interests');
+            $table->text('description')->nullable();
+            $table->text('politics')->nullable();
+            $table->text('interests')->nullable();
         });
     }
 

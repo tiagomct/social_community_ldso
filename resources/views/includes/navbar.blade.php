@@ -5,17 +5,16 @@
 		</div>
 		<div class = "pages">
 			<ul>
-				<li><a href = "index.html">Articles</a></li>
-				<li><a href = "3dprinting.html">3D Printers</a></li>
-				<li><a class = "active" href = "404.html">Tutorials</a></li>
+				<li><a href = "#">News</a></li>
+				<li><a href = "#">Forum</a></li>
+				<li><a href = "#">Referendums</a></li>
+				<li><a href = "#">Malfunctions</a></li>
 			</ul>
 		</div>
 		<div class = "navigation">
 			<ul>
-				<li><a href = "contact.html">Advertise</a></li>
-				<li><a class = "active" href = "about.html">About Us</a></li>
-				<li><a href = "contact.html">Contact Us</a></li>
-				<li><a href = "{{ url('test-profile-data') }}">User Info</a></li>
+				<li><a href = "{{ action('UsersController@show', auth()->user()->id) }}"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a></li>
+				<li><a href = "{{ action('Auth\LoginController@logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
 			</ul>
 		</div>
 		<div class = "clearfix"></div>

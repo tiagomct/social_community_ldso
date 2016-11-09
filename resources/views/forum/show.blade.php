@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Referendums</h1>
+    <h1>Forum</h1>
 @endsection
