@@ -2,36 +2,26 @@
 
 Route::get('/', function() {
     if(auth()->check())
-        return redirect('home');
+        return redirect()->action('UsersController@index');
 
     return redirect('login');
 });
 
-
-/*Route::get('/municipality', function() {
-    if(auth()->check())
-        return 'MunicipalityController@access';
-
-    return redirect('login');
-});*/
-
-
-//Route::get('/municipality/{municipality}', 'MunicipalityController@show');
-
-/*Route::get('/municipality/{municipality}', function() {
-    if(auth()->check())
-        return 'MunicipalityController@show';
-
-    return redirect('login');
-});*/
-
 Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('users', 'UsersController@index');
+    Route::get('users/{user}', 'UsersController@show');
+    Route::get('users/{user}/edit', 'UsersController@edit');
+    Route::post('users/{user}/edit', 'UsersController@update');
+
+    Route::get('test-profile-data', function() {
+        $user = auth()->user()->load('votingLocation');
+
+        return $user;
+    });
+
+
     Route::get('/home','MunicipalityController@access');
 }) ;
-
-
-
-
-

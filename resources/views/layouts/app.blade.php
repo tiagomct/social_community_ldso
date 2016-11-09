@@ -25,7 +25,7 @@
     <div id="app">
         @if(auth()->check())
             @include('includes.navbar')
-            @include('includes.subNavbar')
+            {{-- @include('includes.subNavbar') --}}
         @else
             @include('includes.auth.navbar')
         @endif

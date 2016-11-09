@@ -1,22 +1,22 @@
-<div class="header">
-	<div class="container">
-		<div class="logo">
-			<a href="{{ url('/') }}"><h1>{{ config('app.name') }}</h1></a>
+<div class = "header">
+	<div class = "container">
+		<div class = "logo">
+			<a href = "{{ url('/') }}"><h1>{{ config('app.name') }}</h1></a>
 		</div>
-		<div class="pages">
+		<div class = "pages">
 			<ul>
-				<li><a href="{{ url('/municipality')}}">Municipality</a></li>
-				<li><a href="index.html">Articles</a></li>
-				<li><a class="active" href="404.html">Tutorials</a></li>
+				<li><a href = "#">News</a></li>
+				<li><a href = "#">Forum</a></li>
+				<li><a href = "#">Referendums</a></li>
+				<li><a href = "#">Malfunctions</a></li>
 			</ul>
 		</div>
-		<div class="navigation">
+		<div class = "navigation">
 			<ul>
-				<li><a href="contact.html">Advertise</a></li>
-				<li><a class="active" href="about.html">About Us</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href = "{{ action('UsersController@show', auth()->user()->id) }}"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a></li>
+				<li><a href = "{{ action('Auth\LoginController@logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
 			</ul>
 		</div>
-		<div class="clearfix"></div>
+		<div class = "clearfix"></div>
 	</div>
 </div>

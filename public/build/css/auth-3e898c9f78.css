@@ -1,6 +1,9 @@
 html, body, #app {
   height: 100%; }
 
+.content {
+  height: auto !important; }
+
 #app {
   display: -webkit-box;
   display: flex;
@@ -11,6 +14,8 @@ html, body, #app {
   justify-content: space-between;
   background: url(http://ihg.scene7.com/is/image/ihg/intercontinental-porto-4164645857-2x1?wid=1440&fit=fit,1);
   background-size: cover; }
+  #app > .container {
+    height: auto !important; }
   #app .content {
     border: none; }
     #app .content .auth-container .panel {

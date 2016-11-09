@@ -1,35 +1,23 @@
 <div class="footer">
 	<div class="footer-top">
 		<div class="container">
-			<div class="col-md-3 footer-links">
-				<h4>Other pages and things</h4>
-				<a href="#">Design a creative Blog</a>
-				<a href="#">Design a iPad Website</a>
-				<a href="#">Single Page sales portfolio </a>
-				<a href="#">Flat product website in Photoshop</a>
-				<a href="#">Design a creative Blog</a>
-				<a href="#">Design a iPad Website</a>
-				<a href="#">Single Page sales portfolio </a>
-				<a href="#">Flat product website</a>
+			<div class="col-md-4 footer-links">
+				<h4>Recent Forum Threads</h4>
+				@for($i=0; $i < 6; $i++)
+					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+				@endfor
 			</div>
-			<div class="col-md-3 footer-links span_66">
-				<a href="#">Flat product website in Photoshop</a>
-				<a href="#">Design a creative Blog</a>
-				<a href="#">Design a iPad Website </a>
+			<div class="col-md-4 footer-links">
+				<h4>Recent News</h4>
+				@for($i=0; $i < 6; $i++)
+					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+				@endfor
 			</div>
-			<div class="col-md-3 footer-links">
-				<h4>Relevant Articles</h4>
-				<a href="#">Design a creative Blog</a>
-				<a href="#">Design a iPad Website</a>
-				<a href="#">Single Page sales portfolio </a>
-				<a href="#">Flat product website</a>
-				<a href="#">Design a creative Blog</a>
-			</div>
-			<div class="col-md-3 footer-links">
-				<h4>Other pages and things</h4>
-				<a href="#">Blaz Robar</a>
-				<a href="#">Nick Toranto</a>
-				<a href="#">Joisp Kelava</a>
+			<div class="col-md-4 footer-links">
+				<h4>Recent Referendums</h4>
+				@for($i=0; $i < 6; $i++)
+					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+				@endfor
 			</div>
 			<div class="clearfix"></div>
 		</div>

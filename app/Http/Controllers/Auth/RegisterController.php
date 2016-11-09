@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\VotingLocation;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -62,11 +66,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'municipality_id' =>2,
-        ]);
+        $user = DB::transaction(function () use ($data) {
+            $user = new User([
+                'name'       => $data['name'],
+                'email'      => $data['email'],
+                'id_card'    => $data['id_card'],
+                'birth_date' => Carbon::createFromFormat('Ymd', $data['birth_date']),
+                'password'   => bcrypt($data['password']),
+                'description' => '',
+                'politics' => '',
+                'interests' => '',
+                'municipality_id' =>2,
+            ]);
+            $votingLocation = VotingLocation::fromUser($user);
+
+            $user->votingLocation()->associate($votingLocation);
+            $user->save();
+
+            return $user;
+        });
+
+        return $user;
+
     }
 }
