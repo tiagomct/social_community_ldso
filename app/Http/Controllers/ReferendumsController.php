@@ -13,7 +13,7 @@ class ReferendumsController extends Controller
 
     public function show(Referendum $referendum)
     {
-        $answers = $referendum->referendum_answer()->get();
+        $answers = $referendum->referendumAnswer()->get();
 
         $userAnswerId = Vote::referendumAnswersAre($answers)
                         ->userIs(Auth::user())
@@ -24,9 +24,11 @@ class ReferendumsController extends Controller
 
     public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
     {
-        Auth::user()->vote()->create([
-            'referendum_answer_id' => $referendumAnswer->id
-        ]);
+        $vote = new Vote();
+
+        $vote->user()->associate(Auth::user());
+        $vote->referendumAnswer()->associate($referendumAnswer);
+        $vote->save();
 
         $referendumAnswer->number_of_votes++;
         $referendumAnswer->save();

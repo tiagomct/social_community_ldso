@@ -40,7 +40,7 @@ class Vote extends Model
      * Relationship with referendum_answers table
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function referendum_answer()
+    public function referendumAnswer()
     {
         return $this->belongsTo(ReferendumAnswer::class);
     }
