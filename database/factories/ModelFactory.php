@@ -35,3 +35,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'voting_location_id' => 1
     ];
 });
+$factory->define(App\Referendum::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'description' => implode($faker->sentences),
+    ];
+});
+$factory->define(App\ReferendumAnswer::class, function (Faker\Generator $faker) {
+    return [
+        'referendum_id' => $faker->randomElement(App\Referendum::all()->pluck('id')->toArray()),
+        'description' => implode($faker->sentences),
+
+    ];
+});
+
