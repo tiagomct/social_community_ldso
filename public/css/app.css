@@ -9403,7 +9403,7 @@ p.span a {
   overflow: visible;
   clip: auto; }
 
-html, body, #app, .content {
+html, body, #app {
   height: 100%; }
 
 .no-padding {
@@ -9427,8 +9427,20 @@ html, body, #app, .content {
   -webkit-box-direction: normal;
   flex-direction: column;
   -webkit-box-pack: justify;
-  justify-content: space-between; }
-  #app > .container {
-    height: 100%; }
+  justify-content: space-between;
+  /*& > .container {
+    min-height: 100%;
+  }*/ }
+
+.label {
+  padding: 6px 8px; }
+
+.btn.btn-success {
+  background-color: #1ac7c3 !important;
+  border-color: #1ac7c3 !important; }
+
+.label.label-success {
+  background-color: #1ac7c3 !important;
+  border-color: #1ac7c3 !important; }
 
 /*# sourceMappingURL=app.css.map */

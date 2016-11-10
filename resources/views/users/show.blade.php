@@ -7,7 +7,11 @@
 @section('content')
     <div id="user-basic-info-container" class="col-xs-12 no-padding">
         <div class="col-md-3 col-sm-4 col-xs-12 user-profile-picture">
-            <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/storage/uploads/users/'.$user->img_name) }}">
+            @if($user->img_name == 'default.jpg')
+                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/storage/users/'.$user->img_name) }}">
+            @else
+                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/storage/uploads/users/'.$user->img_name) }}">
+            @endif
         </div>
     
         <div class="col-md-9 col-sm-8 col-xs-12 user-basic-info">

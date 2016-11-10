@@ -15,7 +15,7 @@
 @import "fontawesome/font-awesome";
 
 // Custom Styles
-html, body, #app, .content  {
+html, body, #app  {
   height: 100%;
 }
 
@@ -42,8 +42,21 @@ html, body, #app, .content  {
   flex-direction: column;
   justify-content: space-between;
 
-  & > .container {
-    height: 100%;
-  }
+  /*& > .container {
+    min-height: 100%;
+  }*/
+}
+
+.label {
+  padding: 6px 8px;
+}
+
+.btn.btn-success {
+  background-color: $brand-primary !important;
+  border-color: $brand-primary !important;
+}
+.label.label-success {
+  background-color: $brand-primary !important;
+  border-color: $brand-primary !important;
 }
 

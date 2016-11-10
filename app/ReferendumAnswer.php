@@ -18,7 +18,7 @@ class ReferendumAnswer extends Model
      * Relationship to votes table
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function vote()
+    public function votes()
     {
         return $this->hasMany(Vote::class);
     }

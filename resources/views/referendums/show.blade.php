@@ -1,81 +1,54 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel = "stylesheet" href = "{{ elixir('css/referendumShow.css') }}"/>
+@endsection
+
 @section('content')
-    <div class="container-fluid">
-        <!--    Referendum info    -->
-        <div class="row">
-
-            <div class="col-md-12 col-xs-12 col-sm-12">
-                <ul class="list-group">
-
-                    <!--    Title   -->
-                    <li class="list-group-item">
-                        <h2>{{ $referendum->title }}</h2>
-                    </li>
-
-                    <!--    Created at  -->
-                    <li class="list-group-item">
-                        <h4>Date created:</h4>
-                        <p>{{ $referendum->created_at }}</p>
-                    </li>
-
-                    <!--    Description -->
-                    <li class="list-group-item">
-                        <h4> Description: </h4>
-                        <p>{{ $referendum->description }}</p>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-
-        <!--    Voting table       -->
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <table class="table">
-                    <thead>
-                    <!--    Description     -->
-                    <th>
-                        <h4>Option</h4>
-                    </th>
-                    <!--    Number of votes -->
-                    <th>
-                        <h4>Votes</h4>
-                    </th>
-                    <!--    Submit vote     -->
-                    @if(!($userAnswerId))
-                        <th>
-                            <h4>Vote</h4>
-                        </th>
-                    @endif
-                    </thead>
-                    <tbody>
-                    @foreach($answers as $answer)
-                        <tr class={{ ($answer->id)==($userAnswerId) ? 'success' : ''  }}>
-                            <!--    Description     -->
-                            <td>
-                                <p>{{ $answer->description }}</p>
-                            </td>
-                            <!--    Number of votes -->
-                            <td>
-                                <h3>{{ $answer->number_of_votes }}</h3>
-                            </td>
-                            <!--    Submit vote     -->
-                            @if(!($userAnswerId))
-                                <td>
-                                    <a href={{action('ReferendumsController@submitVote', array($referendum->id, $answer->id)) }} class="btn
-                                       btn-primary"><i class="fa fa-thumbs-up"></i> Vote </a>
-                                </td>
+    <div class="col-xs-12 printing-content">
+        <div class="print-main">
+            <h3>Referendum</h3>
+            <a>{{ $referendum->title }}</a>
+            <p class="sub_head">Started on {{ $referendum->created_at->format('jS F \of Y') }}</p>
+            <p class="ptext">{{ $referendum->description }}</p>
+            
+            <div class="referendum-chart">
+                @foreach($answers as $answer)
+                    <div class="chart-bar">
+                        <div class="col-sm-5 col-xs-12 text-left">
+                            <span>{{ $answer->description }}</span>
+                        </div>
+                        <div class="col-sm-5 col-xs-12 text-center">
+                            <div class="progress">
+                                <div class="progress-bar {{ $answer->id == $userAnswerId ? '' : 'progress-bar-info' }}" role="progressbar"
+                                     aria-valuenow="{{ $answer->number_of_votes }}"
+                                     aria-valuemin="0"
+                                     aria-valuemax="{{ $totalVotes }}"
+                                     style="width: {{ round($answer->number_of_votes*100/$totalVotes, 2) }}%;"
+                                     data-toggle="tooltip" data-placement="top" title="{{ $answer->number_of_votes.' of '.$totalVotes }}">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-12 text-right">
+                            @if(!$userAnswerId)
+                                <a href="{{action('ReferendumsController@submitVote', [$referendum->id, $answer->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Vote</a>
+                            @else
+                                @if($answer->id == $userAnswerId)
+                                    <span class="label label-success" disabled="disabled">My vote</span>
+                                @endif
                             @endif
-                        </tr>
-                    @endforeach
-
-                    </tbody>
-                </table>
-
+                            <span>{{ $answer->number_of_votes.' votes' }}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                @endforeach
             </div>
         </div>
-        <!-- TODO create a percentage bar or pie chart -->
+        <div class="print-grids">
+            <div class="print-grid">
+                List of comments and reactions goes here
+            </div>
+        </div>
     </div>
-
 @endsection

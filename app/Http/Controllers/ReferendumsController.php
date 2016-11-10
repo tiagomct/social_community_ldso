@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Referendum;
 use App\ReferendumAnswer;
-use Request;
+use Illuminate\Support\Facades\Auth;
 use App\Vote;
-use Auth;
 
 class ReferendumsController extends Controller
 {
+    public function index()
+    {
+        $referendums = Referendum::paginate(self::DEFAULT_PAGINATION);
+
+        return view('referendums.index', compact('referendums'));
+    }
 
     public function show(Referendum $referendum)
     {
@@ -19,7 +24,9 @@ class ReferendumsController extends Controller
                         ->userIs(Auth::user())
                         ->value('referendum_answer_id');
 
-        return view('referendums.show', compact('referendum' ,'answers', 'userAnswerId'));
+        $totalVotes = $this->totalVotesOfAnswers($answers);
+
+        return view('referendums.show', compact('referendum' ,'answers', 'userAnswerId', 'totalVotes'));
     }
 
     public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
@@ -37,4 +44,13 @@ class ReferendumsController extends Controller
 
     }
 
+    private function totalVotesOfAnswers($answers) {
+        $total = 0;
+
+        foreach ($answers as $answer) {
+            $total += $answer->number_of_votes;
+        }
+
+        return $total;
+    }
 }

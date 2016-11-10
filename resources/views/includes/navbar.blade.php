@@ -7,7 +7,7 @@
 			<ul>
 				<li><a href = "#">News</a></li>
 				<li><a href = "#">Forum</a></li>
-				<li><a href = "#">Referendums</a></li>
+				<li><a href = "{{ action('ReferendumsController@index') }}">Referendums</a></li>
 				<li><a href = "#">Malfunctions</a></li>
 			</ul>
 		</div>
