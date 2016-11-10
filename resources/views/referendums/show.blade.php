@@ -24,7 +24,7 @@
                                      aria-valuenow="{{ $answer->number_of_votes }}"
                                      aria-valuemin="0"
                                      aria-valuemax="{{ $totalVotes }}"
-                                     style="width: {{ round($answer->number_of_votes*100/$totalVotes, 2) }}%;"
+                                     style="width: {{ $totalVotes == 0 ? 0 : round($answer->number_of_votes*100/$totalVotes, 2) }}%;"
                                      data-toggle="tooltip" data-placement="top" title="{{ $answer->number_of_votes.' of '.$totalVotes }}">
                                     <span class="sr-only"></span>
                                 </div>
