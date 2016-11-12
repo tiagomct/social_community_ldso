@@ -40,7 +40,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'interests' => implode($faker->sentences),
         'remember_token' => str_random(10),
         'voting_location_id' => 1,
-        'municipality_id' => $faker->randomElement(App\Municipality::all()->pluck('id')->toArray()),
     ];
 });
 $factory->define(App\Referendum::class, function (Faker\Generator $faker) {

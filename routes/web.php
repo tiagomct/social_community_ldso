@@ -12,6 +12,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home','MunicipalityController@access');
+    Route::get('forum', 'ForumController@index');
     Route::get('users', 'UsersController@index');
     Route::get('users/{user}', 'UsersController@show');
     Route::get('users/{user}/edit', 'UsersController@edit');
