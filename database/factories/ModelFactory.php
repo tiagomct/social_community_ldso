@@ -19,6 +19,13 @@ $factory->define(App\VotingLocation::class, function (Faker\Generator $faker) {
         'parish' => $faker->city,
     ];
 });
+
+$factory->define(App\Municipality::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->city,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -32,7 +39,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'politics'  => $faker->text,
         'interests' => implode($faker->sentences),
         'remember_token' => str_random(10),
-        'voting_location_id' => 1
+        'voting_location_id' => 1,
+        'municipality_id' => $faker->randomElement(App\Municipality::all()->pluck('id')->toArray()),
     ];
 });
 $factory->define(App\Referendum::class, function (Faker\Generator $faker) {
