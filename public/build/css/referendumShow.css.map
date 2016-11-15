@@ -1,1 +1,1 @@
-{"version":3,"sources":["referendumShow.scss"],"names":[],"mappings":"AAAA;EAEI,qBAAqB,EACtB","file":"referendumShow.css","sourcesContent":[".referendum-chart {\r\n  .chart-bar:not(:last-child) {\r\n    margin-bottom: 0.8em;\r\n  }\r\n}"]}
+{"version":3,"sources":["referendumShow.scss"],"names":[],"mappings":"AAAA;EAEI,qBAAqB,EACtB","file":"referendumShow.css","sourcesContent":[".referendum-chart {\n  .chart-bar:not(:last-child) {\n    margin-bottom: 0.8em;\n  }\n}"]}

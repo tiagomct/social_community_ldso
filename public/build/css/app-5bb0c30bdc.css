@@ -9443,4 +9443,7 @@ html, body, #app {
   background-color: #1ac7c3 !important;
   border-color: #1ac7c3 !important; }
 
+.smaller-textarea {
+  height: 75px !important; }
+
 /*# sourceMappingURL=app.css.map */

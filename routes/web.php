@@ -17,6 +17,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('users/{user}/edit', 'UsersController@update');
 
     Route::get('referendums', 'ReferendumsController@index');
+    Route::get('referendums/create', 'ReferendumsController@new');
+    Route::post('referendums/create', 'ReferendumsController@create');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
     Route::get('referendums/{referendum}/submit/{referendumAnswer}', 'ReferendumsController@submitVote');
 

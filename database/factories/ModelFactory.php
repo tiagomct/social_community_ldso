@@ -39,6 +39,7 @@ $factory->define(App\Referendum::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence,
         'description' => implode($faker->sentences),
+        'approved' => $faker->boolean,
     ];
 });
 $factory->define(App\ReferendumAnswer::class, function (Faker\Generator $faker) {

@@ -11,6 +11,7 @@ class Referendum extends Model
         [
             'title',
             'description',
+            'approved',
         ];
 
     /**

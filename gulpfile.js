@@ -18,6 +18,6 @@ elixir(function (mix) {
         'public/css/userProfile.css',
         'public/css/usersList.css',
         'public/css/referendumShow.css',
-        'public/js/app.js'
+        'public/js/app.js',
     ]);
 });
