@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\VotingLocation;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -27,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -42,30 +46,49 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name'       => 'required|max:255',
+            'email'      => 'required|email|max:255|unique:users,email',
+            'id_card'    => 'required|max:255|unique:users,id_card',
+            'birth_date' => 'required|max:255|date_format:Ymd',
+            'password'   => 'required|min:6|confirmed',
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user = DB::transaction(function () use ($data) {
+            $user = new User([
+                'name'       => $data['name'],
+                'email'      => $data['email'],
+                'id_card'    => $data['id_card'],
+                'birth_date' => Carbon::createFromFormat('Ymd', $data['birth_date']),
+                'password'   => bcrypt($data['password']),
+                'description' => '',
+                'politics' => '',
+                'interests' => '',
+                'municipality_id' => 1,
+            ]);
+            $votingLocation = VotingLocation::fromUser($user);
+
+            $user->votingLocation()->associate($votingLocation);
+            $user->save();
+
+            return $user;
+        });
+
+        return $user;
+
     }
 }

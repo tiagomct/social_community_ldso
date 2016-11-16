@@ -12,5 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        factory(App\VotingLocation::class)->create([
+            'district' => 'Porto',
+            'county' => 'Porto',
+            'parish' => 'Paranhos'
+        ]);
+
+        factory(App\User::class, 20)->create();
+        factory(App\Referendum::class, 10)->create();
+        factory(App\ReferendumAnswer::class,30)->create();
     }
 }
