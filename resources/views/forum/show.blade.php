@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Forum</h1>
-    <a href = "{{action('ForumController@create')}}" class="btn btn-primary pull-right"> Create a new Forum</a>
+    <a href="{{action('ForumsController@create')}}" class="btn btn-primary pull-right"> Create a new Forum</a>
 
     <div class="col-xs-12 printing-content">
         <div class="print-main">
@@ -20,13 +20,15 @@
                 </div>
             </div>
         @endforeach
-            {{ Form::open([action('ForumController@submitEntry',$forum->id),'method' => 'post']) }}
+        <form class="form-horizontal" role="form" method="POST"
+              action="{{action('ForumsController@submitEntry',$forum->id)}}">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                 <label for="content" class="col-md-4 control-label">Message</label>
 
                 <div class="col-md-6">
-                    <input id="content" type="text" class="form-control" name="content" value="{{ old('content') }}" required autofocus>
+                    <input id="content" type="text" class="form-control" name="content" value="{{ old('content') }}"
+                           required autofocus>
 
                     @if ($errors->has('content'))
                         <span class="help-block">
@@ -35,7 +37,12 @@
                     @endif
                 </div>
             </div>
-        {{ Form::submit('Send', ['class'=>'btn btn-default pull-right'])  }}
-        {{ Form::close() }}
+
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                    <input type="submit" value="Post"/>
+                </div>
+            </div>
+        </form>
     </div>
 @endsection

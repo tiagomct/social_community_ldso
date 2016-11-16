@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class, 20)->create();
         factory(App\Referendum::class, 10)->create();
         factory(App\ReferendumAnswer::class,30)->create();
+        factory(App\Forum::class, 20)->create();
+        factory(App\ForumEntry::class, 50)->create();
     }
 }

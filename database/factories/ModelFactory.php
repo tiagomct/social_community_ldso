@@ -56,3 +56,17 @@ $factory->define(App\ReferendumAnswer::class, function (Faker\Generator $faker) 
     ];
 });
 
+$factory->define(App\Forum::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'description' => implode($faker->sentences),
+    ];
+});
+
+$factory->define(App\ForumEntry::class, function (Faker\Generator $faker) {
+    return [
+        'content' => $faker->sentence,
+        'forum_id' => $faker->randomElement(App\Forum::all()->pluck('id')->toArray()),
+        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+    ];
+});

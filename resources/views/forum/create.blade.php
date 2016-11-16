@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/forum/create') }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{action('ForumsController@store')}}">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <input type = "submit" value="Create"/>
+                <input type="submit" value="Create"/>
             </div>
         </div>
     </form>
