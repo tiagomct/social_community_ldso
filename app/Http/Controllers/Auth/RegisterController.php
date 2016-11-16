@@ -80,6 +80,7 @@ class RegisterController extends Controller
                 'politics' => '',
                 'interests' => '',
                 'role_id' => Role::where('title', 'User')->get('id'),
+                'municipality_id' => 1,
             ]);
             $votingLocation = VotingLocation::fromUser($user);
 
