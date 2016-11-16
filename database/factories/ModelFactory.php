@@ -19,6 +19,13 @@ $factory->define(App\VotingLocation::class, function (Faker\Generator $faker) {
         'parish' => $faker->city,
     ];
 });
+
+$factory->define(App\Municipality::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->city,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -32,7 +39,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'politics'  => $faker->text,
         'interests' => implode($faker->sentences),
         'remember_token' => str_random(10),
-        'voting_location_id' => 1
+        'voting_location_id' => 1,
     ];
 });
 $factory->define(App\Referendum::class, function (Faker\Generator $faker) {
@@ -49,3 +56,17 @@ $factory->define(App\ReferendumAnswer::class, function (Faker\Generator $faker) 
     ];
 });
 
+$factory->define(App\Forum::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'description' => implode($faker->sentences),
+    ];
+});
+
+$factory->define(App\ForumEntry::class, function (Faker\Generator $faker) {
+    return [
+        'content' => $faker->sentence,
+        'forum_id' => $faker->randomElement(App\Forum::all()->pluck('id')->toArray()),
+        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+    ];
+});

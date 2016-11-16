@@ -78,6 +78,7 @@ class RegisterController extends Controller
                 'description' => '',
                 'politics' => '',
                 'interests' => '',
+                'municipality_id' => 1,
             ]);
             $votingLocation = VotingLocation::fromUser($user);
 
