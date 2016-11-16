@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use App\VotingLocation;
 use Carbon\Carbon;
@@ -78,6 +79,7 @@ class RegisterController extends Controller
                 'description' => '',
                 'politics' => '',
                 'interests' => '',
+                'role_id' => Role::where('title', 'User')->get('id'),
             ]);
             $votingLocation = VotingLocation::fromUser($user);
 

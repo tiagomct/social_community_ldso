@@ -17,8 +17,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('users/{user}/edit', 'UsersController@update');
 
     Route::get('referendums', 'ReferendumsController@index');
-    Route::get('referendums/create', 'ReferendumsController@new');
-    Route::post('referendums/create', 'ReferendumsController@create');
+    Route::get('referendums/create', 'ReferendumsController@create');
+    Route::post('referendums/create', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
     Route::get('referendums/{referendum}/submit/{referendumAnswer}', 'ReferendumsController@submitVote');
 
@@ -31,3 +31,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 }) ;
+
+Route::group(['middleware' => 'moderator'], function ()
+{
+    Route::get('moderators/referendums/pending', 'ReferendumsController@pendingList');
+    Route::get('moderators/referendums/{referendum}', 'ReferendumsController@pendingShow');
+    Route::get('moderators/referendums/{referendum}/approve', 'ReferendumsController@approve');
+
+
+});

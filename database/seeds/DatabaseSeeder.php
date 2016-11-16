@@ -11,7 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+
+        factory(App\Role::class)->create([
+            'title' => 'User'
+        ]);
+        factory(App\Role::class)->create([
+            'title' => 'Moderator'
+        ]);
+        factory(App\Role::class)->create([
+            'title' => 'Administrator'
+        ]);
+
         factory(App\VotingLocation::class)->create([
             'district' => 'Porto',
             'county' => 'Porto',
@@ -19,6 +29,6 @@ class DatabaseSeeder extends Seeder
         ]);
         factory(App\User::class, 20)->create();
         factory(App\Referendum::class, 10)->create();
-        factory(App\ReferendumAnswer::class,30)->create();
+        factory(App\ReferendumAnswer::class, 30)->create();
     }
 }

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'politics',
         'img_name',
         'interests',
+        'role_id',
     ];
 
     protected $dates = [
@@ -53,6 +54,15 @@ class User extends Authenticatable
     public function vote()
     {
         return $this->hasMany(Vote::class);
+    }
+
+    /**
+     * Relationship with roles table
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
 }

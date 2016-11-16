@@ -12,6 +12,13 @@
 */
 
 
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    return [
+        'title' => "User",
+    ];
+});
+
+
 $factory->define(App\VotingLocation::class, function (Faker\Generator $faker) {
     return [
         'district' => $faker->city,
@@ -29,10 +36,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'birth_date' => $faker->date(),
         'password' => $password ?: $password = bcrypt('secret'),
         'description' => $faker->paragraph,
-        'politics'  => $faker->text,
+        'politics' => $faker->text,
         'interests' => implode($faker->sentences),
         'remember_token' => str_random(10),
-        'voting_location_id' => 1
+        'voting_location_id' => 1,
+        'role_id' => 1
     ];
 });
 $factory->define(App\Referendum::class, function (Faker\Generator $faker) {

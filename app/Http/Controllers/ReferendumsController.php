@@ -10,23 +10,29 @@ use App\Vote;
 
 class ReferendumsController extends Controller
 {
-
-    public function new()
+    /**
+     * Directs the user to create referendum page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
     {
         return view('referendums.create');
     }
 
-    public function create(ReferendumRequest $request)
+    /**
+     * Handles POST request submitted by create referendum page
+     * @param ReferendumRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(ReferendumRequest $request)
     {
-
         $referendum = new Referendum();
         $referendum->title = $request->title;
         $referendum->description = $request->description;
         $referendum->approved = false;
         $referendum->save();
 
-        foreach ($request->answers as $answer)
-        {
+        foreach ($request->answers as $answer) {
             $referendumAnswer = new ReferendumAnswer();
             $referendumAnswer->referendum()->associate($referendum);
             $referendumAnswer->description = $answer;
@@ -37,35 +43,51 @@ class ReferendumsController extends Controller
     }
 
 
+    /**
+     * Directs to the view with all approved referendum requests
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $referendums = Referendum::where('approved', '=', true )->paginate(self::DEFAULT_PAGINATION);
+        $referendums = Referendum::approved()->paginate(self::DEFAULT_PAGINATION);
 
         return view('referendums.index', compact('referendums'));
     }
 
+    /**
+     * Show a selected referendum and current state of the votes
+     * if user didn't vote voting is enabled
+     * @param Referendum $referendum
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function show(Referendum $referendum)
     {
-        if($referendum->approved==false)
-        {
+        if ($referendum->approved == false) {
             return redirect()->back();
         }
 
         $answers = $referendum->referendumAnswer()->get();
 
         $userAnswerId = Vote::referendumAnswersAre($answers)
-                        ->userIs(Auth::user())
-                        ->value('referendum_answer_id');
+            ->userIs(Auth::user())
+            ->value('referendum_answer_id');
 
         $totalVotes = $this->totalVotesOfAnswers($answers);
 
-        return view('referendums.show', compact('referendum' ,'answers', 'userAnswerId', 'totalVotes'));
+        return view('referendums.show', compact('referendum', 'answers', 'userAnswerId', 'totalVotes'));
     }
 
+
+    /**
+     *
+     * Creates a new votes table entry based on selection of user
+     * @param Referendum $referendum
+     * @param ReferendumAnswer $referendumAnswer
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
     {
-        if($referendum->approved==false)
-        {
+        if ($referendum->approved == false) {
             return redirect()->back();
         }
 
@@ -82,12 +104,53 @@ class ReferendumsController extends Controller
 
     }
 
-    public function approve()
+
+    /**
+     * Returns view of referendums to approve for moderators
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pendingList()
     {
-        $this->attributes['approved'] = true;
+
+        $referendums = Referendum::notApproved()->paginate(self::DEFAULT_PAGINATION);
+
+        return view('referendums.moderatorIndex', compact('referendums'));
     }
 
-    private function totalVotesOfAnswers($answers) {
+
+    /**
+     * Returns show view for moderators to approve referendum
+     * @param Referendum $referendum
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pendingShow(Referendum $referendum)
+    {
+        $answers = $referendum->referendumAnswer()->get();
+        return view('referendums.moderatorShow', compact('referendum', 'answers'));
+    }
+
+
+    /**
+     * Approves referendum
+     * @param Referendum $referendum
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function approve(Referendum $referendum)
+    {
+        $referendum->approved = true;
+        $referendum->save();
+        return redirect()->action('ReferendumsController@pendingList');
+    }
+
+
+    /**
+     * Returns accumulated number of votes for all referendum answers
+     * @param $answers
+     * @return int
+     */
+    private
+    function totalVotesOfAnswers($answers)
+    {
         $total = 0;
 
         foreach ($answers as $answer) {
