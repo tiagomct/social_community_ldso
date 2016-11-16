@@ -11,7 +11,7 @@ class ReferendumsController extends Controller
 {
     public function index()
     {
-        $referendums = Referendum::paginate(self::DEFAULT_PAGINATION);
+        $referendums = Referendum::orderBy('created_at', 'desc')->paginate(self::DEFAULT_PAGINATION);
 
         return view('referendums.index', compact('referendums'));
     }
