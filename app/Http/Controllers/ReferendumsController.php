@@ -148,8 +148,7 @@ class ReferendumsController extends Controller
      * @param $answers
      * @return int
      */
-    private
-    function totalVotesOfAnswers($answers)
+    private function totalVotesOfAnswers($answers)
     {
         $total = 0;
 

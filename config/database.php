@@ -79,6 +79,20 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'mysql_testing' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_TESTING_DATABASE', 'forge'),
+            'username' => env('DB_TESTING_USERNAME', 'forge'),
+            'password' => env('DB_TESTING_PASSWORD', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
     ],
 
     /*

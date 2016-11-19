@@ -22,4 +22,21 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    public function setUp()
+    {
+        parent::setUp();
+        Artisan::call('migrate');
+        Artisan::call('db:seed', [
+            '--class' => 'TestingSeeder',
+            '--database'=>'mysql_testing',
+        ]);
+    }
+
+    public function tearDown()
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
+    }
+
 }
