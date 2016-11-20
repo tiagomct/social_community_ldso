@@ -65,4 +65,15 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+
+    /**
+     * Relationship with referendum_comments table
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comment()
+    {
+        return $this->hasMany(ReferendumComment::class);
+    }
+
+
 }

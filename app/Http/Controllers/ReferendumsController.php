@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReferendumCommentRequest;
 use App\Http\Requests\ReferendumRequest;
 use App\Referendum;
 use App\ReferendumAnswer;
+use App\ReferendumComment;
 use Illuminate\Support\Facades\Auth;
 use App\Vote;
 
@@ -74,7 +76,9 @@ class ReferendumsController extends Controller
 
         $totalVotes = $this->totalVotesOfAnswers($answers);
 
-        return view('referendums.show', compact('referendum', 'answers', 'userAnswerId', 'totalVotes'));
+        $comments = $referendum->referendumComment()->with('user')->paginate(self::DEFAULT_PAGINATION);
+
+        return view('referendums.show', compact('referendum', 'answers', 'comments' , 'userAnswerId', 'totalVotes'));
     }
 
 
@@ -140,6 +144,27 @@ class ReferendumsController extends Controller
         $referendum->approved = true;
         $referendum->save();
         return redirect()->action('ReferendumsController@pendingList');
+    }
+
+
+    /**
+     * Saves a comment on submit
+     * @param Referendum $referendum
+     * @param ReferendumCommentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function submitComment(Referendum $referendum, ReferendumCommentRequest $request )
+    {
+        if($referendum->approved==false){
+            return redirect()->back();
+        }
+
+        $comment = new ReferendumComment($request->all());
+        $comment->user()->associate(Auth::user());
+        $comment->referendum()->associate($referendum);
+        $comment->save();
+
+        return redirect()->back();
     }
 
 

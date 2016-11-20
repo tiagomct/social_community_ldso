@@ -29,6 +29,7 @@ class TestingSeeder extends Seeder
         ]);
 
         factory(App\User::class, 5)->create();
+
         factory(App\User::class, 1)->create([
             'role_id' => 2,
         ]);
@@ -38,6 +39,9 @@ class TestingSeeder extends Seeder
         factory(App\Referendum::class, 2)->create([
             'approved' => false,
         ]);
+
+        factory(App\ReferendumComment::class, 4)->create();
+
         factory(App\ReferendumAnswer::class, 6)->create();
         factory(App\Vote::class, 4)->create();
     }

@@ -42,4 +42,14 @@ class Referendum extends Model
     {
         return $this->hasMany(ReferendumAnswer::class);
     }
+
+
+    /**
+     * Relationship to referendum_comments table
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function referendumComment()
+    {
+        return $this->hasMany(ReferendumComment::class);
+    }
 }
