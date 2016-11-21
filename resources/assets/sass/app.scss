@@ -59,4 +59,6 @@ html, body, #app  {
   background-color: $brand-primary !important;
   border-color: $brand-primary !important;
 }
-
+.smaller-textarea {
+  height: 75px !important;
+}

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class TestingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -29,14 +29,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         factory(App\User::class, 5)->create();
+        factory(App\User::class, 1)->create([
+            'role_id' => 2,
+        ]);
         factory(App\Referendum::class, 2)->create([
             'approved' => true,
         ]);
         factory(App\Referendum::class, 2)->create([
             'approved' => false,
         ]);
-        factory(App\ReferendumAnswer::class, 8)->create();
-        factory(App\Forum::class, 2)->create();
-        factory(App\ForumEntry::class, 5)->create();
+        factory(App\ReferendumAnswer::class, 6)->create();
+        factory(App\Vote::class, 4)->create();
     }
 }

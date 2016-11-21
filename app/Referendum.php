@@ -11,7 +11,28 @@ class Referendum extends Model
         [
             'title',
             'description',
+            'approved',
         ];
+
+    /**
+     * Scope for filtering approved requests
+     * @param $query
+     * @return mixed
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', true);
+    }
+
+    /**
+     * Scope for filtering not approved requests
+     * @param $query
+     * @return mixed
+     */
+    public function scopeNotApproved($query)
+    {
+        return $query->where('approved',false);
+    }
 
     /**
      * Relationship to referendum_answers table
