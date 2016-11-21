@@ -71,6 +71,16 @@ $factory->define(App\ReferendumAnswer::class, function (Faker\Generator $faker) 
     ];
 });
 
+/*              Referendums Comments factory      */
+$factory->define(App\ReferendumComment::class, function (Faker\Generator $faker) {
+    return [
+        'referendum_id' => $faker->randomElement(App\Referendum::approved()->pluck('id')->toArray()),
+        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'content' => implode($faker->sentences),
+
+    ];
+});
+
 /*              Vote factory                    */
 $factory->define(App\Vote::class, function (Faker\Generator $faker) {
     return [

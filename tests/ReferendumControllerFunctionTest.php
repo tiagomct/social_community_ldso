@@ -95,6 +95,28 @@ class ReferendumControllerFunctionTest extends TestCase
     }
 
     /**
+     * Tests submit comment
+     */
+    public function tests_submit_comment()
+    {
+        $referendum = \App\Referendum::approved()->first();
+
+        $response = $this->actingAs(self::$user)->action('POST', 'ReferendumsController@submitComment', $referendum->id,[
+                '_token' => csrf_token(),
+                'content' => 'Test comment'
+            ]);
+
+        $this->assertResponseStatus(302);
+        $this->seeInDatabase('referendum_comments', [
+            'user_id' => self::$user->id,
+            'referendum_id' => $referendum->id,
+            'content' => 'Test comment'
+        ]);
+
+    }
+
+
+    /**
      * Tests showing pending requests
      */
     public function tests_pending(){

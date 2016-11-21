@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'approved' => false,
         ]);
         factory(App\ReferendumAnswer::class, 8)->create();
+        factory(App\ReferendumComment::class,10)->create();
         factory(App\Forum::class, 2)->create();
         factory(App\ForumEntry::class, 5)->create();
     }
