@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Forum;
 use App\ForumEntry;
+use App\ForumLike;
+use App\ForumEntryLike;
 use App\Http\Requests\ForumEntryRequest;
 use App\Http\Requests\ForumRequest;
 use Illuminate\Http\Request;
@@ -57,7 +59,20 @@ class ForumsController extends Controller
     public function show(Forum $forum)
     {
         $entries = $forum->forumEntries()->paginate(10);
-        return view('forum.show', compact('forum','entries'));
+        $likes = $forum->forumLikes()->get();
+        $userLikeId = ForumLike::forumLikesAre($likes)
+            ->userIs(Auth::user())
+            ->value('id');
+
+        /*$forum_entries = $forum->forumEntries()->get();
+        $userentryLikeId = ForumEntryLike::forumEntryLikesAre($forum_entries)
+            ->userIs(Auth::user())
+            ->value('id');*/
+
+        $totalLikes = $this->totalLikesOfForum($likes);
+        //$totalEntryLikes = $this->totalLikesOfForum($entries_likes);
+
+        return view('forum.show', compact('forum','entries', 'userLikeId', 'userentryLikeId', 'totalLikes'));
     }
 
     public function submitEntry(ForumEntryRequest $request, Forum $forum)
@@ -71,5 +86,67 @@ class ForumsController extends Controller
 
         return redirect()->action('ForumsController@show', $forum);
 
+    }
+
+    /**
+     * @param Forum $forum
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function submitLike(Forum $forum)
+    {
+        $like = new ForumLike();
+        $user = Auth::user();
+        $like->user()->associate($user);
+        $like->forum()->associate($forum);
+        $like->save();
+
+        return redirect()->action('ForumsController@show', $forum);
+
+    }
+
+    public function submitDeslike(Forum $forum)
+    {
+        $likes = $forum->forumLikes()->get();
+        $like = ForumLike::forumLikesAre($likes)
+            ->userIs(Auth::user());
+        $like->delete();
+
+        return redirect()->action('ForumsController@show', $forum);
+
+    }
+
+
+    public function submitLikeEntry(ForumEntry $entry, Forum $forum)
+    {
+        $like = new ForumLikeEntry();
+        $user = Auth::user();
+        $like->user()->associate($user);
+        $like->forum_entry()->associate($entry);
+        $like->save();
+
+        return redirect()->action('ForumsController@show', $forum);
+
+    }
+
+    /*public function submitDeslikeEntry(ForumEntry $entry, Forum $forum)
+    {
+        $likes = $entry->entryLikes()->get();
+        $like = ForumEntryLike::entryLikesAre($likes)
+            ->userIs(Auth::user());
+        $like->delete();
+
+        return redirect()->action('ForumsController@show', $forum);
+
+    }*/
+
+
+    private function totalLikesOfForum($likes) {
+        $total = 0;
+
+        foreach ($likes as $like) {
+            $total += 1;
+        }
+
+        return $total;
     }
 }
