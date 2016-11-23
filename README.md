@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/tiagomct/social_community_ldso.png?label=ready&title=Ready)](https://waffle.io/tiagomct/social_community_ldso)
 #Social comunity political participation 
 
 ##Technology
