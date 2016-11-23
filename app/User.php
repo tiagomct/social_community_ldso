@@ -25,7 +25,6 @@ class User extends Authenticatable
         'politics',
         'img_name',
         'interests',
-        'role_id',
     ];
 
     protected $dates = [
