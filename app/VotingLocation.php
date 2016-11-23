@@ -35,7 +35,7 @@ class VotingLocation extends Model
 
     public static function fromUser($user)
     {
-        $client = new Client();
+        $client = new Client(['verify' => false ]);
         $response = $client->post('https://www.recenseamento.mai.gov.pt/consulta.ashx', [
             'form_params' => [
                 'nic' => $user->id_card,
