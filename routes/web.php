@@ -18,6 +18,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('forums/create', 'ForumsController@store');
     Route::get('forums/{forum}', 'ForumsController@show');
     Route::post('forums/{forum}', 'ForumsController@submitEntry');
+    Route::get('forums/{forum}/like', 'ForumsController@submitLike');
+    Route::get('forums/{forum}/deslike', 'ForumsController@submitDeslike');
+    Route::get('forums/{forum}/like/{forum_entry}', 'ForumsController@submitLikeEntry');
+    Route::get('forums/{forum}/deslike/{forum_entry}', 'ForumsController@submitDeslikeEntry');
 
     Route::get('users', 'UsersController@index');
     Route::get('users/{user}', 'UsersController@show');

@@ -16,7 +16,6 @@
                     <p class="ptext">{{ $forum->description }}</p>
                     <a href="{{action('ForumsController@show', $forum->id)}}" class="btn btn-primary pull-right"><i
                                 class="fa fa-eye"></i> Open Forum</a>
-
                 </div>
             </div>
         @endforeach

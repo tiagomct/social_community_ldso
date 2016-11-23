@@ -4,16 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ForumEntry extends Model
+class ForumLike extends Model
 {
-    // just to be sure
-    protected $table = 'forum_entries';
+    //// just to be sure
+    protected $table = 'forum_likes';
 
     protected $fillable = [
         'forum_id',
         'user_id',
-        'content',
     ];
+
+    public function scopeForumLikesAre($query, $forum_likes)
+    {
+        return $query->whereIn('id', $forum_likes->pluck('id')->toArray());
+    }
 
     public function scopeForumIs($query, $forum)
     {
@@ -38,10 +42,4 @@ class ForumEntry extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function entryLikes()
-    {
-        return $this->hasMany(ForumEntryLike::class);
-    }
-
 }

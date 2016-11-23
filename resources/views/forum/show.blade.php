@@ -2,7 +2,14 @@
 
 @section('content')
     <h1>Forum</h1>
-    <a href="{{action('ForumsController@create')}}" class="btn btn-primary pull-right"> Create a new Forum</a>
+    <div class="col-sm-2 col-xs-12 text-right">
+        @if(!$userLikeId)
+            <a href="{{action('ForumsController@submitLike', [$forum->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Like </a>
+        @else
+                <a href="{{action('ForumsController@submitDeslike', [$forum->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Deslike </a>
+        @endif
+        <span>{{ $totalLikes . ' likes' }}</span>
+    </div>
 
     <div class="col-xs-12 printing-content">
         <div class="print-main">
@@ -19,6 +26,14 @@
                     <p class="ptext">{{ $entry->content }}</p>
                 </div>
             </div>
+        <!--<div class="col-sm-2 col-xs-12 text-right">
+                @if(!$userentryLikeId)
+                    <a href="{{action('ForumsController@submitLikeEntry', [$entry->id, $forum->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Like </a>
+                @else
+                    <a href="{{action('ForumsController@submitDeslikeEntry', [$entry->id, $forum->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-thumbs-up"></i> Deslike </a>
+                @endif
+               <span>{{ $totalEntryLikes . ' likes' }}</span>
+            </div>-->
         @endforeach
         <form class="form-horizontal" role="form" method="POST"
               action="{{action('ForumsController@submitEntry',$forum->id)}}">

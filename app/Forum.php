@@ -17,4 +17,9 @@ class Forum extends Model
     {
         return $this->hasMany(ForumEntry::class);
     }
+
+    public function forumLikes()
+    {
+        return $this->hasMany(ForumLike::class);
+    }
 }
