@@ -20,6 +20,8 @@ class CreateLikesTable extends Migration
             $table->string('likeable_type');
             $table->unsignedInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

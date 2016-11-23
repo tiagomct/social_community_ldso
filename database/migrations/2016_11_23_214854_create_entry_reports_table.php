@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMalfunctionEntriesTable extends Migration
+class CreateEntryReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateMalfunctionEntriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('malfunction_entries', function (Blueprint $table) {
+        Schema::create('entry_reports', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('title');
-            $table->text('description');
+            $table->unsignedInteger('entry_reportable_id');
+            $table->string('entry_reportable_type');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -31,6 +31,6 @@ class CreateMalfunctionEntriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('malfunction_entries');
+        Schema::dropIfExists('entry_reports');
     }
 }

@@ -4,7 +4,6 @@ namespace App;
 
 use App\Traits\Commentable;
 use App\Traits\Likeable;
-use Illuminate\Database\Eloquent\Model;
 
 class ForumEntry extends Thread
 {
