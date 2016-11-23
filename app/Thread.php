@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\Commentable;
 use App\Traits\Likeable;
 
-abstract class Thread extends Model
+abstract class Thread extends Model implements IsThread
 {
     use Commentable, Likeable, Reportable, Followable;
 }

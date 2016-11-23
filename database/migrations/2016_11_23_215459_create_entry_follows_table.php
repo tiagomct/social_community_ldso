@@ -22,6 +22,7 @@ class CreateEntryFollowsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unique(['entry_followable_id', 'entry_followable_type', 'user_id']);
         });
     }
 
