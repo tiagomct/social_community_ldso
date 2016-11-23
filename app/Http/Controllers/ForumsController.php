@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Forum;
+use App\ForumEntry;
 use App\ForumEntry;
 use App\ForumLike;
 use App\ForumEntryLike;
@@ -20,7 +20,7 @@ class ForumsController extends Controller
      */
     public function index()
     {
-        $forums = Forum::paginate(self::DEFAULT_PAGINATION);
+        $forums = ForumEntry::paginate(self::DEFAULT_PAGINATION);
 
         return view('forum.index', compact('forums'));
         //
@@ -45,7 +45,7 @@ class ForumsController extends Controller
      */
     public function store(ForumRequest $request)
     {
-        Forum::create($request->all());
+        ForumEntry::create($request->all());
         return redirect()->action('ForumsController@index')
             ->with('success','Forum created successfully');
     }
@@ -56,7 +56,7 @@ class ForumsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum)
+    public function show(ForumEntry $forum)
     {
         $entries = $forum->forumEntries()->paginate(10);
         $likes = $forum->forumLikes()->get();
@@ -75,7 +75,7 @@ class ForumsController extends Controller
         return view('forum.show', compact('forum','entries', 'userLikeId', 'userentryLikeId', 'totalLikes'));
     }
 
-    public function submitEntry(ForumEntryRequest $request, Forum $forum)
+    public function submitEntry(ForumEntryRequest $request, ForumEntry $forum)
     {
         $entry = new ForumEntry();
         $user = Auth::user();
@@ -89,10 +89,10 @@ class ForumsController extends Controller
     }
 
     /**
-     * @param Forum $forum
+     * @param ForumEntry $forum
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function submitLike(Forum $forum)
+    public function submitLike(ForumEntry $forum)
     {
         $like = new ForumLike();
         $user = Auth::user();
@@ -104,7 +104,7 @@ class ForumsController extends Controller
 
     }
 
-    public function submitDeslike(Forum $forum)
+    public function submitDeslike(ForumEntry $forum)
     {
         $likes = $forum->forumLikes()->get();
         $like = ForumLike::forumLikesAre($likes)
@@ -116,7 +116,7 @@ class ForumsController extends Controller
     }
 
 
-    public function submitLikeEntry(ForumEntry $entry, Forum $forum)
+    public function submitLikeEntry(ForumEntry $entry, ForumEntry $forum)
     {
         $like = new ForumLikeEntry();
         $user = Auth::user();

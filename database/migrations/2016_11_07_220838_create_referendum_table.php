@@ -17,6 +17,7 @@ class CreateReferendumTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

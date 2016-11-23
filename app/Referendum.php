@@ -2,17 +2,21 @@
 
 namespace App;
 
+use App\Traits\Commentable;
+use App\Traits\Likeable;
+use App\Traits\Pollable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class Referendum extends Model
 {
-    protected $fillable =
-        [
-            'title',
-            'description',
-            'approved',
-        ];
+
+    use Commentable, Likeable, Pollable;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'approved',
+    ];
 
     /**
      * Scope for filtering approved requests
@@ -31,25 +35,6 @@ class Referendum extends Model
      */
     public function scopeNotApproved($query)
     {
-        return $query->where('approved',false);
-    }
-
-    /**
-     * Relationship to referendum_answers table
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function referendumAnswer()
-    {
-        return $this->hasMany(ReferendumAnswer::class);
-    }
-
-
-    /**
-     * Relationship to referendum_comments table
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function referendumComment()
-    {
-        return $this->hasMany(ReferendumComment::class);
+        return $query->where('approved', false);
     }
 }

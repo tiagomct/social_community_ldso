@@ -2,46 +2,22 @@
 
 namespace App;
 
+use App\Traits\Commentable;
+use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 
 class ForumEntry extends Model
 {
-    // just to be sure
-    protected $table = 'forum_entries';
+
+    use Commentable, Likeable;
 
     protected $fillable = [
-        'forum_id',
-        'user_id',
-        'content',
+        'title',
+        'description',
     ];
 
-    public function scopeForumIs($query, $forum)
+    public function forumLikes()
     {
-        return $query->where('forum_id', $forum->id);
+        return $this->hasMany(ForumLike::class);
     }
-
-    public function scopeUserIs($query, $user)
-    {
-        return $query->where('user_id', $user->id);
-    }
-
-    /**
-     * Relationship to forum table
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function forum()
-    {
-        return $this->belongsTo(Forum::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function entryLikes()
-    {
-        return $this->hasMany(ForumEntryLike::class);
-    }
-
 }

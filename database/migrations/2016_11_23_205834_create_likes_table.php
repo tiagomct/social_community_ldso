@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddReferendumCommentsTable extends Migration
+class CreateLikesTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,15 +14,12 @@ class AddReferendumCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('referendum_comments', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('referendum_id');
+            $table->unsignedInteger('likeable_id');
+            $table->string('likeable_type');
             $table->unsignedInteger('user_id');
-            $table->text('content');
             $table->timestamps();
-
-            $table->foreign('referendum_id')->references('id')->on('referendums');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +30,6 @@ class AddReferendumCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referendum_comments');
+        Schema::dropIfExists('likes');
     }
 }
