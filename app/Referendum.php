@@ -4,7 +4,7 @@ namespace App;
 
 use App\Traits\Pollable;
 
-class Referendum extends Thread
+class Referendum extends Thread implements isPoll
 {
     use Pollable;
 

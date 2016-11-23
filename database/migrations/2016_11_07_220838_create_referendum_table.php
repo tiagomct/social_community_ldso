@@ -15,10 +15,13 @@ class CreateReferendumTable extends Migration
     {
         Schema::create('referendums', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('title');
             $table->text('description');
             $table->boolean('approved')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

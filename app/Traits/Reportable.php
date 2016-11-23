@@ -5,7 +5,7 @@ use App\EntryReport;
 trait Reportable
 {
 
-    public function entryReports()
+    public function reports()
     {
         return $this->morphMany(EntryReport::class, 'entry_reportable');
     }
