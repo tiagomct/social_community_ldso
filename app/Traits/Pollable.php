@@ -1,13 +1,12 @@
 <?php namespace App\Traits;
 
-
-use App\Poll;
+use App\PollAnswer;
 
 trait Pollable
 {
-    public function comments()
+    public function pollAnswers()
     {
-        return $this->morphMany(Poll::class, 'pollable');
+        return $this->morphMany(PollAnswer::class, 'pollable');
     }
 
 }

@@ -20,8 +20,20 @@ class CreateUsersTable extends Migration
             $table->string('id_card')->unique();
             $table->date('birth_date');
             $table->string('password');
+
+            $table->string('img_name')->default('default.jpg');
+            $table->text('description')->nullable();
+            $table->text('politics')->nullable();
+            $table->text('interests')->nullable();
+
+            $table->unsignedInteger('voting_location_id');
+            $table->unsignedInteger('role_id')->default(0);
+
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('voting_location_id')->references('id')->on('voting_locations');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -32,6 +44,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
 }

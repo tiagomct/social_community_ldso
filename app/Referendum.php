@@ -2,15 +2,11 @@
 
 namespace App;
 
-use App\Traits\Commentable;
-use App\Traits\Likeable;
 use App\Traits\Pollable;
-use Illuminate\Database\Eloquent\Model;
 
-class Referendum extends Model
+class Referendum extends Thread
 {
-
-    use Commentable, Likeable, Pollable;
+    use Pollable;
 
     protected $fillable = [
         'title',

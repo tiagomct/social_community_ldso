@@ -6,7 +6,7 @@ use App\Traits\Commentable;
 use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 
-class ForumEntry extends Model
+class ForumEntry extends Thread
 {
 
     use Commentable, Likeable;
