@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForumEntryLikesTable extends Migration
+class CreateIdeasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateForumEntryLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum_entry_likes', function (Blueprint $table) {
+        Schema::create('idea_entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('forum_entry_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->string('title');
+            $table->text('description');
             $table->timestamps();
-        });
 
-        Schema::table('forum_entry_likes', function($table) {
-            $table->foreign('forum_entry_id')->references('id')->on('forum_entries');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -33,6 +31,6 @@ class CreateForumEntryLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forum__entry_likes');
+        Schema::dropIfExists('idea_entries');
     }
 }

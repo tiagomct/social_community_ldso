@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddReferendumAnswer extends Migration
+class CreateEntryFollowsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,14 +14,14 @@ class AddReferendumAnswer extends Migration
      */
     public function up()
     {
-        Schema::create('referendum_answers', function (Blueprint $table) {
+        Schema::create('entry_follows', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('referendum_id')->unsigned();
-            $table->text('description');
-            $table->unsignedInteger('number_of_votes')->default(0);
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('entry_followable_id');
+            $table->string('entry_followable_type');
             $table->timestamps();
 
-            $table->foreign('referendum_id')->references('id')->on('referendums');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +32,6 @@ class AddReferendumAnswer extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referendum_answers');
+        Schema::dropIfExists('entry_follows');
     }
 }

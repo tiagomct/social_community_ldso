@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReferendumTable extends Migration
+class CreatePollAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateReferendumTable extends Migration
      */
     public function up()
     {
-        Schema::create('referendums', function (Blueprint $table) {
+        Schema::create('poll_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('title');
+            $table->unsignedInteger('poll_answerable_id');
+            $table->string('poll_answerable_type');
+
             $table->text('description');
-            $table->boolean('approved')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -32,6 +33,6 @@ class CreateReferendumTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referendums');
+        Schema::dropIfExists('poll_answers');
     }
 }

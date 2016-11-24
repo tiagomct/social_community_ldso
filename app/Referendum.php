@@ -2,18 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
+use App\Traits\Pollable;
 
-class Referendum extends Model
+class Referendum extends Thread implements isPoll
 {
-    protected $fillable =
-        [
-            'title',
-            'description',
-            'approved',
-        ];
+    use Pollable;
 
+    protected $fillable = [
+        'title',
+        'description',
+    ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     /**
      * Scope for filtering approved requests
      * @param $query
@@ -31,25 +34,6 @@ class Referendum extends Model
      */
     public function scopeNotApproved($query)
     {
-        return $query->where('approved',false);
-    }
-
-    /**
-     * Relationship to referendum_answers table
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function referendumAnswer()
-    {
-        return $this->hasMany(ReferendumAnswer::class);
-    }
-
-
-    /**
-     * Relationship to referendum_comments table
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function referendumComment()
-    {
-        return $this->hasMany(ReferendumComment::class);
+        return $query->where('approved', false);
     }
 }

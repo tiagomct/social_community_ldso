@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="form-horizontal" role="form" method="POST" action="{{action('ForumsController@store')}}">
+    <form class="form-horizontal" role="form" method="POST" action="{{action('ForumEntriesController@store')}}">
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
