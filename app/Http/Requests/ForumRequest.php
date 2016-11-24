@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ForumRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,7 @@ class ForumRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title'       => 'required|max:255',
             'description' => 'required',
         ];
     }

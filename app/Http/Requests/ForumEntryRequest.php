@@ -24,7 +24,7 @@ class ForumEntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required',
+            'description' => 'required',
         ];
     }
 }

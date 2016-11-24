@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait Likeable
 {
-
+    
     /**
      * @return HasMany
      */
@@ -14,4 +14,8 @@ trait Likeable
         return $this->morphMany(Like::class, 'likeable');
     }
 
+    public function hasMyLike()
+    {
+        return $this->likes->contains('user_id', auth()->user()->id);
+    }
 }

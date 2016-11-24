@@ -13,15 +13,11 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home','MunicipalityController@access');
 
-    Route::get('forums', 'ForumsController@index');
-    Route::get('forums/create', 'ForumsController@create');
-    Route::post('forums/create', 'ForumsController@store');
-    Route::get('forums/{forum}', 'ForumsController@show');
-    Route::post('forums/{forum}', 'ForumsController@submitEntry');
-    Route::get('forums/{forum}/like', 'ForumsController@submitLike');
-    Route::get('forums/{forum}/deslike', 'ForumsController@submitDeslike');
-    Route::get('forums/{forum}/like/{forum_entry}', 'ForumsController@submitLikeEntry');
-    Route::get('forums/{forum}/deslike/{forum_entry}', 'ForumsController@submitDeslikeEntry');
+    Route::get('forum-entries', 'ForumEntriesController@index');
+    Route::get('forums-entries/create', 'ForumEntriesController@create');
+    Route::post('forums-entries', 'ForumEntriesController@store');
+    Route::get('forums-entries/{forumEntry}', 'ForumEntriesController@show');
+    Route::post('forums-entries/{forumEntry}', 'ForumEntriesController@submitEntry');
 
     Route::get('users', 'UsersController@index');
     Route::get('users/{user}', 'UsersController@show');
@@ -35,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('referendums/{referendum}/submit/{referendumAnswer}', 'ReferendumsController@submitVote');
     Route::post('referendums/{referendum}/comment', 'ReferendumsController@submitComment');
 
+    Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
 
     Route::get('test-profile-data', function() {
         $user = auth()->user()->load('votingLocation');

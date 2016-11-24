@@ -15,8 +15,8 @@ class ForumEntry extends Thread
         'description',
     ];
 
-    public function forumLikes()
+    public function author()
     {
-        return $this->hasMany(ForumLike::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
