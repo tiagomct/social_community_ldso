@@ -17,7 +17,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('forums-entries/create', 'ForumEntriesController@create');
     Route::post('forums-entries', 'ForumEntriesController@store');
     Route::get('forums-entries/{forumEntry}', 'ForumEntriesController@show');
-    Route::post('forums-entries/{forumEntry}', 'ForumEntriesController@submitEntry');
 
     Route::get('users', 'UsersController@index');
     Route::get('users/{user}', 'UsersController@show');
@@ -28,10 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('referendums/create', 'ReferendumsController@create');
     Route::post('referendums/create', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
-    Route::get('referendums/{referendum}/submit/{referendumAnswer}', 'ReferendumsController@submitVote');
-    Route::post('referendums/{referendum}/comment', 'ReferendumsController@submitComment');
 
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
+    Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
     Route::get('test-profile-data', function() {
         $user = auth()->user()->load('votingLocation');
