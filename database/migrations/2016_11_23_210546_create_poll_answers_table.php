@@ -16,10 +16,10 @@ class CreatePollAnswersTable extends Migration
         Schema::create('poll_answers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('pollable_id');
-            $table->string('pollable_type');
+            $table->unsignedInteger('poll_answerable_id');
+            $table->string('poll_answerable_type');
 
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

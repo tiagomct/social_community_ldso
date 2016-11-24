@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class)->create(['email' => 'user@mail.com', 'password' => bcrypt('123')]);
 
         $pollThreads = $this->createPollThreads();
-        $threads = array_merge([], $pollThreads);
-        $threads = $this->createRemainingThreads($threads);
-
         $this->pollThreadsCreatePollAnswers($pollThreads);
+
+        $threads = $pollThreads;
+        $threads = $this->createRemainingThreads($threads);
         $this->threadCreateRelatedClasses($threads);
     }
 
@@ -55,18 +55,25 @@ class DatabaseSeeder extends Seeder
     {
         /** @var \App\IsThread $thread */
         foreach ($threads as $thread) {
-            $thread->comments()->saveMany([
+            $thread->comments()->saveMany(
                 factory(App\Comment::class)->times(3)->make()
-            ]);
-            $thread->likes()->saveMany([
+            );
+            $thread->likes()->saveMany(
                 factory(App\Like::class)->times(2)->make()
-            ]);
-            $thread->reports()->saveMany([
-                factory(App\EntryReport::class)->times(1)->make()
-            ]);
-            $thread->follows()->saveMany([
-                factory(App\EntryFollow::class)->times(1)->make()
-            ]);
+            );
+            $thread->reports()->saveMany(
+                factory(App\EntryReport::class)->times(2)->make()
+            );
+            $thread->follows()->saveMany(
+                factory(App\EntryFollow::class)->times(2)->make()
+            );
+
+            /** @var \App\Comment $comment */
+            foreach ($thread->comments as $comment) {
+                $comment->likes()->saveMany(
+                    factory(App\Like::class)->times(2)->make()
+                );
+            }
         }
     }
 
@@ -86,12 +93,11 @@ class DatabaseSeeder extends Seeder
     private function createPollThreads()
     {
         $pollThreads = [];
-        /** @var \App\Referendum $referendumsApproved */
         $pollThreads[] = factory(App\Referendum::class, 3)->create(['approved' => true]);
         $pollThreads[] = factory(App\Referendum::class, 2)->create(['approved' => false]);
         $pollThreads[] = factory(App\IdeaEntry::class, 5)->create();
 
-        return $pollThreads;
+        return array_collapse($pollThreads);
     }
 
     /**
@@ -100,10 +106,11 @@ class DatabaseSeeder extends Seeder
      */
     private function createRemainingThreads($threads)
     {
-        $threads[] = factory(App\ForumEntry::class, 5)->create();
-        $threads[] = factory(App\MalfunctionEntry::class, 5)->create();
-        $threads[] = factory(App\NewsEntry::class, 5)->create();
+        $newThreads = [];
+        $newThreads[] = factory(App\ForumEntry::class, 5)->create();
+        $newThreads[] = factory(App\MalfunctionEntry::class, 5)->create();
+        $newThreads[] = factory(App\NewsEntry::class, 5)->create();
 
-        return $threads;
+        return array_merge($threads, array_collapse($newThreads));
     }
 }

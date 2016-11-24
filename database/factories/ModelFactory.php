@@ -11,6 +11,8 @@
 |
 */
 
+use App\User;
+
 $factory->define(App\Role::class, function (Faker\Generator $faker) {
     return [
         'title' => "User",
@@ -46,73 +48,73 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Referendum::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'title'       => $faker->sentence,
-        'description' => $faker->paragraphs(3),
+        'description' => $faker->paragraphs(3, true),
         'approved'    => $faker->boolean,
     ];
 });
 
 $factory->define(App\IdeaEntry::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'title'       => $faker->sentence,
-        'description' => $faker->paragraphs(3)
+        'description' => $faker->paragraphs(3, true)
     ];
 });
 
 $factory->define(App\ForumEntry::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'title'       => $faker->sentence,
-        'description' => $faker->paragraphs(3)
+        'description' => $faker->paragraphs(3, true)
     ];
 });
 
 $factory->define(App\NewsEntry::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'title'       => $faker->sentence,
-        'description' => $faker->paragraphs(3)
+        'description' => $faker->paragraphs(3, true)
     ];
 });
 
 $factory->define(App\MalfunctionEntry::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'title'       => $faker->sentence,
-        'description' => $faker->paragraphs(3)
+        'description' => $faker->paragraphs(3, true)
     ];
 });
 
 $factory->define(App\Comment::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'description' => $faker->paragraph
     ];
 });
 
 $factory->define(App\Like::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray())
+        'user_id' => User::inRandomOrder()->first()->id
     ];
 });
 
 $factory->define(App\PollAnswer::class, function (Faker\Generator $faker) {
     return [
-        'user_id'     => $faker->randomElement(App\User::all()->pluck('id')->toArray()),
+        'user_id'     => User::inRandomOrder()->first()->id,
         'description' => $faker->paragraph
     ];
 });
 
 $factory->define(App\EntryReport::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray())
+        'user_id' => User::inRandomOrder()->first()->id
     ];
 });
 
 $factory->define(App\EntryFollow::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => $faker->randomElement(App\User::all()->pluck('id')->toArray())
+        'user_id' => User::inRandomOrder()->first()->id
     ];
 });

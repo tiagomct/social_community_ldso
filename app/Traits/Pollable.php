@@ -7,7 +7,7 @@ trait Pollable
 
     public function pollAnswers()
     {
-        return $this->morphMany(PollAnswer::class, 'pollable');
+        return $this->morphMany(PollAnswer::class, 'poll_answerable');
     }
 
 }
