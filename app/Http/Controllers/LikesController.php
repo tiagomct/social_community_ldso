@@ -8,6 +8,7 @@ use App\IdeaEntry;
 use App\Like;
 use App\MalfunctionEntry;
 use App\NewsEntry;
+use App\PollAnswer;
 use App\Referendum;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class LikesController extends Controller
         'malfunction' => MalfunctionEntry::class,
         'news'        => NewsEntry::class,
         'referendum'  => Referendum::class,
-        'comment'     => Comment::class
+        'comment'     => Comment::class,
+        'answer'      => PollAnswer::class
     ];
 
     public function toggleLike($related, $relatedId)
@@ -40,7 +42,7 @@ class LikesController extends Controller
 
         $model = $relatedModel::find($relatedId);
         // Can't vote your own posts
-        if($model->isMine()) {
+        if ($model->isMine()) {
             return redirect()->back();
         }
 

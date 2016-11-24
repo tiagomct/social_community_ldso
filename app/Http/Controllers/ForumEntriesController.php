@@ -55,7 +55,7 @@ class ForumEntriesController extends Controller
      */
     public function show(ForumEntry $forumEntry)
     {
-        $comments = $forumEntry->comments()->with('author')->paginate(10);
+        $comments = $forumEntry->comments()->with('author')->paginate(self::DEFAULT_PAGINATION);
         $forumEntry->load('likes');
 
         return view('forum.show', compact('forumEntry', 'comments'));

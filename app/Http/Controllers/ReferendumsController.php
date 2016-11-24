@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReferendumCommentRequest;
 use App\Http\Requests\ReferendumRequest;
+use App\PollAnswer;
 use App\Referendum;
 use App\ReferendumAnswer;
 use App\ReferendumComment;
 use Illuminate\Support\Facades\Auth;
 use App\Vote;
+use Illuminate\Support\Facades\DB;
 
 class ReferendumsController extends Controller
 {
+
     /**
      * Directs the user to create referendum page
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -24,22 +27,26 @@ class ReferendumsController extends Controller
     /**
      * Handles POST request submitted by create referendum page
      * @param ReferendumRequest $request
+     * @param Referendum        $referendum
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ReferendumRequest $request)
+    public function store(ReferendumRequest $request, Referendum $referendum)
     {
-        $referendum = new Referendum();
-        $referendum->title = $request->title;
-        $referendum->description = $request->description;
-        $referendum->approved = false;
-        $referendum->save();
+        DB::transaction(function () use ($request, $referendum) {
+            $referendum->fill($request->all());
+            $referendum->approved = false;
+            $referendum->author()->associate(auth()->user());
+            $referendum->save();
 
-        foreach ($request->answers as $answer) {
-            $referendumAnswer = new ReferendumAnswer();
-            $referendumAnswer->referendum()->associate($referendum);
-            $referendumAnswer->description = $answer;
-            $referendumAnswer->save();
-        }
+            $pollAnswers = [];
+            foreach ($request->get('answers', []) as $answer) {
+                $answer = new PollAnswer(['description' => $answer]);
+                $answer->author()->associate(auth()->user());
+                $pollAnswers[] = $answer;
+            }
+            $referendum->pollAnswers()->saveMany($pollAnswers);
+        });
+
         //TODO possibly flash a message or sth like it
         return redirect()->action('ReferendumsController@index');
     }
@@ -62,50 +69,23 @@ class ReferendumsController extends Controller
      * @param Referendum $referendum
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function show(Referendum $referendum)
+    public function show($referendum_id)
     {
-        if ($referendum->approved == false) {
+        $referendum = Referendum::with('pollAnswers.likes', 'likes')
+            ->where('id', $referendum_id)->where('approved', true)
+            ->first();
+
+        if (!$referendum) {
             return redirect()->back();
         }
 
-        $answers = $referendum->referendumAnswer()->get();
+        $comments = $referendum->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
 
-        $userAnswerId = Vote::referendumAnswersAre($answers)
-            ->userIs(Auth::user())
-            ->value('referendum_answer_id');
+        $answersTotalVotes = $referendum->pollAnswers->sum(function ($_answer) {
+            return $_answer->likes->count();
+        });
 
-        $totalVotes = $this->totalVotesOfAnswers($answers);
-
-        $comments = $referendum->referendumComment()->with('user')->paginate(self::DEFAULT_PAGINATION);
-
-        return view('referendums.show', compact('referendum', 'answers', 'comments' , 'userAnswerId', 'totalVotes'));
-    }
-
-
-    /**
-     *
-     * Creates a new votes table entry based on selection of user
-     * @param Referendum $referendum
-     * @param ReferendumAnswer $referendumAnswer
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function submitVote(Referendum $referendum, ReferendumAnswer $referendumAnswer)
-    {
-        if ($referendum->approved == false) {
-            return redirect()->back();
-        }
-
-        $vote = new Vote();
-
-        $vote->user()->associate(Auth::user());
-        $vote->referendumAnswer()->associate($referendumAnswer);
-        $vote->save();
-
-        $referendumAnswer->number_of_votes++;
-        $referendumAnswer->save();
-
-        return redirect()->action('ReferendumsController@show', $referendum);
-
+        return view('referendums.show', compact('referendum', 'answersTotalVotes', 'comments'));
     }
 
 
@@ -130,6 +110,7 @@ class ReferendumsController extends Controller
     public function pendingShow(Referendum $referendum)
     {
         $answers = $referendum->referendumAnswer()->get();
+
         return view('referendums.moderatorShow', compact('referendum', 'answers'));
     }
 
@@ -143,44 +124,8 @@ class ReferendumsController extends Controller
     {
         $referendum->approved = true;
         $referendum->save();
+
         return redirect()->action('ReferendumsController@pendingList');
     }
 
-
-    /**
-     * Saves a comment on submit
-     * @param Referendum $referendum
-     * @param ReferendumCommentRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function submitComment(Referendum $referendum, ReferendumCommentRequest $request )
-    {
-        if($referendum->approved==false){
-            return redirect()->back();
-        }
-
-        $comment = new ReferendumComment($request->all());
-        $comment->user()->associate(Auth::user());
-        $comment->referendum()->associate($referendum);
-        $comment->save();
-
-        return redirect()->back();
-    }
-
-
-    /**
-     * Returns accumulated number of votes for all referendum answers
-     * @param $answers
-     * @return int
-     */
-    private function totalVotesOfAnswers($answers)
-    {
-        $total = 0;
-
-        foreach ($answers as $answer) {
-            $total += $answer->number_of_votes;
-        }
-
-        return $total;
-    }
 }

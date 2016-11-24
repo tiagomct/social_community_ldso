@@ -11,9 +11,12 @@ class Referendum extends Thread implements isPoll
     protected $fillable = [
         'title',
         'description',
-        'approved',
     ];
 
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     /**
      * Scope for filtering approved requests
      * @param $query
