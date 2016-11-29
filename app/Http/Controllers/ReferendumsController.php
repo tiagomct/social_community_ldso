@@ -71,7 +71,8 @@ class ReferendumsController extends Controller
      */
     public function show($referendum_id)
     {
-        $referendum = Referendum::with('pollAnswers.likes', 'likes')
+
+        $referendum = Referendum::with('likes')
             ->where('id', $referendum_id)->where('approved', true)
             ->first();
 
@@ -79,13 +80,11 @@ class ReferendumsController extends Controller
             return redirect()->back();
         }
 
+        $poll = $referendum->preparePollForView();
+
         $comments = $referendum->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
 
-        $answersTotalVotes = $referendum->pollAnswers->sum(function ($_answer) {
-            return $_answer->likes->count();
-        });
-
-        return view('referendums.show', compact('referendum', 'answersTotalVotes', 'comments'));
+        return view('referendums.show', compact('referendum', 'poll', 'comments'));
     }
 
 

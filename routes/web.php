@@ -1,7 +1,7 @@
 <?php
 
-Route::get('/', function() {
-    if(auth()->check())
+Route::get('/', function () {
+    if (auth()->check())
         return redirect()->action('MunicipalityController@access');
 
     return redirect('login');
@@ -11,7 +11,7 @@ Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home','MunicipalityController@access');
+    Route::get('/home', 'MunicipalityController@access');
 
     Route::get('forum-entries', 'ForumEntriesController@index');
     Route::get('forums-entries/create', 'ForumEntriesController@create');
@@ -28,19 +28,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('referendums', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
 
+//    Route::model('pollAnswer', 'App\PollAnswer');
+    Route::get('vote/{pollableType}/{pollableId}/{pollAnswer}', 'PollsController@submitVote');
+
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
-    Route::get('test-profile-data', function() {
+    Route::get('test-profile-data', function () {
         $user = auth()->user()->load('votingLocation');
 
         return $user;
     });
 
-}) ;
+});
 
-Route::group(['middleware' => 'moderator'], function ()
-{
+Route::group(['middleware' => 'moderator'], function () {
     Route::get('moderators/referendums/pending', 'ReferendumsController@pendingList');
     Route::get('moderators/referendums/{referendum}', 'ReferendumsController@pendingShow');
     Route::get('moderators/referendums/{referendum}/approve', 'ReferendumsController@approve');

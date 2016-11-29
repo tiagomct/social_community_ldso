@@ -2,12 +2,10 @@
 
 namespace App;
 
-use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 
 class PollAnswer extends Model
 {
-    use Likeable;
 
     protected $fillable = ['description'];
 
@@ -20,4 +18,15 @@ class PollAnswer extends Model
     {
         return $this->user_id == auth()->user()->id;
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function hasMyVote()
+    {
+        return $this->votes->contains('user_id', auth()->user()->id);
+    }
+
 }
