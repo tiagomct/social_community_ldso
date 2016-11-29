@@ -80,7 +80,7 @@ class ReferendumsController extends Controller
             return redirect()->back();
         }
 
-        $poll = $referendum->preparePollForView();
+        $poll = $referendum->pollData();
 
         $comments = $referendum->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
 

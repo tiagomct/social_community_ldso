@@ -16,30 +16,14 @@ trait Pollable
 
 
     /**
-     * Return everything needed for poll displaying in view
-     * MUST use partial view _poll.view.php
-     * @return array
+     * If necessary override this function based on model parameters
+     * eg. voting on referendum is enabled only when it is approved
+     * @return bool
      */
-    public function preparePollForView()
+    public function votingEnabled()
     {
-        $answers = $this->pollAnswers()->get();
-
-        $totalVotes = 0;
-        $userAnswerId = null;
-        foreach ($answers as $answer) {
-            if ($answer->hasMyVote()) {
-                $userAnswerId = $answer->id;
-            }
-            $totalVotes += $answer->votes->count();
-        }
-
-        return [
-            'answers' => $answers,
-            'totalVotes' => $totalVotes,
-            'userAnswerId' => $userAnswerId,
-        ];
+        return true;
     }
-
 
     /**
      * Get total number of votes on all answers related
@@ -68,4 +52,31 @@ trait Pollable
 
         return false;
     }
+
+
+    /**
+     * Packs up all data for poll into an array and returns it
+     * for easier usage with partial view _poll.blade.php
+     * @return array
+     */
+    public function pollData()
+    {
+        $answers = $this->pollAnswers()->get();
+
+        $totalVotes = 0;
+        $userAnswerId = null;
+        foreach ($answers as $answer) {
+            if ($answer->hasMyVote()) {
+                $userAnswerId = $answer->id;
+            }
+            $totalVotes += $answer->votes->count();
+        }
+
+        return [
+            'answers' => $answers,
+            'totalVotes' => $totalVotes,
+            'userAnswerId' => $userAnswerId,
+        ];
+    }
+
 }

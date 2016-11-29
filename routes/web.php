@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('referendums', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
 
-//    Route::model('pollAnswer', 'App\PollAnswer');
+
     Route::get('vote/{pollableType}/{pollableId}/{pollAnswer}', 'PollsController@submitVote');
 
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');

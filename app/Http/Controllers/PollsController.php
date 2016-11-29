@@ -25,7 +25,8 @@ class PollsController extends Controller
         $pollableModel = $this->pollableModels[$pollableType];
         $pollableItem = $pollableModel::find($pollableId);
 
-        if ($pollableItem->userVoted()) {
+
+        if ($pollableItem->userVoted() | !($pollableItem->votingEnabled())) {
             return redirect()->back();
         }
 
