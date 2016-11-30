@@ -8,6 +8,7 @@
 				<li><a href = "#">News</a></li>
 				<li><a href = "{{ action('ForumEntriesController@index') }}">Forum</a></li>
 				<li><a href = "{{ action('ReferendumsController@index') }}">Referendums</a></li>
+				<li><a href = "{{ action('IdeaEntriesController@index') }}">Ideas</a></li>
 				<li><a href = "#">Malfunctions</a></li>
 			</ul>
 		</div>

@@ -28,8 +28,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('referendums', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
 
+    Route::get('ideas', 'IdeaEntriesController@index');
+    Route::get('ideas/{ideaEntry}', 'IdeaEntriesController@show');
+    Route::get('ideas/create', 'IdeaEntriesController@create');
+
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
+
+
 
     Route::get('test-profile-data', function() {
         $user = auth()->user()->load('votingLocation');
