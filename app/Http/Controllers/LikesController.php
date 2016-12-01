@@ -22,7 +22,6 @@ class LikesController extends Controller
         'news'        => NewsEntry::class,
         'referendum'  => Referendum::class,
         'comment'     => Comment::class,
-        'answer'      => PollAnswer::class
     ];
 
     public function toggleLike($related, $relatedId)
