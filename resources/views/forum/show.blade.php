@@ -3,7 +3,7 @@
 @section('content')
 	<h1>Forum</h1>
 	<div class = "col-sm-2 col-xs-12 text-right">
-		@include('likes._thumbs', ['likeableType' => 'forum-entry', 'likeable' => $forumEntry])
+		@include('partials._thumbs', ['likeableType' => 'forum-entry', 'likeable' => $forumEntry])
 	</div>
 	
 	<div class = "col-xs-12 printing-content">
@@ -17,13 +17,13 @@
 				<div class = "col-xs-12">
 					<h4>{{$comment->author->name}}</h4>
 					<span class = "text-muted">{{ $comment->created_at->diffForHumans() }}</span> -
-					@include('likes._thumbs', ['likeableType' => 'comment', 'likeable' => $comment])
+					@include('partials._thumbs', ['likeableType' => 'comment', 'likeable' => $comment])
 					
 					<p class = "ptext">{{ $comment->description }}</p>
 				</div>
 			</div>
 		@endforeach
 		
-		@include('comments._create', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
+		@include('partials._create', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
 	</div>
 @endsection
