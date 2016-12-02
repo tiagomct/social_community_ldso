@@ -26,7 +26,7 @@ class IdeaEntriesController extends Controller
      */
     public function show($idea_id)
     {
-        $ideaEntry = IdeaEntry::with('pollAnswers.likes', 'likes')
+        $ideaEntry = IdeaEntry::with('pollAnswers', 'likes')
             ->where('id', $idea_id)->first();
 
         if(!$ideaEntry) redirect()->back();

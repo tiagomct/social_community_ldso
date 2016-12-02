@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('referendums', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
 
+    Route::get('ideas', 'IdeaEntriesController@index');
+    Route::get('ideas/{ideaEntry}', 'IdeaEntriesController@show');
 
     Route::get('malfunctions/create', 'MalfunctionEntriesController@create');
     Route::get('malfunctions/{status?}', 'MalfunctionEntriesController@index');
