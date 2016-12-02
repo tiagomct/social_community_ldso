@@ -11,13 +11,35 @@
 |
 */
 
+
+$factory->define(App\VotingLocation::class, function (Faker\Generator $faker) {
+    return [
+        'district' => $faker->city,
+        'county' => $faker->city,
+        'parish' => $faker->city,
+    ];
+});
+
+$factory->define(App\Municipality::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->city,
+    ];
+});
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'id_card' => $faker->randomNumber(9),
+        'birth_date' => $faker->date(),
         'password' => $password ?: $password = bcrypt('secret'),
+        'description' => $faker->paragraph,
+        'politics'  => $faker->text,
+        'interests' => implode($faker->sentences),
         'remember_token' => str_random(10),
+        'voting_location_id' => 1,
+        'municipality_id' => $faker->randomElement(App\Municipality::all()->pluck('id')->toArray()),
     ];
 });
