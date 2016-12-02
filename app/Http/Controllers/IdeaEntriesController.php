@@ -26,12 +26,16 @@ class IdeaEntriesController extends Controller
      */
     public function show($idea_id)
     {
-        $ideaEntry = IdeaEntry::with('pollAnswers', 'likes')
+        $ideaEntry = IdeaEntry::with('likes')
             ->where('id', $idea_id)->first();
 
-        if(!$ideaEntry) redirect()->back();
+        if (!$ideaEntry) redirect()->back();
 
-        return view('ideas.show', compact('ideaEntry'));
+        $poll = $ideaEntry->pollData();
+
+        $comments = $ideaEntry->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
+
+        return view('ideas.show', compact('ideaEntry', 'poll', 'comments'));
     }
 
     public function create()
