@@ -15,7 +15,7 @@
 
                     <p class="ptext">{{ $idea->description }}</p>
 
-                    <a href="{{action('IdeaEntriesController@show', $idea->id)}}" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> View referendum</a>
+                    <a href="{{action('IdeaEntriesController@show', $idea->id)}}" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> View idea </a>
                 </div>
             </div>
         @endforeach
