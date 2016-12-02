@@ -67,7 +67,7 @@ class ReferendumsController extends Controller
     /**
      * Show a selected referendum and current state of the votes
      * if user didn't vote voting is enabled
-     * @param Referendum $referendum
+     * @param Referendum    $referendum
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show($referendum_id)
