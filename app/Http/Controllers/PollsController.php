@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\IdeaEntry;
+use App\MalfunctionEntry;
 use App\PollAnswer;
 use App\Referendum;
 use App\Vote;
@@ -13,6 +14,7 @@ class PollsController extends Controller
     protected $pollableModels = [
         'idea' => IdeaEntry::class,
         'referendum' => Referendum::class,
+        'malfunction' => MalfunctionEntry::class,
     ];
 
 

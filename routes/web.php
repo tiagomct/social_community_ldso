@@ -11,7 +11,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'MunicipalityController@access');
 
     Route::get('forum-entries', 'ForumEntriesController@index');
@@ -28,6 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('referendums/create', 'ReferendumsController@create');
     Route::post('referendums', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
+
+
+    Route::get('malfunctions/create', 'MalfunctionEntriesController@create');
+    Route::get('malfunctions/{status?}', 'MalfunctionEntriesController@index');
+    Route::post('malfunctions', 'MalfunctionEntriesController@store');
+    Route::get('malfunctions/{malfunctionId}/show', 'MalfunctionEntriesController@show');
 
 
     Route::get('vote/{pollableType}/{pollableId}/{pollAnswer}', 'PollsController@submitVote');
@@ -47,6 +53,10 @@ Route::group(['middleware' => 'moderator'], function () {
     Route::get('moderators/referendums/pending', 'ReferendumsController@pendingList');
     Route::get('moderators/referendums/{referendum}', 'ReferendumsController@pendingShow');
     Route::get('moderators/referendums/{referendum}/approve', 'ReferendumsController@approve');
+
+    Route::get('moderators/malfunctions/{malfunctionEntry}/changeStatus', 'MalfunctionEntriesController@edit');
+    Route::post('moderators/malfunctions/{malfunctionEntry}/changeStatus', 'MalfunctionEntriesController@changeStatus');
+
 
 
 });

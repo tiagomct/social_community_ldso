@@ -30,9 +30,10 @@ class ReferendumsController extends Controller
      * @param Referendum        $referendum
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ReferendumRequest $request, Referendum $referendum)
+    public function store(ReferendumRequest $request)
     {
-        DB::transaction(function () use ($request, $referendum) {
+        DB::transaction(function () use ($request) {
+            $referendum = new Referendum();
             $referendum->fill($request->all());
             $referendum->approved = false;
             $referendum->author()->associate(auth()->user());

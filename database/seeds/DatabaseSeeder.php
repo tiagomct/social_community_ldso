@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
                 factory(App\Like::class)->times(2)->make()
             );
             $thread->reports()->saveMany(
-                factory(App\EntryReport::class)->times(2)->make()
+                factory(App\Flag::class)->times(2)->make()
             );
             $thread->follows()->saveMany(
                 factory(App\EntryFollow::class)->times(2)->make()

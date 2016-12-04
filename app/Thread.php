@@ -3,14 +3,14 @@
 namespace App;
 
 use App\Traits\Followable;
-use App\Traits\Reportable;
+use App\Traits\Flaggable;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Commentable;
 use App\Traits\Likeable;
 
 abstract class Thread extends Model implements IsThread
 {
-    use Commentable, Likeable, Reportable, Followable;
+    use Commentable, Likeable, Flaggable, Followable;
 
     public function isMine()
     {
