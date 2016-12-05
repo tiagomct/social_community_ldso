@@ -3,6 +3,7 @@
 @section('content')
 	<h1>Forum</h1>
 	<div class = "col-sm-2 col-xs-12 text-right">
+		@include('partials._subscriptions', ['subscriptableType' => 'forum-entry', 'subscriptable' => $forumEntry])
 		@include('partials._thumbs', ['likeableType' => 'forum-entry', 'likeable' => $forumEntry])
 	</div>
 	
@@ -23,7 +24,7 @@
 				</div>
 			</div>
 		@endforeach
-		
-		@include('partials._create', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
+
+		@include('partials._newComment', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
 	</div>
 @endsection

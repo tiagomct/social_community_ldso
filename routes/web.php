@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('vote/{pollableType}/{pollableId}/{pollAnswer}', 'PollsController@submitVote');
 
+    Route::get('toggle-subscription/{relatedType}/{relatedId}', 'SubscriptionsController@toggleSubscription');
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
