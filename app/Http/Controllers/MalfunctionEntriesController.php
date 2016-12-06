@@ -70,17 +70,17 @@ class MalfunctionEntriesController extends Controller
 
     public function edit(MalfunctionEntry $malfunctionEntry)
     {
-        return redirect()->back();
+        return view('malfunctions.edit', compact('malfunctionEntry'));
     }
 
 
-    public function changeStatus(MalfunctionEntry $malfunctionEntry, MalfunctionStatusChangeRequest $request)
+    public function update(MalfunctionEntry $malfunctionEntry, MalfunctionStatusChangeRequest $request)
     {
 
         $malfunctionEntry->status = $request->status;
         $malfunctionEntry->report = $request->report;
         $malfunctionEntry->save();
 
-        return redirect()->back();
+        return redirect()->action('MalfunctionEntriesController@show', $malfunctionEntry->id);
     }
 }

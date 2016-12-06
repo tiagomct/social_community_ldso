@@ -54,9 +54,9 @@ Route::group(['middleware' => 'moderator'], function () {
     Route::get('moderators/referendums/{referendum}', 'ReferendumsController@pendingShow');
     Route::get('moderators/referendums/{referendum}/approve', 'ReferendumsController@approve');
 
-    Route::get('moderators/malfunctions/{malfunctionEntry}/changeStatus', 'MalfunctionEntriesController@edit');
-    Route::post('moderators/malfunctions/{malfunctionEntry}/changeStatus', 'MalfunctionEntriesController@changeStatus');
 
+    Route::get('moderators/malfunctions/{malfunctionEntry}/edit', 'MalfunctionEntriesController@edit');
+    Route::post('moderators/malfunctions/{malfunctionEntry}/update', 'MalfunctionEntriesController@update');
 
 
 });
