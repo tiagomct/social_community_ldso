@@ -24,6 +24,6 @@
 			</div>
 		@endforeach
 		
-		@include('partials._create', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
+		@include('partials._newComment', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
 	</div>
 @endsection

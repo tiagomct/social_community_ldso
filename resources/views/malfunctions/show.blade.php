@@ -45,6 +45,6 @@
                 @endif
             </div>
         </div>
-        @include('partials._commentsSections', ['comments' => $comments, 'commentable' => $malfunction]))
+        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'malfunction', 'commentable' => $malfunction]))
     </div>
 @endsection

@@ -19,23 +19,14 @@ class MalfunctionEntriesController extends Controller
      */
     public function index($status = null)
     {
-        if ($status) {
-            $malfunctions = MalfunctionEntry::select(DB::raw('malfunction_entries.*, count(likes.id) as `aggregate`'))
-                ->leftJoin(DB::raw("(SELECT * FROM likes WHERE likeable_type = 'App\\MalfunctionEntry') AS likes"),
-                    'malfunction_entries.id', '=', 'likes.likeable_id')
-                ->where('status', '=', $status)
-                ->groupBy('malfunction_entries.id')
-                ->orderBy('aggregate', 'desc')
-                ->paginate(self::DEFAULT_PAGINATION);
+        $malfunctions = MalfunctionEntry::with('likes')->withCount('likes');
 
-        } else {
-            $malfunctions = MalfunctionEntry::select(DB::raw('malfunction_entries.*, count(*) as `aggregate`'))
-                ->leftJoin(DB::raw("(SELECT * FROM likes WHERE likeable_type = 'App\\MalfunctionEntry') AS likes"),
-                    'malfunction_entries.id', '=', 'likes.likeable_id')
-                ->groupBy('malfunction_entries.id')
-                ->orderBy('aggregate', 'desc')
-                ->paginate(self::DEFAULT_PAGINATION);
+        if ($status) {
+            $malfunctions->where('status', $status);
         }
+
+        $malfunctions = $malfunctions->orderBy('likes_count', 'desc')->paginate(self::DEFAULT_PAGINATION);
+
         return view('malfunctions.index', compact('malfunctions'));
     }
 
@@ -75,7 +66,6 @@ class MalfunctionEntriesController extends Controller
         //TODO possibly flash a message or sth like it
         return redirect()->action('MalfunctionEntriesController@index');
     }
-
 
 
     public function edit(MalfunctionEntry $malfunctionEntry)

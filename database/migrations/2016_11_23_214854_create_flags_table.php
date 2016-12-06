@@ -16,8 +16,8 @@ class CreateFlagsTable extends Migration
         Schema::create('flags', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('flaggable_id');
-            $table->string('flaggable_type');
+            $table->unsignedInteger('flagable_id');
+            $table->string('flagable_type');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

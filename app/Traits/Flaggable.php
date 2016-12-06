@@ -6,6 +6,6 @@ trait Flaggable
 {
     public function flags()
     {
-        return $this->morphMany(Flag::class, 'entry_reportable');
+        return $this->morphMany(Flag::class, 'flagable');
     }
 }

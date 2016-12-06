@@ -1,5 +1,5 @@
 <div class = "col-md-12 single-content-left">
-	@include('partials._newComment', ['commentableType' => 'referendum', 'commentable' => $commentable])
+	@include('partials._newComment', ['commentableType' => $commentableType, 'commentable' => $commentable])
 	<div class = "comments1">
 		<h4>COMMENTS</h4>
 		@foreach($comments as $comment)
