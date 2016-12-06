@@ -83,7 +83,9 @@ $factory->define(App\MalfunctionEntry::class, function (Faker\Generator $faker) 
     return [
         'user_id'     => User::inRandomOrder()->first()->id,
         'title'       => $faker->sentence,
-        'description' => $faker->paragraphs(3, true)
+        'description' => $faker->paragraphs(3, true),
+        'status'      => 'pending',
+        'report'      => '',
     ];
 });
 
@@ -107,7 +109,7 @@ $factory->define(App\PollAnswer::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\EntryReport::class, function (Faker\Generator $faker) {
+$factory->define(App\Flag::class, function (Faker\Generator $faker) {
     return [
         'user_id' => User::inRandomOrder()->first()->id
     ];

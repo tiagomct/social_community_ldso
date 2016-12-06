@@ -15,6 +15,6 @@
             @include('poll._poll', ['pollableId' => $referendum->id, 'poll' => $poll, 'pollableType' => 'referendum'])
         </div>
         
-        @include('partials._commentsSections', ['comments' => $comments, 'commentable' => $referendum]))
+        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'referendum', 'commentable' => $referendum]))
     </div>
 @endsection

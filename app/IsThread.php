@@ -20,7 +20,7 @@ interface IsThread
     /**
      * @return HasMany
      */
-    public function reports();
+    public function flags();
 
     /**
      * @return HasMany
