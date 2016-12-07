@@ -9,13 +9,16 @@
         <div class="print-main">
             <h3>Idea</h3>
             <a>{{ $ideaEntry->title }}</a><br>
+            <div class="row">
+                <div class="pull-right">
+                    @include('partials._voteUp', ['likeableType' => 'idea', 'likeable' => $ideaEntry])
+                </div>
+            </div>
             <p class="sub_head">Started on {{ $ideaEntry->created_at->format('jS F \of Y') }}</p>
             <p class="ptext">{{$ideaEntry->description}}</p>
 
-            @include('poll._poll', ['pollableId' => $ideaEntry->id, 'poll' => $poll, 'pollableType' => 'idea'])
-
         </div>
 
-        @include('partials._commentsSections', ['comments' => $comments, 'commentable' => $ideaEntry]))
+        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'idea', 'commentable' => $ideaEntry]))
     </div>
 @endsection

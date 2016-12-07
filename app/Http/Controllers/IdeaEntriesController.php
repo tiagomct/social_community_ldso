@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdeaRequest;
 use App\IdeaEntry;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class IdeaEntriesController extends Controller
      */
     public function index()
     {
-        $ideas = IdeaEntry::paginate(self::DEFAULT_PAGINATION);
+        $ideas = IdeaEntry::with('likes')->withCount('likes');
+
+        $ideas = $ideas->orderBy('likes_count', 'desc')->paginate(self::DEFAULT_PAGINATION);
 
         return view('ideas.index', compact('ideas'));
     }
@@ -31,15 +34,27 @@ class IdeaEntriesController extends Controller
 
         if (!$ideaEntry) redirect()->back();
 
-        $poll = $ideaEntry->pollData();
-
         $comments = $ideaEntry->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
 
-        return view('ideas.show', compact('ideaEntry', 'poll', 'comments'));
+        return view('ideas.show', compact('ideaEntry', 'comments'));
     }
 
     public function create()
     {
         return view('ideas.create');
+    }
+
+    public function store(IdeaRequest $request)
+    {
+        $idea = new IdeaEntry();
+        $idea->title = $request->title;
+        $idea->description = $request->description;
+
+        $idea->author()->associate(auth()->user());
+
+        $idea->save();
+
+        return redirect()->action('IdeaEntriesController@index');
+
     }
 }

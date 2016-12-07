@@ -95,7 +95,6 @@ class DatabaseSeeder extends Seeder
         $pollThreads = [];
         $pollThreads[] = factory(App\Referendum::class, 3)->create(['approved' => true]);
         $pollThreads[] = factory(App\Referendum::class, 2)->create(['approved' => false]);
-        $pollThreads[] = factory(App\IdeaEntry::class, 5)->create();
 
         return array_collapse($pollThreads);
     }
@@ -110,6 +109,7 @@ class DatabaseSeeder extends Seeder
         $newThreads[] = factory(App\ForumEntry::class, 5)->create();
         $newThreads[] = factory(App\MalfunctionEntry::class, 5)->create();
         $newThreads[] = factory(App\NewsEntry::class, 5)->create();
+        $pollThreads[] = factory(App\IdeaEntry::class, 5)->create();
 
         return array_merge($threads, array_collapse($newThreads));
     }
