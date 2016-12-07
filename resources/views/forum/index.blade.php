@@ -14,6 +14,7 @@
                     <p class="text-muted">{{ $forum->created_at->diffForHumans() }}</p>
 
                     <p class="ptext">{{ $forum->description }}</p>
+					
                     <a href="{{action('ForumEntriesController@show', $forum->id)}}" class="btn btn-primary pull-right"><i
                                 class="fa fa-eye"></i> Open Forum</a>
                 </div>

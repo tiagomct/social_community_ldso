@@ -11,8 +11,9 @@
             <a>{{ $referendum->title }}</a>
             <p class="sub_head">Started on {{ $referendum->created_at->format('jS F \of Y') }}</p>
             <p class="ptext">{{ $referendum->description }}</p>
-
+			
             @include('poll._poll', ['pollableId' => $referendum->id, 'poll' => $poll, 'pollableType' => 'referendum'])
+			@include('partials._flags', ['flagable' => $referendum, 'flagableType' => 'referendum'])
         </div>
         
         @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'referendum', 'commentable' => $referendum]))

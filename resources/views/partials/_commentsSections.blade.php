@@ -22,6 +22,7 @@
 						</div>
 						<div class = "col-md-6 cmnts-right">
 							@include('partials._thumbs', ['likeableType' => 'comment', 'likeable' => $comment])
+							@include('partials._flags', ['flagableType' => 'comment', 'flagable' => $comment])
 						</div>
 						<div class = "clearfix"></div>
 					</div>
