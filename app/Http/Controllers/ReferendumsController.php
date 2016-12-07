@@ -30,9 +30,10 @@ class ReferendumsController extends Controller
      * @param Referendum        $referendum
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ReferendumRequest $request, Referendum $referendum)
+    public function store(ReferendumRequest $request)
     {
-        DB::transaction(function () use ($request, $referendum) {
+        DB::transaction(function () use ($request) {
+            $referendum = new Referendum();
             $referendum->fill($request->all());
             $referendum->approved = false;
             $referendum->author()->associate(auth()->user());
@@ -66,12 +67,13 @@ class ReferendumsController extends Controller
     /**
      * Show a selected referendum and current state of the votes
      * if user didn't vote voting is enabled
-     * @param Referendum $referendum
+     * @param Referendum    $referendum
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show($referendum_id)
     {
-        $referendum = Referendum::with('pollAnswers.likes', 'likes')
+
+        $referendum = Referendum::with('likes')
             ->where('id', $referendum_id)->where('approved', true)
             ->first();
 
@@ -79,13 +81,11 @@ class ReferendumsController extends Controller
             return redirect()->back();
         }
 
+        $poll = $referendum->pollData();
+
         $comments = $referendum->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
 
-        $answersTotalVotes = $referendum->pollAnswers->sum(function ($_answer) {
-            return $_answer->likes->count();
-        });
-
-        return view('referendums.show', compact('referendum', 'answersTotalVotes', 'comments'));
+        return view('referendums.show', compact('referendum', 'poll', 'comments'));
     }
 
 

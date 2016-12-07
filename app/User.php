@@ -41,6 +41,13 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function isModerator(){
+        if($this->role_id > 1){
+            return true;
+        }
+        return false;
+    }
+
     public function votingLocation()
     {
         return $this->belongsTo(VotingLocation::class);

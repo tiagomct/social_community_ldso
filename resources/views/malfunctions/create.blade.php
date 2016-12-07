@@ -2,11 +2,11 @@
 
 @section('content')
     <div class = "container-fluid printing-content">
-        <form action = "{{action('IdeaEntriesController@store')}}" method = "POST">
+        <form action = "{{action('MalfunctionEntriesController@store')}}" method = "POST">
             {{csrf_field()}}
             <div class = "row">
                 <div class = "col-xs-12 no-padding">
-                    <h2 class = "generic-title text-center">Submit your idea</h2>
+                    <h2 class = "generic-title text-center">Report malfunction</h2>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
             <div class = "row">
                 <div class = "col-xs-12">
                     <!--    Save button     -->
-                    <input type = "submit" class = "btn btn-primary pull-right" value = "Submit your idea">
+                    <input type = "submit" class = "btn btn-primary pull-right" value = "Report malfunction">
                 </div>
             </div>
         </form>

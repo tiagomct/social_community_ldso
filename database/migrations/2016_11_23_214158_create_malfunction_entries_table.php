@@ -18,6 +18,8 @@ class CreateMalfunctionEntriesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->text('description');
+            $table->string('status')->default('pending');
+            $table->text('report');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

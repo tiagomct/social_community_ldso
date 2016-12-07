@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIdeasTable extends Migration
+class CreateFlagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateIdeasTable extends Migration
      */
     public function up()
     {
-        Schema::create('idea_entries', function (Blueprint $table) {
+        Schema::create('flags', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('title');
-            $table->text('description');
+            $table->unsignedInteger('flagable_id');
+            $table->string('flagable_type');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -31,6 +31,6 @@ class CreateIdeasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('idea_entries');
+        Schema::dropIfExists('flags');
     }
 }
