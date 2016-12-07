@@ -41,6 +41,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
+    Route::get('news-entries', 'NewsEntriesController@index');
+    Route::get('news-entries/create', 'NewsEntriesController@create');
+    //Route::post('news-entries', 'NewsEntriesController@store');
+    Route::get('news-entries/{newsEntry}', 'NewsEntriesController@show');
+
     Route::get('test-profile-data', function () {
         $user = auth()->user()->load('votingLocation');
 

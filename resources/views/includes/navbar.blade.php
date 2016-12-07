@@ -5,7 +5,7 @@
         </div>
         <div class="pages">
             <ul>
-                <li><a href="#">News</a></li>
+                <li><a href="{{ action('NewsEntriesController@index') }}">News</a></li>
                 <li><a href="{{ action('ForumEntriesController@index') }}">Forum</a></li>
                 <li><a href="{{ action('ReferendumsController@index') }}">Referendums</a></li>
 
