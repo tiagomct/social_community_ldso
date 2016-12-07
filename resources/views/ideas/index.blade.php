@@ -6,7 +6,6 @@
 @section('content')
     <div class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Ideas List</h2>
-        dum</a>-->
 
         @foreach($ideas as $idea)
             <div class="col-xs-12 border-bottom">
