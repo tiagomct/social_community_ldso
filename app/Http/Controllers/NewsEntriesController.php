@@ -1,14 +1,13 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
 //use App\Http\Requests\MalfunctionRequest;
 //use App\Http\Requests\MalfunctionStatusChangeRequest;
-//use App\Like;
 use App\NewsEntry;
 use Illuminate\Support\Facades\DB;
 
-class NewsEntriesController
+class NewsEntriesController extends Controller
 {
     /**
      * Directs to the view with all news
@@ -16,9 +15,21 @@ class NewsEntriesController
      */
     public function index()
     {
-        $news = NewsEntry::all()->where('archived','==','0');
-
+        $news = NewsEntry::all()->where('archived','==','0')->sortBy('updated_at');
         return view('news.index', compact('news'));
+
+    }
+
+    public function show($newsEntry)
+    {
+
+        $new = NewsEntry::all()->where('id', $newsEntry)->first();
+
+        if (!$new) {
+            return redirect()->back();
+        }
+
+        return view('news.show', compact('new'));
     }
 
     public function create() {
