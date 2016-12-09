@@ -22,7 +22,6 @@ class NewsEntriesController extends Controller
 
     public function show($newsEntry)
     {
-
         $new = NewsEntry::all()->where('id', $newsEntry)->first();
 
         if (!$new) {

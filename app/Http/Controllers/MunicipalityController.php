@@ -13,7 +13,7 @@ class MunicipalityController extends Controller
     {
         $user = Auth::user();
         $municipality = $user->voting_location_id;
-        return view('news.show')
+        return view('municipality.show')
             ->with('title', 'Municipality Page')
             ->with('municipality', VotingLocation::find($municipality));
     }
