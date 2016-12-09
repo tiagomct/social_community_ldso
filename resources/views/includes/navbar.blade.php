@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="header">
     <div class="container">
         <div class="logo">
@@ -8,6 +9,7 @@
                 <li><a href="{{ action('NewsEntriesController@index') }}">News</a></li>
                 <li><a href="{{ action('ForumEntriesController@index') }}">Forum</a></li>
                 <li><a href="{{ action('ReferendumsController@index') }}">Referendums</a></li>
+				<li><a href = "{{ action('IdeaEntriesController@index') }}">Ideas</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

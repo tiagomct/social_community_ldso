@@ -1,5 +1,5 @@
 <?php
-// Auth::loginUsingId(1);
+Auth::loginUsingId(1);
 
 Route::get('/', function () {
     if (auth()->check())
@@ -11,7 +11,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout');
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'MunicipalityController@access');
 
     Route::get('forum-entries', 'ForumEntriesController@index');
@@ -29,6 +29,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('referendums', 'ReferendumsController@store');
     Route::get('referendums/{referendum}', 'ReferendumsController@show');
 
+    Route::get('ideas', 'IdeaEntriesController@index');
+    Route::get('ideas/create', 'IdeaEntriesController@create');
+    Route::get('ideas/{ideaEntry}', 'IdeaEntriesController@show');
+    Route::post('ideas', 'IdeaEntriesController@store');
+
 
     Route::get('malfunctions/create', 'MalfunctionEntriesController@create');
     Route::get('malfunctions/{status?}', 'MalfunctionEntriesController@index');
@@ -39,6 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('vote/{pollableType}/{pollableId}/{pollAnswer}', 'PollsController@submitVote');
 
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
+    Route::get('toggle-flag/{relatedType}/{relatedId}', 'FlagsController@toggleFlag');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
     Route::get('news-entries', 'NewsEntriesController@index');

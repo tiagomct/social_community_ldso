@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\Flagable;
 use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use Likeable;
+    use Likeable, Flagable;
 
     protected $fillable = [
         'description',

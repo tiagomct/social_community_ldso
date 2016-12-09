@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Flag;
 use App\ForumEntry;
 use App\IdeaEntry;
-use App\Like;
 use App\MalfunctionEntry;
 use App\NewsEntry;
-use App\PollAnswer;
 use App\Referendum;
 use App\Thread;
-use Illuminate\Http\Request;
 
-class LikesController extends Controller
+class FlagsController extends Controller
 {
 
     protected $threadBehaviourTraits = [
@@ -25,7 +23,7 @@ class LikesController extends Controller
         'comment'     => Comment::class
     ];
 
-    public function toggleLike($related, $relatedId)
+    public function toggleFlag($related, $relatedId)
     {
         $name = $this->getBehaviourModelName($related);
         if (!$name) {
@@ -38,22 +36,17 @@ class LikesController extends Controller
             return redirect()->back();
         }
 
-        $like = $this->getMyLikeIfExists($object, $name, $relatedId);
+        $flag = $this->getMyFlagIfExists($object, $name, $relatedId);
 
-        if ($like) {
-            $like->delete();
+        if ($flag) {
+            $flag->delete();
 
             return redirect()->back();
         }
 
-        // Can't vote your own posts
-        if ($object->isMine()) {
-            return redirect()->back();
-        }
-
-        $like = new Like();
-        $like->author()->associate(auth()->user());
-        $object->likes()->save($like);
+        $flag = new Flag();
+        $flag->author()->associate(auth()->user());
+        $object->flags()->save($flag);
 
         return redirect()->back();
     }
@@ -62,14 +55,14 @@ class LikesController extends Controller
      * @param $object
      * @param $name
      * @param $relatedId
-     * @return Like
+     * @return Flag
      */
-    private function getMyLikeIfExists($object, $name, $relatedId)
+    private function getMyFlagIfExists($object, $name, $relatedId)
     {
-        return $object->likes
+        return $object->flags
             ->where('user_id', auth()->user()->id)
-            ->where('likeable_type', $name)
-            ->where('likeable_id', $relatedId)
+            ->where('flagable_type', $name)
+            ->where('flagable_id', $relatedId)
             ->first();
     }
 }

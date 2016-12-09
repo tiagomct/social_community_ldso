@@ -9,9 +9,6 @@
         <div class="print-main">
             <h3>{{ $malfunction->title }}</h3>
             <div class="row">
-                <div class="pull-right">
-                    @include('partials._voteUp', ['likeableType' => 'malfunction', 'likeable' => $malfunction])
-                </div>
                 @if(auth()->user()->isModerator())
                     <div class="pull-right">
                         <a class="btn-sm btn-primary"
@@ -37,12 +34,17 @@
                     <a> Status:</a>
                     <p class="ptext">{{ $malfunction->status }}</p>
                 </div>
+				
                 @if($malfunction->report)
                     <div>
                         <a>Report:</a>
                         <p class="ptext">{{ $malfunction->report }}</p>
                     </div>
                 @endif
+				<div>
+					@include('partials._voteUp', ['likeableType' => 'malfunction', 'likeable' => $malfunction])
+					@include('partials._flags', ['flagableType' => 'malfunction', 'flagable' => $malfunction])
+				</div>
             </div>
         </div>
         @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'malfunction', 'commentable' => $malfunction]))
