@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Requests\MalfunctionRequest;
+use App\Http\Requests\NewsRequest;
 //use App\Http\Requests\MalfunctionStatusChangeRequest;
 use App\NewsEntry;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +15,7 @@ class NewsEntriesController extends Controller
      */
     public function index()
     {
-        $news = NewsEntry::all()->where('archived','==','0')->sortBy('updated_at');
+        $news = NewsEntry::all()->where('archived','==','0')->sortByDesc('updated_at');
         return view('news.index', compact('news'));
 
     }
@@ -32,6 +32,24 @@ class NewsEntriesController extends Controller
     }
 
     public function create() {
-        return redirect()->back();
+        return view('news.create');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param NewsRequest|\Illuminate\Http\Request $request
+     * @param NewsEntry                            $newsEntry
+     * @return \Illuminate\Http\Response
+     */
+    public function store(NewsRequest $request, NewsEntry $newsEntry)
+    {
+        $newsEntry->fill($request->all());
+        $newsEntry->author()->associate(auth()->user());
+        $newsEntry->save();
+
+        return redirect()->action('NewsEntriesController@index')
+            ->with('success', 'News story created successfully');
+    }
+
 }

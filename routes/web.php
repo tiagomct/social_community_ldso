@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('news-entries', 'NewsEntriesController@index');
     Route::get('news-entries/create', 'NewsEntriesController@create');
-    //Route::post('news-entries', 'NewsEntriesController@store');
+    Route::post('news-entries', 'NewsEntriesController@store');
     Route::get('news-entries/{newsEntry}', 'NewsEntriesController@show');
 
     Route::get('test-profile-data', function () {
