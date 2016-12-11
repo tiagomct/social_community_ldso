@@ -43,6 +43,7 @@
                 @endif
 				<div>
 					@include('partials._voteUp', ['likeableType' => 'malfunction', 'likeable' => $malfunction])
+					@include('partials._follow', ['followableType' => 'malfunction', 'followable' => $malfunction])
 					@include('partials._flags', ['flagableType' => 'malfunction', 'flagable' => $malfunction])
 				</div>
             </div>

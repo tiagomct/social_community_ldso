@@ -12,6 +12,7 @@
 			<div class = "col-xs-12 text-right">
 				@include('partials._thumbs', ['likeableType' => 'forum-entry', 'likeable' => $forumEntry])
 				<span style="margin-left: 15px;"></span>
+				@include('partials._follow', ['followableType' => 'forum-entry', 'followable' => $forumEntry])
 				@include('partials._flags', ['flagableType' => 'forum-entry', 'flagable' => $forumEntry])
 			</div>
 		</div>

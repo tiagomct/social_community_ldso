@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         $threads = $pollThreads;
         $threads = $this->createRemainingThreads($threads);
         $this->threadCreateRelatedClasses($threads);
+
+        $this->createNews();
     }
 
     private function createRoles()
@@ -109,8 +111,18 @@ class DatabaseSeeder extends Seeder
         $newThreads = [];
         $newThreads[] = factory(App\ForumEntry::class, 5)->create();
         $newThreads[] = factory(App\MalfunctionEntry::class, 5)->create();
-        $newThreads[] = factory(App\NewsEntry::class, 5)->create();
 
         return array_merge($threads, array_collapse($newThreads));
+    }
+
+    private function createNews()
+    {
+        $news = factory(App\NewsEntry::class, 5)->create();
+
+        foreach ($news as $newsEntry) {
+            $newsEntry->likes()->saveMany(
+                factory(App\Like::class)->times(2)->make()
+            );
+        }
     }
 }

@@ -33,8 +33,13 @@
 		<div class = "navigation">
 			<ul>
 				<li>
+					<a href = "{{ action('FeedsController@subscriptions') }}"><i class = "fa fa-rss-square"></i> My Subscriptions
+					</a>
+				</li>
+				<li>
 					<a href = "{{ action('UsersController@show', auth()->user()->id) }}"><i class = "fa fa-user"></i> {{ auth()->user()->name }}
-					</a></li>
+					</a>
+				</li>
 				<li><a href = "{{ action('Auth\LoginController@logout') }}"><i class = "fa fa-lock"></i> Logout</a></li>
 			</ul>
 		</div>

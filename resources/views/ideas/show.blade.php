@@ -13,7 +13,9 @@
             <p class="ptext">{{$ideaEntry->description}}</p>
 	
 			@include('partials._voteUp', ['likeableType' => 'idea', 'likeable' => $ideaEntry])
+			@include('partials._follow', ['followableType' => 'idea', 'followable' => $ideaEntry])
 			@include('partials._flags', ['flagableType' => 'idea', 'flagable' => $ideaEntry])
+			
         </div>
 
         @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'idea', 'commentable' => $ideaEntry]))

@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users/{user}', 'UsersController@show');
     Route::get('users/{user}/edit', 'UsersController@edit');
     Route::post('users/{user}/edit', 'UsersController@update');
+    Route::get('feed/subscriptions', 'FeedsController@subscriptions');
 
     Route::get('referendums', 'ReferendumsController@index');
     Route::get('referendums/create', 'ReferendumsController@create');
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('toggle-like/{relatedType}/{relatedId}', 'LikesController@toggleLike');
     Route::get('toggle-flag/{relatedType}/{relatedId}', 'FlagsController@toggleFlag');
+    Route::get('toggle-follow/{relatedType}/{relatedId}', 'FollowsController@toggleFollow');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
     Route::get('test-profile-data', function() {

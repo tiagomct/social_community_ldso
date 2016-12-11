@@ -13,6 +13,7 @@
             <p class="ptext">{{ $referendum->description }}</p>
 			
             @include('poll._poll', ['pollableId' => $referendum->id, 'poll' => $poll, 'pollableType' => 'referendum'])
+			@include('partials._follow', ['followableType' => 'referendum', 'followable' => $referendum])
 			@include('partials._flags', ['flagable' => $referendum, 'flagableType' => 'referendum'])
         </div>
         

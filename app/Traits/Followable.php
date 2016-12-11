@@ -10,4 +10,9 @@ trait Followable
         return $this->morphMany(EntryFollow::class, 'entry_followable');
     }
 
+    public function hasMyFollow()
+    {
+        return $this->follows->contains('user_id', auth()->user()->id);
+    }
+
 }
