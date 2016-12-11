@@ -6,7 +6,13 @@
 @section('content')
     <div class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Forum List</h2>
-        <a href="{{action('ForumEntriesController@create')}}" class="btn btn-primary pull-right"> Create a new Forum</a>
+        <a href="{{action('ForumEntriesController@create')}}" class="btn btn-primary"> Create a new Forum</a>
+		<div class="clearfix"></div>
+		<div class="col-xs-12 text-right">
+			@include('partials._searchable')
+		</div>
+		<hr>
+		
         @foreach($forums as $forum)
             <div class="col-xs-12 border-bottom">
                 <div class="col-xs-12">

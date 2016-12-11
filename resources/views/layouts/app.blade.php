@@ -35,7 +35,7 @@
                 @yield('content')
             </div>
         </div>
-    
+			
         @if(auth()->check())
             @include('includes.footer')
         @else

@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     const DEFAULT_PAGINATION = 20;
@@ -21,7 +22,7 @@ class Controller extends BaseController
         'forum-entry' => ForumEntry::class,
         'idea'        => IdeaEntry::class,
         'malfunction' => MalfunctionEntry::class,
-        'news'        => NewsEntry::class,
+        // 'news'        => NewsEntry::class,
         'referendum'  => Referendum::class
     ];
 

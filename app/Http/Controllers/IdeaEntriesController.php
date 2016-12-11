@@ -8,13 +8,15 @@ use Illuminate\Http\Request;
 
 class IdeaEntriesController extends Controller
 {
+
     /**
      * Directs to the view with all user Ideas requests
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $ideas = IdeaEntry::with('likes')->withCount('likes');
+        $ideas = IdeaEntry::search(request()->query('search', null))
+            ->with('likes')->withCount('likes');
 
         $ideas = $ideas->orderBy('likes_count', 'desc')->paginate(self::DEFAULT_PAGINATION);
 
@@ -32,7 +34,9 @@ class IdeaEntriesController extends Controller
         $ideaEntry = IdeaEntry::with(['likes', 'flags'])
             ->where('id', $idea_id)->first();
 
-        if (!$ideaEntry) redirect()->back();
+        if (!$ideaEntry) {
+            redirect()->back();
+        }
 
         $comments = $ideaEntry->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
 

@@ -18,7 +18,7 @@ class FlagsController extends Controller
         'forum-entry' => ForumEntry::class,
         'idea'        => IdeaEntry::class,
         'malfunction' => MalfunctionEntry::class,
-        'news'        => NewsEntry::class,
+        //'news'        => NewsEntry::class,
         'referendum'  => Referendum::class,
         'comment'     => Comment::class
     ];

@@ -6,7 +6,13 @@
 @section('content')
     <div class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Referendums List</h2>
-        <a href="{{action('ReferendumsController@create')}}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Request a referendum</a>
+        <a href="{{action('ReferendumsController@create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Request a referendum</a>
+	
+		<div class="clearfix"></div>
+		<div class="col-xs-12 text-right">
+			@include('partials._searchable')
+		</div>
+		<hr>
         @foreach($referendums as $referendum)
             <div class="col-xs-12 border-bottom">
                 <div class="col-xs-12">

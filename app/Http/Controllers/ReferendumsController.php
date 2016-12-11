@@ -59,7 +59,9 @@ class ReferendumsController extends Controller
      */
     public function index()
     {
-        $referendums = Referendum::approved()->paginate(self::DEFAULT_PAGINATION);
+        $referendums = Referendum::approved()
+            ->search(request()->query('search', null))
+            ->paginate(self::DEFAULT_PAGINATION);
 
         return view('referendums.index', compact('referendums'));
     }
@@ -67,7 +69,7 @@ class ReferendumsController extends Controller
     /**
      * Show a selected referendum and current state of the votes
      * if user didn't vote voting is enabled
-     * @param Referendum    $referendum
+     * @param Referendum $referendum
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show($referendum_id)

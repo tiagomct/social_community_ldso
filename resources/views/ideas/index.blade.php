@@ -6,8 +6,15 @@
 @section('content')
     <div class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Ideas List</h2>
-        <a href="{{action('IdeaEntriesController@create')}}" class="btn btn-primary pull-right"><i
+        <a href="{{action('IdeaEntriesController@create')}}" class="btn btn-primary"><i
                     class="fa fa-plus"></i> Create new idea</a>
+		
+		<div class="clearfix"></div>
+		<div class="col-xs-12 text-right">
+			@include('partials._searchable')
+		</div>
+		<hr>
+		
         @foreach($ideas as $idea)
             <div class="col-xs-12 border-bottom">
                 <div class="col-xs-12">

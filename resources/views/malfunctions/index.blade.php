@@ -6,8 +6,14 @@
 @section('content')
     <div class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Malfunctions List</h2>
-        <a href="{{action('MalfunctionEntriesController@create')}}" class="btn btn-primary pull-right"><i
+        <a href="{{action('MalfunctionEntriesController@create')}}" class="btn btn-primary"><i
                     class="fa fa-plus"></i> Report a malfunction</a>
+	
+		<div class="clearfix"></div>
+		<div class="col-xs-12 text-right">
+			@include('partials._searchable')
+		</div>
+		<hr>
         @foreach($malfunctions as $malfunction)
             <div class="col-xs-12 border-bottom">
                 <div class="col-xs-12">

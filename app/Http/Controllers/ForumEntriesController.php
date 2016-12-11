@@ -15,7 +15,8 @@ class ForumEntriesController extends Controller
      */
     public function index()
     {
-        $forums = ForumEntry::latest()->paginate(self::DEFAULT_PAGINATION);
+        $forums = ForumEntry::search(request()->query('search', null))
+            ->latest()->paginate(self::DEFAULT_PAGINATION);
 
         return view('forum.index', compact('forums'));
     }

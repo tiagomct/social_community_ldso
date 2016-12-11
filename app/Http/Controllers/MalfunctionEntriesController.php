@@ -19,13 +19,14 @@ class MalfunctionEntriesController extends Controller
      */
     public function index($status = null)
     {
-        $malfunctions = MalfunctionEntry::with('likes')->withCount('likes');
+        $malfunctions = MalfunctionEntry::search(request()->query('search', null));
 
         if ($status) {
             $malfunctions->where('status', $status);
         }
 
-        $malfunctions = $malfunctions->orderBy('likes_count', 'desc')->paginate(self::DEFAULT_PAGINATION);
+        $malfunctions = $malfunctions->with('likes')->withCount('likes')
+            ->orderBy('likes_count', 'desc')->paginate(self::DEFAULT_PAGINATION);
 
         return view('malfunctions.index', compact('malfunctions'));
     }

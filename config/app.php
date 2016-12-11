@@ -166,8 +166,9 @@ return [
         /*
          * Package Service Providers...
          */
-
-        //
+        Sofa\Eloquence\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -177,17 +178,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        /*
-         * Image intervention for image manipulation - profile pics
-         */
-        Intervention\Image\ImageServiceProvider::class,
-
-        /*
-         * HTML helper plugin for forms
-         */
-        Collective\Html\HtmlServiceProvider::class,
-
-
     ],
 
     /*

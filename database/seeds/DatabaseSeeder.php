@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->createRoles();
         $this->createVotingLocations();
 
-        factory(App\User::class, 10)->create();
         factory(App\User::class)->create(['email' => 'user@mail.com', 'password' => bcrypt('123')]);
+        factory(App\User::class, 10)->create();
 
         $pollThreads = $this->createPollThreads();
         $this->pollThreadsCreatePollAnswers($pollThreads);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\NewsEntry;
 use App\VotingLocation;
 use Illuminate\Http\Request;
 use App\Municipality;
@@ -12,10 +13,13 @@ class MunicipalityController extends Controller
     public function access()
     {
         $user = Auth::user();
-        $municipality = $user->voting_location_id;
+        $municipality = $user->votingLocation;
+        $newsEntries = NewsEntry::search(request()->query('search', null))->paginate(Controller::DEFAULT_PAGINATION);
+
         return view('news.show')
             ->with('title', 'Municipality Page')
-            ->with('municipality', VotingLocation::find($municipality));
+            ->with('municipality', $municipality)
+            ->with('newsEntries', $newsEntries);
     }
 
     /*public function show($municipality)
