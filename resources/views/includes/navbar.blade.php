@@ -1,48 +1,41 @@
-<div class = "header">
-	<div class = "container">
-		<div class = "logo">
-			<a href = "{{ url('/') }}"><h1>{{ config('app.name') }}</h1></a>
-		</div>
-		<div class = "pages">
-			<ul>
-				<li><a href = "{{ action('MunicipalityController@access') }}">News</a></li>
-				<li><a href = "{{ action('ForumEntriesController@index') }}">Forum</a></li>
-				<li><a href = "{{ action('ReferendumsController@index') }}">Referendums</a></li>
-				<li><a href = "{{ action('IdeaEntriesController@index') }}">Ideas</a></li>
-				<li class = "dropdown">
-					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown" role = "button" aria-haspopup = "true"
-					   aria-expanded = "false">Malfunctions <span class = "caret"></span></a>
-					<ul class = "dropdown-menu list-group">
-						<li class = "list-group-item">
-							<a href = "{{ action('MalfunctionEntriesController@index') }}">All</a>
-						</li>
-						<li class = "list-group-item">
-							<a href = "{{ action('MalfunctionEntriesController@index', ['status' => 'pending']) }}">Pending</a>
-						</li>
-						<li class = "list-group-item">
-							<a href = "{{ action('MalfunctionEntriesController@index', ['status' => 'in progress']) }}">In
-								progress</a>
-						</li>
-						<li class = "list-group-item">
-							<a href = "{{ action('MalfunctionEntriesController@index', ['status' => 'fixed']) }}">Fixed</a>
+<header>
+	<!-- MENU BLOCK -->
+	<div class = "menu_block">
+		<!-- CONTAINER -->
+		<div class = "container clearfix">
+			<!-- LOGO -->
+			<div class = "logo pull-left">
+				<a class="navbar-brand" href = "{{ url('/') }}">
+					<img src = "{{ asset('images/bragança.png') }}" alt = ""/>
+				</a>
+			</div><!-- //LOGO -->
+			
+			<!-- SEARCH FORM -->
+			<!--<div id = "search-form" class = "pull-right">
+				<form method = "get" action = "#">
+					<input type = "text" name = "Search" value = "Search" onFocus = "if (this.value == 'Search') this.value = '';" onBlur = "if (this.value == '') this.value = 'Search';"/>
+				</form>
+			</div>--><!-- SEARCH FORM -->
+			
+			<!-- MENU -->
+			<div class = "pull-right">
+				<nav class = "navmenu center">
+					<ul>
+						<li class = "first scroll_btn"><a href = "">News</a></li>
+						<li class = "scroll_btn"><a href = "{{ action('IdeaEntriesController@index') }}">Ideas</a></li>
+						<li class = "scroll_btn"><a href = "{{ action('MalfunctionEntriesController@index') }}">Malfunctions</a></li>
+						<li class = "scroll_btn"><a href = "{{ action('ReferendumsController@index') }}">Referendums</a></li>
+						<li class = "scroll_btn"><a href = "{{ action('ForumEntriesController@index') }}">Forum</a></li>
+						<li class = "sub-menu">
+							<a href = "javascript:void(0);">Hi, {{ auth()->user()->name }}</a>
+							<ul>
+								<li><a href = "{{ action('UsersController@show', auth()->user()->id) }}">Profile</a></li>
+								<li><a href = "{{ action('Auth\LoginController@logout') }}">Sign Out</a></li>
+							</ul>
 						</li>
 					</ul>
-				</li>
-			</ul>
-		</div>
-		<div class = "navigation">
-			<ul>
-				<li>
-					<a href = "{{ action('FeedsController@subscriptions') }}"><i class = "fa fa-rss-square"></i> My Subscriptions
-					</a>
-				</li>
-				<li>
-					<a href = "{{ action('UsersController@show', auth()->user()->id) }}"><i class = "fa fa-user"></i> {{ auth()->user()->name }}
-					</a>
-				</li>
-				<li><a href = "{{ action('Auth\LoginController@logout') }}"><i class = "fa fa-lock"></i> Logout</a></li>
-			</ul>
-		</div>
-		<div class = "clearfix"></div>
-	</div>
-</div>
+				</nav>
+			</div><!-- //MENU -->
+		</div><!-- //MENU BLOCK -->
+	</div><!-- //CONTAINER -->
+</header>

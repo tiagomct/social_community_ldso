@@ -16,8 +16,7 @@ class MunicipalityController extends Controller
         $municipality = $user->votingLocation;
         $newsEntries = NewsEntry::search(request()->query('search', null))->paginate(Controller::DEFAULT_PAGINATION);
 
-        return view('news.show')
-            ->with('title', 'Municipality Page')
+        return view('home')
             ->with('municipality', $municipality)
             ->with('newsEntries', $newsEntries);
     }

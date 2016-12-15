@@ -1,8 +1,5 @@
 {
-  "css/app.css": "css/app-5bb0c30bdc.css",
-  "css/auth.css": "css/auth-3e898c9f78.css",
-  "css/referendumShow.css": "css/referendumShow-7b24719b83.css",
-  "css/userProfile.css": "css/userProfile-7d71e51002.css",
-  "css/usersList.css": "css/usersList-dc2b9d7064.css",
-  "js/app.js": "js/app-cb73f8f0c8.js"
+  "css/app.css": "css/app-93068de79e.css",
+  "css/auth.css": "css/auth-6ca3758b75.css",
+  "js/template.js": "js/template-bcec3f05db.js"
 }

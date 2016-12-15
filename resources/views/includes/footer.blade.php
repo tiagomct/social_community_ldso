@@ -1,32 +1,57 @@
-<div class="footer">
-	<div class="footer-top">
-		<div class="container">
-			<div class="col-md-4 footer-links">
-				<h4>Recent Forum Threads</h4>
-				@for($i=0; $i < 6; $i++)
-					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+<!-- CONTACTS -->
+<section id="contacts">
+</section><!-- //CONTACTS -->
+
+<!-- FOOTER -->
+<footer>
+	<!-- CONTAINER -->
+	<div class="container">
+		<!-- ROW -->
+		<div class="row" data-appear-top-offset="-200" data-animated="fadeInUp">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
+				<h4><b>Recent</b> Forum Threads</h4>
+				
+				@for($i=0; $i < 5; $i++)
+					<div class="recent_posts_small clearfix">
+						<div class="post_item_content_small">
+							<a class="title" href="#" >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+							<ul class="post_item_inf_small">
+								<li>10 January 2014</li>
+							</ul>
+						</div>
+					</div>
 				@endfor
 			</div>
-			<div class="col-md-4 footer-links">
-				<h4>Recent News</h4>
-				@for($i=0; $i < 6; $i++)
-					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+			
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
+				<h4><b>Recent</b> News</h4>
+				
+				@for($i=0; $i < 5; $i++)
+					<div class="recent_posts_small clearfix">
+						<div class="post_item_content_small">
+							<a class="title" href="#" >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+							<ul class="post_item_inf_small">
+								<li>10 January 2014</li>
+							</ul>
+						</div>
+					</div>
 				@endfor
 			</div>
-			<div class="col-md-4 footer-links">
-				<h4>Recent Referendums</h4>
-				@for($i=0; $i < 6; $i++)
-					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+			
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
+				<h4><b>Recent</b> Referendums</h4>
+				
+				@for($i=0; $i < 5; $i++)
+					<div class="recent_posts_small clearfix">
+						<div class="post_item_content_small">
+							<a class="title" href="#" >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+							<ul class="post_item_inf_small">
+								<li>10 January 2014</li>
+							</ul>
+						</div>
+					</div>
 				@endfor
 			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="footer-bottom">
-		<div class="container">
-			<div class="copyrights">
-				<p>{{ config('app.name') }} © {{ date('Y') }} All rights reserved | Template by  <a href="http://w3layouts.com" target="_blank">  W3layouts</a></p>
-			</div>
-		</div>
-	</div>
-</div>
+		</div><!-- //ROW -->
+	</div><!-- //CONTAINER -->
+</footer><!-- //FOOTER -->

@@ -94,7 +94,7 @@
 
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
-                <input type = "submit" value="Register"/>
+                <input class="btn btn-link" type = "submit" value="Register"/>
             </div>
         </div>
     </form>
