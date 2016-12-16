@@ -30,7 +30,6 @@
         <div id="page" class="single_page">
             @if(auth()->check())
                 @include('includes.navbar')
-                @include('partials._breadcrumb')
             @else
                 @include('includes.auth.navbar')
             @endif

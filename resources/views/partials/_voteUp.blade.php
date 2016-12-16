@@ -1,5 +1,6 @@
+<span>{{ $likeable->likes->count() . ' votes' }}</span>
 @if(!$likeable->isMine())
-    <a class="btn-sm btn-primary" href = "{{action('LikesController@toggleLike', [$likeableType, $likeable->id]) }}">
+    <a class="golden" href = "{{action('LikesController@toggleLike', [$likeableType, $likeable->id]) }}">
         @if(!$likeable->hasMyLike())
             <i class = "fa fa-arrow-up"></i> Vote up
         @else
@@ -7,4 +8,3 @@
         @endif
     </a>
 @endif
-<span>{{ $likeable->likes->count() . ' votes' }}</span>

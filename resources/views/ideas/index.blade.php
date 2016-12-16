@@ -3,7 +3,18 @@
 @section('css')
 @endsection
 
+@section('above-navbar')
+	@include('partials._breadcrumb', ['mainText' => 'Ideas'])
+@endsection
+
 @section('content')
+	
+	<div class="col-xs-12 text-right">
+		@include('partials._searchable')
+	</div>
+	@include('partials._list_entries', ['entries' => $ideas])
+	
+	{{--
     <div class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Ideas List</h2>
         <a href="{{action('IdeaEntriesController@create')}}" class="btn btn-primary"><i
@@ -36,5 +47,5 @@
                 {{ $ideas->links() }}
             </div>
         </div>
-    </div>
+    </div>--}}
 @endsection

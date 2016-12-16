@@ -8,7 +8,7 @@ elixir(function (mix) {
     mix.sass('auth.scss', 'public/css/auth.css');
     //mix.sass('userProfile.scss', 'public/css/userProfile.css');
     //mix.sass('usersList.scss', 'public/css/usersList.css');
-    //mix.sass('referendumShow.scss', 'public/css/referendumShow.css');
+    mix.sass('referendumShow.scss', 'public/css/referendumShow.css');
 
     //mix.browserify('app.js', 'public/js/app.js');
     mix.scripts([
@@ -27,7 +27,7 @@ elixir(function (mix) {
         'public/css/auth.css',
         //'public/css/userProfile.css',
         //'public/css/usersList.css',
-        //'public/css/referendumShow.css',
+        'public/css/referendumShow.css',
         'public/js/template.js'
     ]);
 });

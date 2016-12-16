@@ -18,6 +18,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     const DEFAULT_PAGINATION = 20;
+    const COMMENTS_DEFAULT_PAGINATION = 5;
     protected $threadBehaviourTraits = [
         'forum-entry' => ForumEntry::class,
         'idea'        => IdeaEntry::class,
