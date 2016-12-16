@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('css')
-	<link rel = "stylesheet" href = "{{ elixir('css/auth.css') }}"/>
 @endsection
 
 @section('content')

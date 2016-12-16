@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ elixir('css/referendumShow.css') }}"/>
 @endsection
 
 @section('content')
@@ -17,7 +16,7 @@
             <div class="clearfix text-right">
                 @include('partials._follow', ['followableType' => 'referendum', 'followable' => $referendum])
                 <span>|</span>
-                @include('partials._flags', ['flagable' => $referendum, 'flagableType' => 'referendum'])
+                @include('partials._flags', ['flagableType' => 'referendum', 'flagable' => $referendum])
             </div>
         </div>
         

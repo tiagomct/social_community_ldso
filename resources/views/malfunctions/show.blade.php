@@ -1,53 +1,31 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ elixir('css/referendumShow.css') }}"/>
 @endsection
 
 @section('content')
-    <div class="col-xs-12 printing-content">
-        <div class="print-main">
-            <h3>{{ $malfunction->title }}</h3>
-            <div class="row">
-                @if(auth()->user()->isModerator())
-                    <div class="pull-right">
-                        <a class="btn-sm btn-primary"
-                           href="{{action('MalfunctionEntriesController@edit', $malfunction->id)}}"><i
-                                    class="fa fa-pencil"></i> Change status </a>
-                    </div>
-                @endif
-            </div>
-            <div class="row">
-                <div>
-                    <a>Submitted by: </a>
-                    <p class="ptext">{{ $malfunction->author->name }}</p>
-                </div>
-                <div>
-                    <a>Submitted on:</a>
-                    <p class="ptext"> {{ $malfunction->created_at->format('jS F \of Y') }}</p>
-                </div>
-                <div>
-                    <a>Description: </a>
-                    <p class="ptext">{{ $malfunction->description }}</p>
-                </div>
-                <div>
-                    <a> Status:</a>
-                    <p class="ptext">{{ $malfunction->status }}</p>
-                </div>
-				
-                @if($malfunction->report)
-                    <div>
-                        <a>Report:</a>
-                        <p class="ptext">{{ $malfunction->report }}</p>
-                    </div>
-                @endif
-				<div>
-					@include('partials._voteUp', ['likeableType' => 'malfunction', 'likeable' => $malfunction])
-					@include('partials._follow', ['followableType' => 'malfunction', 'followable' => $malfunction])
-					@include('partials._flags', ['flagableType' => 'malfunction', 'flagable' => $malfunction])
-				</div>
+    <div class="col-xs-12">
+        <div class="malfunction">
+            <span class="text-muted">@include('partials._timestamp', ['timestamp' => $malfunction->created_at])</span>
+            <h2><b>{{ $malfunction->title }}</b></h2>
+            
+            <p>{{ $malfunction->description }}</p>
+            
+            <p><strong>Author: </strong>{{ $malfunction->author->name }}</p>
+            <p><strong>Status: </strong>{{ $malfunction->status }}</p>
+            @if($malfunction->report)
+                <p><strong>Report: </strong>{{ $malfunction->report }}</p>
+            @endif
+            
+            <div class="clearfix text-right">
+                @include('partials._voteUp', ['likeableType' => 'malfunction', 'likeable' => $malfunction])
+                <span>|</span>
+                @include('partials._follow', ['followableType' => 'malfunction', 'followable' => $malfunction])
+                <span>|</span>
+                @include('partials._flags', ['flagableType' => 'malfunction', 'flagable' => $malfunction])
             </div>
         </div>
-        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'malfunction', 'commentable' => $malfunction]))
+        
+        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'referendum', 'commentable' => $malfunction])
     </div>
 @endsection

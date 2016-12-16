@@ -23,9 +23,6 @@ function entryTypeAction($object)
     ];
 
     return $entries[get_class($object)];
-    /*return '<a href="' . $entries[get_class($object)]
-        . '" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> View '
-        . entryTypeName($object) . '</a>';*/
 }
 
 /**

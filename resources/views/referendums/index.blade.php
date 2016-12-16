@@ -11,5 +11,5 @@
 	<div class="col-xs-12 text-right">
 		@include('partials._searchable')
 	</div>
-	@include('partials._list_entries', ['entries' => $referendums])
+	@include('partials._list_entries', ['entries' => $referendums, 'likesText' => 'Votes'])
 @endsection

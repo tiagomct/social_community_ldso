@@ -1,22 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-	<h1>Forum</h1>
-	
-	<div class = "col-xs-12 printing-content">
-		<div class = "print-main">
-			<h3>{{ $forumEntry->title }}</h3>
-			<p class = "sub_head">Started on {{ $forumEntry->created_at->format('jS F \of Y') }}</p>
-			<p class = "ptext">{{ $forumEntry->description }}</p>
+	<div class="col-xs-12">
+		<div class="forum-entry">
+			<span class="text-muted">@include('partials._timestamp', ['timestamp' => $forumEntry->created_at])</span>
+			<h2><b>{{ $forumEntry->title }}</b></h2>
 			
-			<div class = "col-xs-12 text-right">
+			<p>{{ $forumEntry->description }}</p>
+			
+			<div class="clearfix text-right">
 				@include('partials._thumbs', ['likeableType' => 'forum-entry', 'likeable' => $forumEntry])
-				<span style="margin-left: 15px;"></span>
+				<span>|</span>
 				@include('partials._follow', ['followableType' => 'forum-entry', 'followable' => $forumEntry])
+				<span>|</span>
 				@include('partials._flags', ['flagableType' => 'forum-entry', 'flagable' => $forumEntry])
 			</div>
 		</div>
 		
-		@include('partials._commentsSections', ['commentableType' => 'forum-entry', 'commentable' => $forumEntry])
+		@include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'forum-entry', 'commentable' => $forumEntry])
 	</div>
 @endsection

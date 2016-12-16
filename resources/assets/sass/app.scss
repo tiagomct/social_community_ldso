@@ -109,9 +109,30 @@ form {
   }
 }
 
+.panel {
+  &.panel-dark {
+    border-color: #000;
+
+    .panel-heading {
+      border-color: #000;
+      color: #fff;
+      background: #000;
+
+      h3 {
+        color: inherit;
+        margin: 1em 0;
+      }
+    }
+  }
+}
+
 .poll {
   margin-top: 1.5em;
   margin-bottom: 3em;
+
+  .chart-bar:not(:last-child) {
+    margin-bottom: 0.8em;
+  }
 }
 
 .progress-bar {
@@ -155,4 +176,18 @@ form {
 
 .img-carousel {
   max-width: 100.1%;
+}
+
+.btn {
+  &.btn-create {
+    background: $brown;
+    color: #fff;
+    padding: 5px 8px;
+  }
+}
+
+.top-actions-container {
+  & > * {
+    display: inline-block;
+  }
 }
