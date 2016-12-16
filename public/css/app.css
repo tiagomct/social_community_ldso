@@ -7955,7 +7955,7 @@ html[xmlns] .slides {
 
 /* mouse grab icon */
 .grabbing {
-  cursor: move 8 8, move;
+  cursor: move;
 }
 
 /* fix */
@@ -7972,7 +7972,7 @@ html[xmlns] .slides {
 /* Navigation */
 .owl-theme .owl-controls {
   position: relative;
-  margin: 0.5em auto 1.5em auto;
+  margin: 0.5em auto 0 auto;
   width: 100%;
   text-align: right;
   transform: translateX(-50%);
@@ -10937,8 +10937,20 @@ header .sub-menu ul li.active a, header .sub-menu ul li a, header .sub-menu ul l
   color: #fff;
 }
 
+.projects-wrapper {
+  background: #fff;
+}
+
 .owl-demo.projects_slider {
   padding: 0;
+}
+
+.golden {
+  color: #A39161 !important;
+}
+
+.red {
+  color: #C60C30 !important;
 }
 
 /*# sourceMappingURL=app.css.map */

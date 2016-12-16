@@ -5,29 +5,18 @@
 @endsection
 
 @section('content')
-	<div class="col-xs-12 text-right">
-		@include('partials._searchable')
-	</div>
-	<hr>
+	<h1><b>Latest</b> <span class="golden">News</span></h1>
+	@include('partials._latest_entries', ['entries' => $referendums])
 	
-	@foreach($newsEntries as $newsEntry)
-		<div class = "col-xs-12 border-bottom">
-			<div class = "col-xs-12">
-				<h2>{{ $newsEntry->title }}</h2>
-				<p class = "text-muted">{{ $newsEntry->created_at->diffForHumans() }}</p>
-				
-				<p class = "ptext">{{ $newsEntry->description }}</p>
-				
-				<div class = "text-right">
-					@include('partials._thumbs', ['likeableType' => 'newsEntry', 'likeable' => $newsEntry])
-				</div>
-			</div>
-		</div>
-	@endforeach
+	<div class="clearfix"></div>
+	<h1><b>Latest</b> <span class="red">Referendums</span></h1>
+	@include('partials._latest_entries', ['entries' => $referendums])
 	
-	<div class = "row">
-		<div class = "text-center">
-			{{ $newsEntries->links() }}
-		</div>
-	</div>
+	<div class="clearfix"></div>
+	<h1><b>Latest</b> <span class="golden">Ideas</span></h1>
+	@include('partials._latest_entries', ['entries' => $ideas])
+	
+	<div class="clearfix"></div>
+	<h1><b>Latest</b> <span class="red">Malfunctions</span></h1>
+	@include('partials._latest_entries', ['entries' => $malfunctions])
 @endsection

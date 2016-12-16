@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\IdeaEntry;
+use App\MalfunctionEntry;
 use App\NewsEntry;
+use App\Referendum;
 use App\VotingLocation;
 use Illuminate\Http\Request;
 use App\Municipality;
@@ -12,13 +15,13 @@ class MunicipalityController extends Controller
 {
     public function access()
     {
-        $user = Auth::user();
-        $municipality = $user->votingLocation;
-        $newsEntries = NewsEntry::search(request()->query('search', null))->paginate(Controller::DEFAULT_PAGINATION);
+        $news = NewsEntry::with('likes')->orderBy('created_at', 'desc')->take(6)->get();
+        $malfunctions= MalfunctionEntry::with('comments', 'likes')->orderBy('created_at', 'desc')->take(6)->get();
+        $ideas = IdeaEntry::with('comments', 'likes')->orderBy('created_at', 'desc')->take(6)->get();
+        $referendums = Referendum::with('comments', 'likes')->orderBy('created_at', 'desc')->take(6)->get();
 
-        return view('home')
-            ->with('municipality', $municipality)
-            ->with('newsEntries', $newsEntries);
+        //dd($news, $malfunctions, $ideas, $referendums);
+        return view('home', compact('news', 'malfunctions', 'ideas', 'referendums'));
     }
 
     /*public function show($municipality)

@@ -12,16 +12,29 @@ function entryTypeName($object)
     return $entries[get_class($object)];
 }
 
-function entryTypeShowHtml($object)
+function entryTypeAction($object)
 {
     $entries = [
         \App\Referendum::class       => action('ReferendumsController@show', $object->id),
         \App\ForumEntry::class       => action('ForumEntriesController@show', $object->id),
         \App\IdeaEntry::class        => action('IdeaEntriesController@show', $object->id),
+        //\App\NewsEntry::class        => action('NewsEntriesController@show', $object->id),
         \App\MalfunctionEntry::class => action('MalfunctionEntriesController@show', $object->id),
     ];
 
-    return '<a href="' . $entries[get_class($object)]
+    return $entries[get_class($object)];
+    /*return '<a href="' . $entries[get_class($object)]
         . '" class="btn btn-primary pull-right"><i class="fa fa-eye"></i> View '
-        . entryTypeName($object) . '</a>';
+        . entryTypeName($object) . '</a>';*/
+}
+
+/**
+ * @param \Carbon\Carbon $timestamp
+ */
+function isToday($timestamp) {
+    $now = \Carbon\Carbon::now();
+
+    $diff = $now->diffInDays($timestamp);
+
+    return $diff == 0;
 }

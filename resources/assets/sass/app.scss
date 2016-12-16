@@ -31,7 +31,17 @@ header {
   }
 }
 
-
+.projects-wrapper {
+  background: #fff;
+}
 .owl-demo.projects_slider {
   padding: 0;
+}
+
+.golden {
+  color: $brown !important;
+}
+
+.red {
+  color: $red !important;
 }

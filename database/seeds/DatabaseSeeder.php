@@ -95,9 +95,9 @@ class DatabaseSeeder extends Seeder
     private function createPollThreads()
     {
         $pollThreads = [];
-        $pollThreads[] = factory(App\Referendum::class, 3)->create(['approved' => true]);
-        $pollThreads[] = factory(App\Referendum::class, 2)->create(['approved' => false]);
-        $pollThreads[] = factory(App\IdeaEntry::class, 5)->create();
+        $pollThreads[] = factory(App\Referendum::class, 5)->create(['approved' => true]);
+        $pollThreads[] = factory(App\Referendum::class, 5)->create(['approved' => false]);
+        $pollThreads[] = factory(App\IdeaEntry::class, 10)->create();
 
         return array_collapse($pollThreads);
     }
@@ -109,15 +109,15 @@ class DatabaseSeeder extends Seeder
     private function createRemainingThreads($threads)
     {
         $newThreads = [];
-        $newThreads[] = factory(App\ForumEntry::class, 5)->create();
-        $newThreads[] = factory(App\MalfunctionEntry::class, 5)->create();
+        $newThreads[] = factory(App\ForumEntry::class, 10)->create();
+        $newThreads[] = factory(App\MalfunctionEntry::class, 10)->create();
 
         return array_merge($threads, array_collapse($newThreads));
     }
 
     private function createNews()
     {
-        $news = factory(App\NewsEntry::class, 5)->create();
+        $news = factory(App\NewsEntry::class, 10)->create();
 
         foreach ($news as $newsEntry) {
             $newsEntry->likes()->saveMany(

@@ -57,7 +57,7 @@
 
 /* mouse grab icon */
 .grabbing { 
-    cursor:move 8 8, move;
+    cursor: move;
 }
 
 /* fix */
@@ -80,7 +80,7 @@
 
 .owl-theme .owl-controls{
 	position:relative;
-	margin: 0.5em auto 1.5em auto;
+	margin: 0.5em auto 0 auto;
 	width:100%;
 	text-align: right;
 	transform:translateX(-50%);
