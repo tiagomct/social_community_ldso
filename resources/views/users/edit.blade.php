@@ -6,8 +6,11 @@
             {{ Form::open([action('UsersController@update',$user->id), 'files'=> true ,'method' => 'post']) }}
             <div class="col-md-3 col-md-offset-0 col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0">
                 <!--    Profile pic     -->
-                <img class="img-rounded img-responsive" width="100%" height="100%"
-                     src="/storage/uploads/users/{{ $user->img_name }}">
+                @if($user->img_name == 'default.jpg')
+                    <img class="img-responsive img-thumbnail" src="{{ asset('/images/'.$user->img_name) }}">
+                @else
+                    <img class="img-responsive img-thumbnail" src="{{ asset('/images/users/'.$user->img_name) }}">
+                @endif
                 <label class="btn btn-default btn-file">
                     Change picture
                     {{ Form::file('img', ['style'=>'display:none']) }}

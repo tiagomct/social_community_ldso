@@ -19,7 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('forums-entries', 'ForumEntriesController@store');
     Route::get('forums-entries/{forumEntry}', 'ForumEntriesController@show');
 
-    Route::get('users', 'UsersController@index');
     Route::get('users/{user}', 'UsersController@show');
     Route::get('users/{user}/edit', 'UsersController@edit');
     Route::post('users/{user}/edit', 'UsersController@update');
@@ -58,6 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'moderator'], function () {
+
+    Route::get('users', 'UsersController@index');
+
     Route::get('moderators/referendums/pending', 'ReferendumsController@pendingList');
     Route::get('moderators/referendums/{referendum}', 'ReferendumsController@pendingShow');
     Route::get('moderators/referendums/{referendum}/approve', 'ReferendumsController@approve');

@@ -12,9 +12,9 @@
             <div class="col-xs-12 border-bottom user-list-item">
                 <div class="col-md-2 col-sm-3 col-xs-12">
                     @if($user->img_name == 'default.jpg')
-                        <img class="img-responsive img-thumbnail" src="{{ asset('/storage/users/'.$user->img_name) }}">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('/images/'.$user->img_name) }}">
                     @else
-                        <img class="img-responsive img-thumbnail" src="{{ asset('/storage/uploads/users/'.$user->img_name) }}">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('/images/users/'.$user->img_name) }}">
                     @endif
                 </div>
         

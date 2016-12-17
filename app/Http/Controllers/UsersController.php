@@ -22,6 +22,10 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
+        if(auth()->user()->id != $user->id){
+            return redirect()->back();
+        }
+
         //TODO get last activity from user
         $news = User::where('id', 3000)->get();
         $referendums = User::where('id', 3000)->get();
@@ -33,20 +37,27 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        if(auth()->user()->id != $user->id){
+            return redirect()->back();
+        }
         return view('users.edit', compact('user'));
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
 
+        if(auth()->user()->id != $user->id){
+            return redirect()->back();
+        }
+
         if ($request->file('img')) {
 
             $file = $request->file('img');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            Image::make($file)->save(public_path('/storage/uploads/users/' . $filename));
+            Image::make($file)->save(public_path('images/users/' . $filename));
 
             if ($user->img_name != 'default.jpg') {
-                File::delete(public_path('/storage/uploads/users/' . $user->img_name));
+                File::delete(public_path('images/users/' . $user->img_name));
             }
             $user->img_name = $filename;
         }
