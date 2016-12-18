@@ -15,13 +15,15 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', '!=', auth()->user()->id)->select('id', 'name', 'politics', 'img_name', 'interests')->orderBy('name')->paginate(10);
+        $users = User::search(request()->query('search', null))
+            ->paginate(self::DEFAULT_PAGINATION);
 
         return view('users.index', compact('users'));
     }
 
     public function show(User $user)
     {
+
         //TODO get last activity from user
         $news = User::where('id', 3000)->get();
         $referendums = User::where('id', 3000)->get();
@@ -31,22 +33,26 @@ class UsersController extends Controller
         return view('users.show', compact('user', 'news', 'forumThreads', 'malfunctions', 'referendums'));
     }
 
-    public function edit(User $user)
+    public function edit()
     {
+        $user = auth()->user();
+
         return view('users.edit', compact('user'));
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request)
     {
+
+        $user = auth()->user();
 
         if ($request->file('img')) {
 
             $file = $request->file('img');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            Image::make($file)->save(public_path('/storage/uploads/users/' . $filename));
+            Image::make($file)->save(public_path('images/users/' . $filename));
 
             if ($user->img_name != 'default.jpg') {
-                File::delete(public_path('/storage/uploads/users/' . $user->img_name));
+                File::delete(public_path('images/users/' . $user->img_name));
             }
             $user->img_name = $filename;
         }

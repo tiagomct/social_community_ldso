@@ -27,7 +27,6 @@ class ReferendumsController extends Controller
     /**
      * Handles POST request submitted by create referendum page
      * @param ReferendumRequest $request
-     * @param Referendum        $referendum
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(ReferendumRequest $request)
@@ -69,7 +68,7 @@ class ReferendumsController extends Controller
     /**
      * Show a selected referendum and current state of the votes
      * if user didn't vote voting is enabled
-     * @param Referendum $referendum
+     * @param $referendum_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show($referendum_id)

@@ -19,10 +19,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('forums-entries', 'ForumEntriesController@store');
     Route::get('forums-entries/{forumEntry}', 'ForumEntriesController@show');
 
-    Route::get('users', 'UsersController@index');
     Route::get('users/{user}', 'UsersController@show');
-    Route::get('users/{user}/edit', 'UsersController@edit');
-    Route::post('users/{user}/edit', 'UsersController@update');
+    Route::get('profile/edit', 'UsersController@edit');
+    Route::post('profile/edit', 'UsersController@update');
     Route::get('feed/subscriptions', 'FeedsController@subscriptions');
 
     Route::get('referendums', 'ReferendumsController@index');
@@ -49,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('toggle-follow/{relatedType}/{relatedId}', 'FollowsController@toggleFollow');
     Route::post('comments/{relatedType}/{relatedId}', 'CommentsController@store');
 
-    Route::get('test-profile-data', function() {
+    Route::get('test-profile-data', function () {
         $user = auth()->user()->load('votingLocation');
 
         return $user;
@@ -57,14 +56,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
-Route::group(['middleware' => 'moderator'], function () {
-    Route::get('moderators/referendums/pending', 'ReferendumsController@pendingList');
-    Route::get('moderators/referendums/{referendum}', 'ReferendumsController@pendingShow');
-    Route::get('moderators/referendums/{referendum}/approve', 'ReferendumsController@approve');
+Route::group(['middleware' => 'moderator',
+    'prefix' => 'moderators'], function () {
+
+    Route::get('users', 'UsersController@index');
+
+    Route::get('referendums/pending', 'ReferendumsController@pendingList');
+    Route::get('referendums/{referendum}', 'ReferendumsController@pendingShow');
+    Route::get('referendums/{referendum}/approve', 'ReferendumsController@approve');
 
 
-    Route::get('moderators/malfunctions/{malfunctionEntry}/edit', 'MalfunctionEntriesController@edit');
-    Route::post('moderators/malfunctions/{malfunctionEntry}/update', 'MalfunctionEntriesController@update');
+    Route::get('malfunctions/{malfunctionEntry}/edit', 'MalfunctionEntriesController@edit');
+    Route::post('malfunctions/{malfunctionEntry}/update', 'MalfunctionEntriesController@update');
 
 
 });
