@@ -36,7 +36,7 @@
             
             @yield('above-navbar')
 
-            <section id="blog">
+            <section id="blog" class="padbot80">
                 <div class="container">
                     <div class="row">
                         @yield('content')

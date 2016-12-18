@@ -10496,7 +10496,7 @@ footer h4 {
 /*	CONTACT FORM
 /*-----------------------------------------------------------------------------------*/
 /* __________ Contact Form __________ */
-textarea,
+textarea, textarea.form-control,
 input[type="text"], input.form-control {
   width: 100%;
   margin: 0 0 10px;
@@ -11922,14 +11922,22 @@ form .btn {
   max-width: 100.1%;
 }
 
+.btn.btn-small-padding {
+  padding: 5px 8px;
+}
+
 .btn.btn-create {
   background: #A39161;
   color: #fff;
-  padding: 5px 8px;
 }
 
 .top-actions-container > * {
   display: inline-block;
+}
+
+.user-activity-container {
+  margin-top: 3em;
+  margin-bottom: 2em;
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -179,10 +179,13 @@ form {
 }
 
 .btn {
+  &.btn-small-padding {
+    padding: 5px 8px;
+  }
+
   &.btn-create {
     background: $brown;
     color: #fff;
-    padding: 5px 8px;
   }
 }
 
@@ -190,4 +193,9 @@ form {
   & > * {
     display: inline-block;
   }
+}
+
+.user-activity-container {
+  margin-top: 3em;
+  margin-bottom: 2em;
 }

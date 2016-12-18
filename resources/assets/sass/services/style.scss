@@ -1185,7 +1185,7 @@ footer h4 {color:#fff;}
 /*	CONTACT FORM
 /*-----------------------------------------------------------------------------------*/
 /* __________ Contact Form __________ */
-textarea,
+textarea, textarea.form-control,
 input[type="text"], input.form-control {
 	width:100%;
 	margin:0 0 10px;
