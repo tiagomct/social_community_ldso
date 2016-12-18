@@ -15,16 +15,14 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::where('id', '!=', auth()->user()->id)->select('id', 'name', 'politics', 'img_name', 'interests')->orderBy('name')->paginate(10);
+        $users = User::search(request()->query('search', null))
+            ->paginate(self::DEFAULT_PAGINATION);
 
         return view('users.index', compact('users'));
     }
 
     public function show(User $user)
     {
-        if(auth()->user()->id != $user->id){
-            return redirect()->back();
-        }
 
         //TODO get last activity from user
         $news = User::where('id', 3000)->get();
@@ -35,20 +33,17 @@ class UsersController extends Controller
         return view('users.show', compact('user', 'news', 'forumThreads', 'malfunctions', 'referendums'));
     }
 
-    public function edit(User $user)
+    public function edit()
     {
-        if(auth()->user()->id != $user->id){
-            return redirect()->back();
-        }
+        $user = auth()->user();
+
         return view('users.edit', compact('user'));
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request)
     {
 
-        if(auth()->user()->id != $user->id){
-            return redirect()->back();
-        }
+        $user = auth()->user();
 
         if ($request->file('img')) {
 

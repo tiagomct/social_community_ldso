@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Sofa\Eloquence\Eloquence;
 
 class User extends Authenticatable
 {
 
-    use Notifiable;
+    use Notifiable, Eloquence;
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +28,11 @@ class User extends Authenticatable
         'interests',
     ];
 
+    protected $searchableColumns = [
+        'name',
+        'email',
+    ];
+
     protected $dates = [
         'birth_date',
     ];
@@ -41,8 +47,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function isModerator(){
-        if($this->role_id > 1){
+    public function isModerator()
+    {
+        if ($this->role_id > 1) {
             return true;
         }
         return false;
