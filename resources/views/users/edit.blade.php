@@ -4,7 +4,7 @@
     {{ Form::open([action('UsersController@update',$user->id), 'files'=> true ,'method' => 'post', 'class' => 'form-horizontal']) }}
     <div class="col-md-3 col-sm-4 col-xs-12">
         <!--    Profile pic     -->
-        <img class="img-circle img-responsive" width="100%" height="100%" src="{{ asset($user->img_name) }}">
+        <img class="img-circle img-responsive" width="100%" height="100%" src="{{ asset('/images/users/'.$user->img_name) }}">
         <label class="btn btn-default btn-file">
             Change picture
             {{ Form::file('img', ['style'=>'display:none']) }}

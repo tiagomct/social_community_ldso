@@ -7,9 +7,9 @@
     <div id="user-basic-info-container">
         <div class="col-md-3 col-sm-4 col-xs-12 user-profile-picture">
             @if($user->img_name == 'default.jpg')
-                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/storage/users/'.$user->img_name) }}">
+                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/images/'.$user->img_name) }}">
             @else
-                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/storage/uploads/users/'.$user->img_name) }}">
+                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/images/users/'.$user->img_name) }}">
             @endif
         </div>
     
