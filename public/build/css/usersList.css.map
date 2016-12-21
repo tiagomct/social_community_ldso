@@ -1,1 +1,0 @@
-{"version":3,"sources":["usersList.scss"],"names":[],"mappings":"AAAA;EACE,iBAAiB,EAUlB;EAXD;IAII,oBAAoB,EAMrB;IAVH;MAOM,8BAA8B;MAC9B,eAAe,EAChB","file":"usersList.css","sourcesContent":["#users-list {\n  padding-top: 3em;\n\n  .user-list-item {\n    padding-bottom: 2em;\n\n    .user-name {\n      font-family: 'Georgia Italic';\n      color: #1ac7c3;\n    }\n  }\n}"]}

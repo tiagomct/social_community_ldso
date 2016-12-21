@@ -1,32 +1,38 @@
-<div class="footer">
-	<div class="footer-top">
-		<div class="container">
-			<div class="col-md-4 footer-links">
-				<h4>Recent Forum Threads</h4>
-				@for($i=0; $i < 6; $i++)
-					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-				@endfor
+@inject('latest', 'App\Services\GetLatestPostsFooter')
+
+<!-- CONTACTS -->
+<section id="contacts">
+</section><!-- //CONTACTS -->
+
+<!-- FOOTER -->
+<footer>
+	<!-- CONTAINER -->
+	<div class="container">
+		<!-- ROW -->
+		<div class="row" data-appear-top-offset="-200" data-animated="fadeInUp">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
+				<h4><strong>Recent</strong> Forum Threads</h4>
+				
+				@foreach($latest->forumThreads() as $forumThread)
+					@include('partials._entry_short_version', ['entry' => $forumThread])
+				@endforeach
 			</div>
-			<div class="col-md-4 footer-links">
-				<h4>Recent News</h4>
-				@for($i=0; $i < 6; $i++)
-					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-				@endfor
+			
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
+				<h4><strong>Recent</strong> News</h4>
+				
+				{{--@foreach($latest->news() as $newsEntry)
+					@include('partials._entry_short_version', ['entry' => $newsEntry])
+				@endforeach--}}
 			</div>
-			<div class="col-md-4 footer-links">
-				<h4>Recent Referendums</h4>
-				@for($i=0; $i < 6; $i++)
-					<a href = "#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-				@endfor
+			
+			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
+				<h4><strong>Recent</strong> Referendums</h4>
+				
+				@foreach($latest->referendums() as $referendum)
+					@include('partials._entry_short_version', ['entry' => $referendum])
+				@endforeach
 			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="footer-bottom">
-		<div class="container">
-			<div class="copyrights">
-				<p>{{ config('app.name') }} © {{ date('Y') }} All rights reserved | Template by  <a href="http://w3layouts.com" target="_blank">  W3layouts</a></p>
-			</div>
-		</div>
-	</div>
-</div>
+		</div><!-- //ROW -->
+	</div><!-- //CONTAINER -->
+</footer><!-- //FOOTER -->

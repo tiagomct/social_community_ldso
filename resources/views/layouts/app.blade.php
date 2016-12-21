@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "icon" href = "{{ asset('images/favicon.ico') }}" type = "image/x-icon"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,6 +12,7 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Styles -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     @yield('css')
 
@@ -22,20 +24,27 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        @if(auth()->check())
-            @include('includes.navbar')
-            {{-- @include('includes.subNavbar') --}}
-        @else
-            @include('includes.auth.navbar')
-        @endif
-    
-        <div class="container">
-            <div class="content">
-                @yield('content')
-            </div>
+    <!-- PRELOADER -->
+    <img id="preloader" src="{{ asset('images/preloader.gif') }}" alt="" />
+    <div id="app" class="preloader_hide">
+        <div id="page" class="single_page">
+            @if(auth()->check())
+                @include('includes.navbar')
+            @else
+                @include('includes.auth.navbar')
+            @endif
+            
+            @yield('above-navbar')
+
+            <section id="blog" class="padbot80">
+                <div class="container">
+                    <div class="row">
+                        @yield('content')
+                    </div>
+                </div>
+            </section>
         </div>
-			
+    
         @if(auth()->check())
             @include('includes.footer')
         @else
@@ -44,14 +53,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script type="application/x-javascript">
-        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
-    </script>
+    <script src="{{ elixir('js/template.js') }}"></script>
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
     
     @yield('js')

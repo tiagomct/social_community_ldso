@@ -1,10 +1,11 @@
-<form action = "" class="form-inline">
+<form action = "" method="post" class="form-inline search-form">
+	{{ csrf_field() }}
 	<div class="form-group">
-		<input type="text" id="search" name="search"
-			   value="{{ request()->get('search', null) }}"
-			   placeholder="Type your search here"
-			   class="form-control"
-		>
+		<div class="input-group">
+			<input type="text" name="search" class="form-control" value="{{ request()->get('search', null) }}" placeholder="Search for...">
+			<span class="input-group-btn">
+				<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+			</span>
+		</div>
 	</div>
-	<button class="btn btn-primary" type="submit">Search</button>
 </form>

@@ -1,5 +1,5 @@
 @if(!$flagable->isMine())
-<a href = "{{action('FlagsController@toggleFlag', [$flagableType, $flagable->id]) }}">
+<a class="golden" href = "{{action('FlagsController@toggleFlag', [$flagableType, $flagable->id]) }}">
 	@if(!$flagable->hasMyReport())
 		<span title="Report content as inappropriate">
 			<i class = "fa fa-flag-o"></i> Submit report

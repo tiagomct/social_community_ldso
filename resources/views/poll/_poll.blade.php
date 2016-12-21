@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-5 col-xs-12 text-center">
                 <div class="progress">
-                    <div class="progress-bar {{ $answer->hasMyVote() ? '' : 'progress-bar-info' }}"
+                    <div class="progress-bar {{ $answer->hasMyVote() ? 'progress-bar-red' : 'progress-bar-dark-blue' }}"
                          role="progressbar"
                          aria-valuenow="{{ $answer->votes->count() }}"
                          aria-valuemin="0"
@@ -26,7 +26,7 @@
                     </a>
                 @else
                     @if($answer->id == $poll['userAnswerId'])
-                        <span class="label label-success" disabled="disabled">My vote</span>
+                        <span class="label bg-red" disabled="disabled">My vote</span>
                     @endif
                 @endif
                 <span>{{ $answer->votes->count() . ' votes' }}</span>

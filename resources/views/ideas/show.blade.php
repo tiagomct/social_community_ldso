@@ -1,23 +1,25 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ elixir('css/referendumShow.css') }}"/>
 @endsection
 
 @section('content')
-    <div class="col-xs-12 printing-content">
-        <div class="print-main">
-            <h3>Idea</h3>
-            <a>{{ $ideaEntry->title }}</a><br>
-            <p class="sub_head">Started on {{ $ideaEntry->created_at->format('jS F \of Y') }}</p>
-            <p class="ptext">{{$ideaEntry->description}}</p>
-	
-			@include('partials._voteUp', ['likeableType' => 'idea', 'likeable' => $ideaEntry])
-			@include('partials._follow', ['followableType' => 'idea', 'followable' => $ideaEntry])
-			@include('partials._flags', ['flagableType' => 'idea', 'flagable' => $ideaEntry])
-			
+    <div class="col-xs-12">
+        <div class="idea">
+            <span class="text-muted">@include('partials._timestamp', ['timestamp' => $ideaEntry->created_at])</span>
+            <h2><b>{{ $ideaEntry->title }}</b></h2>
+        
+            <p>{{ $ideaEntry->description }}</p>
+        
+            <div class="clearfix text-right">
+                @include('partials._voteUp', ['likeableType' => 'idea', 'likeable' => $ideaEntry])
+                <span>|</span>
+                @include('partials._follow', ['followableType' => 'idea', 'followable' => $ideaEntry])
+                <span>|</span>
+                @include('partials._flags', ['flagableType' => 'idea', 'flagable' => $ideaEntry])
+            </div>
         </div>
-
-        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'idea', 'commentable' => $ideaEntry]))
+    
+        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'idea', 'commentable' => $ideaEntry])
     </div>
 @endsection

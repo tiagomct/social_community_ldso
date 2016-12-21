@@ -1,41 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="form-horizontal" role="form" method="POST" action="{{action('ForumEntriesController@store')}}">
-        {{ csrf_field() }}
-
-        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-            <label for="title" class="col-md-4 control-label">Title</label>
-
-            <div class="col-md-6">
-                <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
-
+    <h1 class="padbot80"><strong>Create</strong> a new <span class="golden">Thread</span> in forum</h1>
+    
+    <form action = "{{action('ForumEntriesController@store')}}" method = "POST" class="form-horizontal">
+        {{csrf_field()}}
+        <div class = "form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+            <label for = "title" class = "control-label col-sm-2">Title</label>
+            <div class="col-sm-10">
+                <input type = "text" id="title" name = "title" value = "{{ old("title") }}" class = "form-control" required autofocus >
                 @if ($errors->has('title'))
-                    <span class="help-block">
+                    <span class = "help-block">
                         <strong>{{ $errors->first('title') }}</strong>
                     </span>
                 @endif
             </div>
         </div>
-
-        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-            <label for="descrition" class="col-md-4 control-label">Description</label>
-
-            <div class="col-md-6">
-                <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" autofocus>
-
+        <div class = "form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+            <label for = "description" class="control-label col-sm-2">Description</label>
+            <div class="col-sm-10">
+                <textarea id="description" name = "description" class = "form-control" required autofocus rows = "4">{{ old("description") }}</textarea>
                 @if ($errors->has('description'))
-                    <span class="help-block">
+                    <span class = "help-block">
                         <strong>{{ $errors->first('description') }}</strong>
                     </span>
                 @endif
             </div>
         </div>
-
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <input type="submit" value="Create"/>
+        
+        <div class = "form-group">
+            <div class="col-sm-12">
+                <input type = "submit" class = "btn btn-link pull-right" value = "Create">
             </div>
         </div>
     </form>

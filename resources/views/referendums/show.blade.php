@@ -1,22 +1,25 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ elixir('css/referendumShow.css') }}"/>
 @endsection
 
 @section('content')
-    <div class="col-xs-12 printing-content">
-        <div class="print-main">
-            <h3>Referendum</h3>
-            <a>{{ $referendum->title }}</a>
-            <p class="sub_head">Started on {{ $referendum->created_at->format('jS F \of Y') }}</p>
-            <p class="ptext">{{ $referendum->description }}</p>
-			
+    <div class="col-xs-12">
+        <div class="referendum">
+            <span class="text-muted">@include('partials._timestamp', ['timestamp' => $referendum->created_at])</span>
+            <h2><b>{{ $referendum->title }}</b></h2>
+            
+            <p>{{ $referendum->description }}</p>
+        
             @include('poll._poll', ['pollableId' => $referendum->id, 'poll' => $poll, 'pollableType' => 'referendum'])
-			@include('partials._follow', ['followableType' => 'referendum', 'followable' => $referendum])
-			@include('partials._flags', ['flagable' => $referendum, 'flagableType' => 'referendum'])
+        
+            <div class="clearfix text-right">
+                @include('partials._follow', ['followableType' => 'referendum', 'followable' => $referendum])
+                <span>|</span>
+                @include('partials._flags', ['flagableType' => 'referendum', 'flagable' => $referendum])
+            </div>
         </div>
         
-        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'referendum', 'commentable' => $referendum]))
+        @include('partials._commentsSections', ['comments' => $comments, 'commentableType' => 'referendum', 'commentable' => $referendum])
     </div>
 @endsection

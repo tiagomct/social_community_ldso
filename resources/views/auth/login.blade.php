@@ -48,9 +48,9 @@
 
         <div class="form-group">
             <div class="col-md-8 col-md-offset-4">
-                <input type = "submit" value="Login"/>
+                <input type = "submit" class="btn btn-link" value="Login"/>
 
-                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                <a class="" href="{{ url('/password/reset') }}">
                     Forgot Your Password?
                 </a>
             </div>

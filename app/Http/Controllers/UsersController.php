@@ -25,12 +25,12 @@ class UsersController extends Controller
     {
 
         //TODO get last activity from user
-        $news = User::where('id', 3000)->get();
+        $ideas = User::where('id', 3000)->get();
         $referendums = User::where('id', 3000)->get();
         $forumThreads = User::where('id', 3000)->get();
         $malfunctions = User::where('id', 3000)->get();
 
-        return view('users.show', compact('user', 'news', 'forumThreads', 'malfunctions', 'referendums'));
+        return view('users.show', compact('user', 'ideas', 'forumThreads', 'malfunctions', 'referendums'));
     }
 
     public function edit()

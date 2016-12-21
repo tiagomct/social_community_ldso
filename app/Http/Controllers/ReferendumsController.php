@@ -84,7 +84,7 @@ class ReferendumsController extends Controller
 
         $poll = $referendum->pollData();
 
-        $comments = $referendum->comments()->with('likes')->latest()->paginate(self::DEFAULT_PAGINATION);
+        $comments = $referendum->comments()->with('likes')->latest()->paginate(self::COMMENTS_DEFAULT_PAGINATION);
 
         return view('referendums.show', compact('referendum', 'poll', 'comments'));
     }

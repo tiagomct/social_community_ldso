@@ -16,7 +16,7 @@
 					
 					<p class="ptext">{{ $follow->entry->description }}</p>
 					
-					{!! entryTypeShowHtml($follow->entry) !!}
+					{!! entryTypeAction($follow->entry) !!}
 				</div>
 			</div>
 		@endforeach
