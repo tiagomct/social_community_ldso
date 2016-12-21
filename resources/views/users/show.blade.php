@@ -5,15 +5,15 @@
 
 @section('content')
     <div id="user-basic-info-container">
-        <div class="col-md-3 col-sm-4 col-xs-12 user-profile-picture">
+        <div class="col-md-2 col-sm-4 col-xs-12 user-profile-picture">
             @if($user->img_name == 'default.jpg')
-                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/images/'.$user->img_name) }}">
+                <img class="img-responsive img-circle img-border" src="{{ asset('/images/'.$user->img_name) }}">
             @else
-                <img class="img-responsive img-thumbnail img-circle" src="{{ asset('/images/users/'.$user->img_name) }}">
+                <img class="img-responsive img-circle img-border" src="{{ asset('/images/users/'.$user->img_name) }}">
             @endif
         </div>
     
-        <div class="col-md-9 col-sm-8 col-xs-12 user-basic-info">
+        <div class="col-md-10 col-sm-8 col-xs-12 user-basic-info">
             <dl class="dl-horizontal col-xs-12 no-padding">
                 <dt>Name</dt>
                 <dd>{{ $user->name }}</dd>

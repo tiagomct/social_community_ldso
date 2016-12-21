@@ -11940,4 +11940,9 @@ form .btn {
   margin-bottom: 2em;
 }
 
+img.img-border {
+  border: 3px solid #3C5A73;
+  width: 100%;
+}
+
 /*# sourceMappingURL=app.css.map */

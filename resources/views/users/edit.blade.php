@@ -2,9 +2,11 @@
 
 @section('content')
     {{ Form::open([action('UsersController@update',$user->id), 'files'=> true ,'method' => 'post', 'class' => 'form-horizontal']) }}
-    <div class="col-md-3 col-sm-4 col-xs-12">
+    <div class="col-md-2 col-sm-4 col-xs-12 text-center">
         <!--    Profile pic     -->
-        <img class="img-circle img-responsive" width="100%" height="100%" src="{{ asset('/images/users/'.$user->img_name) }}">
+        <img class="img-circle img-responsive img-border" src="{{ asset('/images/users/'.$user->img_name) }}">
+        <h3 class="golden"><strong>{{ $user->name }}</strong></h3>
+        <div class="clearfix padbot20"></div>
         <label class="btn btn-default btn-file">
             Change picture
             {{ Form::file('img', ['style'=>'display:none']) }}
@@ -15,11 +17,7 @@
         </span>
         @endif
     </div>
-    <div class="col-md-9 col-sm-8 col-xs-12">
-        <!--   User name    -->
-        <div class="form-group">
-            <h2>{{ $user->name }}</h2>
-        </div>
+    <div class="col-md-10 col-sm-8 col-xs-12">
 
         <!--    Email       -->
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
