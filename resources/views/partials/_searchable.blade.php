@@ -1,4 +1,4 @@
-<form action = "" method="post" class="form-inline search-form">
+<form action = "" method="get" class="form-inline search-form">
 	{{ csrf_field() }}
 	<div class="form-group">
 		<div class="input-group">

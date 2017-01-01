@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReferendumCommentRequest;
 use App\Http\Requests\ReferendumRequest;
 use App\PollAnswer;
 use App\Referendum;
-use App\ReferendumAnswer;
-use App\ReferendumComment;
-use Illuminate\Support\Facades\Auth;
-use App\Vote;
 use Illuminate\Support\Facades\DB;
 
 class ReferendumsController extends Controller
@@ -110,7 +105,7 @@ class ReferendumsController extends Controller
      */
     public function pendingShow(Referendum $referendum)
     {
-        $answers = $referendum->referendumAnswer()->get();
+        $answers = $referendum->pollAnswers()->get();
 
         return view('referendums.moderatorShow', compact('referendum', 'answers'));
     }

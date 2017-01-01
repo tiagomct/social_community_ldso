@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-    <link rel="stylesheet" href="{{ elixir('css/usersList.css') }}"/>
-@endsection
-
 @section('content')
     <div id="users-list" class="col-xs-12 no-padding">
         <h2 class="generic-title text-center">Users List</h2>
@@ -31,7 +27,18 @@
                         <dd>{{ $user->politics}}</dd>
                     </dl>
 
-                    <a href="{{action('UsersController@show', $user->id)}}" class="btn btn-primary pull-right"><i
+                    @if(auth()->user()->isAdministrator() and !$user->isAdministrator())
+                        <a class="btn btn-sm btn-primary pull-right"
+                           href="{{action('UsersController@toggleModerator', $user->id )}}">
+                            @if($user->isModerator())
+                                <i class="fa fa-arrow-down"></i> Remove Moderator rights
+                            @elseif($user->isUser())
+                                <i class="fa fa-arrow-up"></i> Grant Moderator rights
+                            @endif
+                        </a>
+                    @endif
+
+                    <a href="{{action('UsersController@show', $user->id)}}" class="btn btn-sm btn-primary pull-right"><i
                                 class="fa fa-eye"></i> View profile</a>
                 </div>
             </div>

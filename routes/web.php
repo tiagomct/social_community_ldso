@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'moderator',
     'prefix' => 'moderators'], function () {
 
-    Route::get('users', 'UsersController@index');
+    Route::get('/', 'UsersController@moderatorSection');
 
     Route::get('referendums/pending', 'ReferendumsController@pendingList');
     Route::get('referendums/{referendum}', 'ReferendumsController@pendingShow');
@@ -68,5 +68,14 @@ Route::group(['middleware' => 'moderator',
     Route::get('malfunctions/{malfunctionEntry}/edit', 'MalfunctionEntriesController@edit');
     Route::post('malfunctions/{malfunctionEntry}/update', 'MalfunctionEntriesController@update');
 
+
+});
+
+
+Route::group(['middleware' => 'administrator',
+    'prefix' => 'admin'], function () {
+
+    Route::get('users', 'UsersController@index');
+    Route::get('users/{user}/moderator_access', 'UsersController@toggleModerator');
 
 });
