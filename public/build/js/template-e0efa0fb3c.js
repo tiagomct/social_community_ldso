@@ -2111,6 +2111,21 @@ jQuery(document).ready(function() {
 });
 
 
+/*-----------------------------------------------------------------------------------*/
+/*	EXPANDABLE IMAGE
+/*-----------------------------------------------------------------------------------*/
+$(document).ready(function () {
+	$('.img-float-container img').on('click', function () {
+		var container = $(this).parent();
+		if(container.hasClass('img-container-compressed')) {
+			container.removeClass('img-container-compressed');
+			container.addClass('img-container-expanded');
+		} else {
+            container.removeClass('img-container-expanded');
+            container.addClass('img-container-compressed');
+        }
+    })
+});
 
 
 

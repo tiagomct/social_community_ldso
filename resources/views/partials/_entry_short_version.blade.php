@@ -1,7 +1,7 @@
 <div class="recent_posts_small clearfix">
 	@if($entry->image)
 		<div class="post_item_img_small">
-			<img src="{{ asset($entry->image) }}" alt="" />
+			<img src="{{ asset(entryTypeImagePath($entry).$entry->image) }}" alt="" />
 		</div>
 	@endif
 	<div class="post_item_content_small">

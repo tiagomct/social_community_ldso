@@ -205,3 +205,23 @@ img.img-border {
   border: 3px solid $darkBlue;
   width: 100%;
 }
+
+.img-float-container {
+  overflow-y: hidden;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+
+  &.img-container-compressed {
+    max-height: 400px;
+  }
+  &.img-container-expanded {
+    max-height: 2000px;
+  }
+
+  img {
+    cursor: pointer;
+  }
+}
