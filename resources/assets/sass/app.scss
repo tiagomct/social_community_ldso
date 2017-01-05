@@ -216,12 +216,16 @@ img.img-border {
 
   &.img-container-compressed {
     max-height: 400px;
+
+    img {
+      cursor: zoom-in;
+    }
   }
   &.img-container-expanded {
     max-height: 2000px;
-  }
 
-  img {
-    cursor: pointer;
+    img {
+      cursor: zoom-out;
+    }
   }
 }

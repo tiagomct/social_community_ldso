@@ -11955,12 +11955,16 @@ img.img-border {
   max-height: 400px;
 }
 
+.img-float-container.img-container-compressed img {
+  cursor: zoom-in;
+}
+
 .img-float-container.img-container-expanded {
   max-height: 2000px;
 }
 
-.img-float-container img {
-  cursor: pointer;
+.img-float-container.img-container-expanded img {
+  cursor: zoom-out;
 }
 
 /*# sourceMappingURL=app.css.map */
