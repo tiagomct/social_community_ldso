@@ -16,7 +16,7 @@
                         <p class="ptext">{{ $referendum->description }}</p>
                     </div>
                     <a href="{{action('ReferendumsController@pendingShow', $referendum->id)}}"
-                       class="btn btn-primary pull-right"><i class="fa fa-eye"></i> View referendum</a>
+                       class="btn btn-sm btn-primary pull-right"><i class="fa fa-eye"></i> View referendum</a>
                 </div>
             @endforeach
 

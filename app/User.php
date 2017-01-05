@@ -47,9 +47,41 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    /**
+     * Return true if user is Moderator or Administrator
+     *
+     * @return bool
+     */
     public function isModerator()
     {
         if ($this->role_id > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if user is Administrator
+     *
+     * @return bool
+     */
+    public function isAdministrator()
+    {
+        if ($this->role_id == 3) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Returns true if user is regular User
+     *
+     * @return bool
+     */
+    public function isUser(){
+        if ($this->role_id == 1){
             return true;
         }
         return false;
