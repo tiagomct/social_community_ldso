@@ -25,6 +25,15 @@ function entryTypeAction($object)
     return $entries[get_class($object)];
 }
 
+function entryTypeImagePath($object)
+{
+    $entries = [
+        \App\NewsEntry::class        => 'images/news/',
+    ];
+
+    return $entries[get_class($object)];
+}
+
 /**
  * @param \Carbon\Carbon $timestamp
  */

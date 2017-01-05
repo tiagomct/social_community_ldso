@@ -25,7 +25,7 @@ class NewsRequest extends FormRequest
     {
         return [
             'description' => 'string',
-            'image'       => 'dimensions:width=200,height=200',
+            'image'       => '',
             'title'       => 'string|max:255',
         ];
     }

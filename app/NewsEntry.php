@@ -11,6 +11,7 @@ class NewsEntry extends Model
 
     use Likeable, Eloquence;
 
+    protected $fillable = ['title', 'description', 'image'];
     protected $searchableColumns = [
         'title',
         'description'

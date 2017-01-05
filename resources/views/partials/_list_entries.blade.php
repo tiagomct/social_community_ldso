@@ -3,7 +3,7 @@
 	<div class="blog_post margbot50 clearfix col-md-12" data-animated="fadeInUp">
 		@if($entry->image)
 			<div class="blog_post_img">
-				<img src="{{ asset($entry->image) }}" alt="" />
+				<img src="{{ asset(entryTypeImagePath($entry).$entry->image) }}" alt="" />
 				<a class="zoom" href="{{ entryTypeAction($entry) }}" ></a>
 			</div>
 		@endif

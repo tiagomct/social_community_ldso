@@ -7,19 +7,21 @@
         <div class="forum-entry">
             <span class="text-muted">@include('partials._timestamp', ['timestamp' => $newsEntry->created_at])</span>
             <h2><b>{{ $newsEntry->title }}</b></h2>
-
-            <div class="col-xs-12">
-                @if($newsEntry->img_name)
-                    <div class="col-xs-2 pull-left user-profile-picture">
-                        <img class="img-responsive img-rounded img-border"
-                             src="{{ asset('/images/news/'.$newsEntry->img_name) }}">
+            
+            @if($newsEntry->image)
+                <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+                    <div class="col-xs-12 ">
+                        <img class="img-responsive img-border" src="{{ asset('/images/news/'.$newsEntry->image) }}">
                     </div>
-                @endif
-
-                <div>
-                    <p>{{ $newsEntry->description }}</p>
                 </div>
+            @endif
+
+            <div class="col-xs-12" style="margin-top: 3em">
+                <p>{{ $newsEntry->description }}</p>
             </div>
+            
+            <div class="clearfix"></div>
+            
             <div class="clearfix text-right">
                 @include('partials._thumbs', ['likeableType' => 'news', 'likeable' => $newsEntry])
             </div>

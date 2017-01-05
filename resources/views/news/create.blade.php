@@ -19,7 +19,7 @@
         <div class = "form-group{{ $errors->has('description') ? ' has-error' : '' }}">
             <label for = "description" class="control-label col-sm-2">Description</label>
             <div class="col-sm-10">
-                <textarea id="description" name = "description" class = "form-control" required rows = "40">{{ old("description") }}</textarea>
+                <textarea id="description" name = "description" class = "form-control" required rows = "20">{{ old("description") }}</textarea>
                 @if ($errors->has('description'))
                     <span class = "help-block">
                         <strong>{{ $errors->first('description') }}</strong>
@@ -36,7 +36,6 @@
                         <strong>{{ $errors->first('image') }}</strong>
                     </span>
                 @endif
-                <small><em>Image dimensions: 200 pixels by 200 pixels</em></small>
             </div>
         </div>
         
