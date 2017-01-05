@@ -16,9 +16,9 @@ class IdeaEntriesController extends Controller
     public function index()
     {
         $ideas = IdeaEntry::search(request()->query('search', null))
-            ->with('likes')->withCount('likes');
-
-        $ideas = $ideas->orderBy('likes_count', 'desc');
+            ->with('likes')->withCount('likes')
+            ->orderBy('likes_count', 'desc')
+            ->paginate(self::DEFAULT_PAGINATION);
 
         return view('ideas.index', compact('ideas'));
     }
