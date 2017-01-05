@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="clearfix text-right">
-                @include('partials._thumbs', ['likeableType' => 'forum-entry', 'likeable' => $newsEntry])
+                @include('partials._thumbs', ['likeableType' => 'news', 'likeable' => $newsEntry])
             </div>
         </div>
     </div>
