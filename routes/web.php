@@ -81,4 +81,6 @@ Route::group(['middleware' => 'administrator',
     Route::get('users', 'UsersController@index');
     Route::get('users/{user}/moderator_access', 'UsersController@toggleModerator');
 
+    Route::get('news/create', 'NewsController@create');
+    Route::post('news/create', 'NewsController@store');
 });

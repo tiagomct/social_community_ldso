@@ -18,4 +18,14 @@ class NewsController extends Controller
     {
         return view('news.show', compact('newsEntry', 'comments'));
     }
+
+    public function create()
+    {
+        return view('news.create');
+    }
+
+    public function store(Request $request)
+    {
+
+    }
 }
