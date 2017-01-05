@@ -21,7 +21,7 @@
             <div class="pull-right">
                 <nav class="navmenu center">
                     <ul>
-                        <li class="first scroll_btn"><a href="">News</a></li>
+                        <li class="first scroll_btn"><a href="{{ action('NewsController@index') }}">News</a></li>
                         <li class="scroll_btn"><a href="{{ action('IdeaEntriesController@index') }}">Ideas</a></li>
                         <li class="scroll_btn"><a
                                     href="{{ action('MalfunctionEntriesController@index') }}">Malfunctions</a></li>

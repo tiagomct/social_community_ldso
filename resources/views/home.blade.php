@@ -6,7 +6,7 @@
 
 @section('content')
 	<h1><b>Latest</b> <span class="golden">News</span></h1>
-	@include('partials._latest_entries', ['entries' => $referendums])
+	@include('partials._latest_entries', ['entries' => $news])
 	
 	<div class="clearfix"></div>
 	<h1><b>Latest</b> <span class="red">Referendums</span></h1>

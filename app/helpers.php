@@ -18,7 +18,7 @@ function entryTypeAction($object)
         \App\Referendum::class       => action('ReferendumsController@show', $object->id),
         \App\ForumEntry::class       => action('ForumEntriesController@show', $object->id),
         \App\IdeaEntry::class        => action('IdeaEntriesController@show', $object->id),
-        //\App\NewsEntry::class        => action('NewsEntriesController@show', $object->id),
+        \App\NewsEntry::class        => action('NewsController@show', $object->id),
         \App\MalfunctionEntry::class => action('MalfunctionEntriesController@show', $object->id),
     ];
 

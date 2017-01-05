@@ -23,11 +23,4 @@ class MunicipalityController extends Controller
         //dd($news, $malfunctions, $ideas, $referendums);
         return view('home', compact('news', 'malfunctions', 'ideas', 'referendums'));
     }
-
-    /*public function show($municipality)
-    {
-        return view('pages.home')
-            ->with('title', 'Municipality Page')
-            ->with('municipality', Municipality::find($municipality));
-    }*/
 }

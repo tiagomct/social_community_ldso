@@ -21,9 +21,9 @@
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
 				<h4><strong>Recent</strong> News</h4>
 				
-				{{--@foreach($latest->news() as $newsEntry)
+				@foreach($latest->news() as $newsEntry)
 					@include('partials._entry_short_version', ['entry' => $newsEntry])
-				@endforeach--}}
+				@endforeach
 			</div>
 			
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padbot30">
