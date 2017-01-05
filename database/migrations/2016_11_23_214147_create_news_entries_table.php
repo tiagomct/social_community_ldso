@@ -18,6 +18,7 @@ class CreateNewsEntriesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->text('description');
+            $table->string('img_name')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

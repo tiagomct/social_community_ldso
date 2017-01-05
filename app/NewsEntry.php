@@ -16,8 +16,25 @@ class NewsEntry extends Model
         'description'
     ];
 
+    /**
+     * Retruns true if current users is the author of the news entry
+     *
+     * @return bool
+     */
     public function isMine()
     {
         return $this->user_id == auth()->user()->id;
     }
+
+
+    /**
+     * Defines relationship with users table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
