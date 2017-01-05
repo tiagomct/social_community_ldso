@@ -20,7 +20,7 @@ class LikesController extends Controller
         'forum-entry' => ForumEntry::class,
         'idea'        => IdeaEntry::class,
         'malfunction' => MalfunctionEntry::class,
-        'newsEntry'        => NewsEntry::class,
+        'news'        => NewsEntry::class,
         'referendum'  => Referendum::class,
         'comment'     => Comment::class
     ];
