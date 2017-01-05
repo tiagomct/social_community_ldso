@@ -14,7 +14,7 @@ class AddClosingToReferendums extends Migration
     public function up()
     {
         Schema::table('referendums', function (Blueprint $table) {
-            $table->timestamp('closed_at')->useCurrent();
+            $table->timestamp('closed_at')->nullable();
         });
     }
 
