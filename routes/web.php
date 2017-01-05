@@ -71,6 +71,8 @@ Route::group(['middleware' => 'moderator',
     Route::get('malfunctions/{malfunctionEntry}/edit', 'MalfunctionEntriesController@edit');
     Route::post('malfunctions/{malfunctionEntry}/update', 'MalfunctionEntriesController@update');
 
+    Route::get('news/create', 'NewsController@create');
+    Route::post('news/create', 'NewsController@store');
 
 });
 
@@ -80,7 +82,4 @@ Route::group(['middleware' => 'administrator',
 
     Route::get('users', 'UsersController@index');
     Route::get('users/{user}/moderator_access', 'UsersController@toggleModerator');
-
-    Route::get('news/create', 'NewsController@create');
-    Route::post('news/create', 'NewsController@store');
 });

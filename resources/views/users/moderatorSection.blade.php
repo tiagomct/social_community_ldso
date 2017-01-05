@@ -29,6 +29,16 @@
         <hr>
 
         <div class="row">
+            <h2>News</h2>
+            <p> Publish important notifications or news</p>
+            <a href="{{action('NewsController@create')}}" class="btn btn-sm btn-primary"><i
+                        class="fa fa-pencil"></i> Create news</a>
+        </div>
+
+        <hr>
+
+
+        <div class="row">
             <h2>Malfunctions</h2>
             <p> Show pending malfunctions and update their status </p>
             <a href="{{action('MalfunctionEntriesController@index', 'pending' )}}" class="btn btn-sm btn-primary"><i
