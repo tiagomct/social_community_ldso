@@ -119,6 +119,7 @@ class ReferendumsController extends Controller
     public function approve(Referendum $referendum)
     {
         $referendum->approved = true;
+        $referendum->closed_at = now()->addDays(30);
         $referendum->save();
 
         return redirect()->action('ReferendumsController@pendingList');
