@@ -52,6 +52,7 @@ $factory->define(App\Referendum::class, function (Faker\Generator $faker) {
         'title'       => $faker->sentence,
         'description' => $faker->paragraphs(3, true),
         'approved'    => $faker->boolean,
+        'closed_at'   => null
     ];
 });
 

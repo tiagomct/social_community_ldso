@@ -120,7 +120,7 @@ class ReferendumsController extends Controller
     public function approve(Referendum $referendum)
     {
         $referendum->approved = true;
-        $referendum->closed_at = Carbon::now()->addDays(30)->setTime(0, 0, 0);
+        $referendum->closed_at = Carbon::now()->addDays(30)->endOfDay();
         $referendum->save();
 
         return redirect()->action('ReferendumsController@pendingList');

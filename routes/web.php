@@ -1,4 +1,5 @@
 <?php
+auth()->loginUsingId(1);
 
 Route::get('/', function () {
     if (auth()->check())
@@ -12,6 +13,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'MunicipalityController@access');
+    Route::get('/news', 'MunicipalityController@access');
 
     Route::get('forum-entries', 'ForumEntriesController@index');
     Route::get('forums-entries/create', 'ForumEntriesController@create');
