@@ -1,5 +1,4 @@
 <?php
-
 Route::get('/', function () {
     if (auth()->check())
         return redirect()->action('MunicipalityController@access');
