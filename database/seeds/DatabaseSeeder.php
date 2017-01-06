@@ -95,7 +95,14 @@ class DatabaseSeeder extends Seeder
     private function createPollThreads()
     {
         $pollThreads = [];
-        $pollThreads[] = factory(App\Referendum::class, 5)->create(['approved' => true]);
+        $pollThreads[] = factory(App\Referendum::class, 2)->create([
+            'approved'  => true,
+            'closed_at' => \Carbon\Carbon::now()
+        ]);
+        $pollThreads[] = factory(App\Referendum::class, 3)->create([
+            'approved' => true,
+            'closed_at' => \Carbon\Carbon::now()->addMonth()
+        ]);
         $pollThreads[] = factory(App\Referendum::class, 5)->create(['approved' => false]);
         $pollThreads[] = factory(App\IdeaEntry::class, 10)->create();
 

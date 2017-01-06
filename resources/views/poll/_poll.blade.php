@@ -20,7 +20,7 @@
             </div>
             <div class="col-sm-2 col-xs-12 text-right">
                 @if(!$poll['userAnswerId'])
-                    <a href="{{action('PollsController@submitVote', [$pollableType , $pollableId, $answer->id ] ) }}"
+                    <a href="{{action('PollsController@submitVote', [$pollableType , $pollableId, $answer->id] ) }}"
                        class="btn btn-info btn-xs">
                         <i class="fa fa-thumbs-up"></i> Vote
                     </a>

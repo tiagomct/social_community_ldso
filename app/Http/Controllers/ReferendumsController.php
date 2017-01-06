@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReferendumRequest;
 use App\PollAnswer;
 use App\Referendum;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ReferendumsController extends Controller
@@ -119,6 +120,7 @@ class ReferendumsController extends Controller
     public function approve(Referendum $referendum)
     {
         $referendum->approved = true;
+        $referendum->closed_at = Carbon::now()->addDays(30)->endOfDay();
         $referendum->save();
 
         return redirect()->action('ReferendumsController@pendingList');

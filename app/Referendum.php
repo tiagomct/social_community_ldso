@@ -3,14 +3,20 @@
 namespace App;
 
 use App\Traits\Pollable;
+use Carbon\Carbon;
 
 class Referendum extends Thread implements isPoll
 {
+
     use Pollable;
 
     protected $fillable = [
         'title',
         'description',
+    ];
+
+    protected $dates = [
+        'closed_at'
     ];
 
     /**
@@ -20,13 +26,14 @@ class Referendum extends Thread implements isPoll
      */
     public function votingEnabled()
     {
-        return $this->approved;
+        return !$this->isClosed();
     }
 
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     /**
      * Scope for filtering approved requests
      * @param $query
@@ -45,5 +52,14 @@ class Referendum extends Thread implements isPoll
     public function scopeNotApproved($query)
     {
         return $query->where('approved', false);
+    }
+
+    public function isClosed()
+    {
+        if ($this->approved) {
+            return $this->closed_at->timestamp < Carbon::now()->timestamp;
+        }
+
+        return false;
     }
 }
