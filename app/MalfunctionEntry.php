@@ -15,6 +15,7 @@ class MalfunctionEntry extends Thread
         'description',
         'status',
         'report',
+        'image'
     ];
 
     public function author()

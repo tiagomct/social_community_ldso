@@ -7,6 +7,7 @@ use App\Http\Requests\MalfunctionStatusChangeRequest;
 use App\Like;
 use App\MalfunctionEntry;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 class MalfunctionEntriesController extends Controller
 {
@@ -26,7 +27,7 @@ class MalfunctionEntriesController extends Controller
         }
 
         $malfunctions = $malfunctions->with('likes')->withCount('likes')
-            ->orderBy('likes_count', 'desc')->paginate(self::DEFAULT_PAGINATION);
+            ->orderBy('status', 'desc')->orderBy('created_at', 'desc')->paginate(self::DEFAULT_PAGINATION);
 
         return view('malfunctions.index', compact('malfunctions'));
     }
@@ -57,10 +58,21 @@ class MalfunctionEntriesController extends Controller
     {
         DB::transaction(function () use ($request) {
             $malfunction = new MalfunctionEntry();
-            $malfunction->fill($request->all());
+            $malfunction->fill([
+                'title'       => $request->title,
+                'description' => $request->description
+            ]);
             $malfunction->status = 'pending';
             $malfunction->report = '';
             $malfunction->author()->associate(auth()->user());
+
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                Image::make($file)->save(public_path('images/malfunctions/' . $filename));
+                $malfunction->image = $filename;
+            }
+
             $malfunction->save();
         });
 

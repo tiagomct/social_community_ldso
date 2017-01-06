@@ -11,7 +11,7 @@
             @if($newsEntry->image)
                 <div class="col-sm-8 col-sm-offset-2 col-xs-12">
                     <div class="col-xs-12 img-float-container img-container-compressed">
-                        <img class="img-responsive img-border" src="{{ asset('/images/news/'.$newsEntry->image) }}">
+                        <img class="img-responsive img-border" src="{{ asset(entryTypeImagePath($newsEntry).$newsEntry->image)) }}">
                     </div>
                 </div>
             @endif

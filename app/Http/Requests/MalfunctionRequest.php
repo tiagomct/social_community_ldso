@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MalfunctionRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,8 +25,9 @@ class MalfunctionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'string|required|max:255',
+            'title'       => 'string|required|max:255',
             'description' => 'string|required|max:2000',
+            'image'       => 'image'
         ];
     }
 }

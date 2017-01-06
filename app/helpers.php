@@ -29,6 +29,7 @@ function entryTypeImagePath($object)
 {
     $entries = [
         \App\NewsEntry::class        => 'images/news/',
+        \App\MalfunctionEntry::class => 'images/malfunctions/',
     ];
 
     return $entries[get_class($object)];
@@ -37,7 +38,8 @@ function entryTypeImagePath($object)
 /**
  * @param \Carbon\Carbon $timestamp
  */
-function isToday($timestamp) {
+function isToday($timestamp)
+{
     $now = \Carbon\Carbon::now();
 
     $diff = $now->diffInDays($timestamp);
