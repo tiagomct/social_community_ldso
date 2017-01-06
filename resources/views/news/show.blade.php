@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-            <div class="col-xs-12" style="margin-top: 3em">
+            <div class="col-xs-12 text-justify" style="margin-top: 3em">
                 <p>{{ $newsEntry->description }}</p>
             </div>
             

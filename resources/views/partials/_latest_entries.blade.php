@@ -14,7 +14,7 @@
 				@if($entries->first()->likes)<li>{{ $entries->first()->likes->count() }} Likes</li>@endif
 			</ul>
 			<hr>
-			<div class="blog_post_content">{{ $entries->first()->description }}</div>
+			<div class="blog_post_content text-justify">{{ substr($entries->first()->description, 0, 300).'...' }}</div>
 			<a class="read_more_btn" href="{{ entryTypeAction($entries->first()) }}" >Read More</a>
 		</div>
 	</div>
